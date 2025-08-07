@@ -13,7 +13,18 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(\App\Http\Middleware\SetLocale::class);
+
+        // ✅ Add your custom middleware alias here (if you want to use it on specific routes)
+        $middleware->alias([
+            'check.role' => \App\Http\Middleware\CheckUserRole::class,
+            'password.change.required' => \App\Http\Middleware\RedirectIfPasswordNotChanged::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
-    })->create();
+    })
+    // ✅ ADD THIS BLOCK to register service providers
+    ->withProviders([
+        Laravel\Fortify\FortifyServiceProvider::class, // ✅ Add Fortify's service provider
+    ])
+    ->create();

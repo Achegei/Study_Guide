@@ -12,13 +12,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    
+                    <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
+                        {{ __('Citizenship Test') }} 
                     </x-nav-link>
                     {{-- Add other main navigation links here if needed --}}
                     {{-- For example, a link to your courses page --}}
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                      {{ __('Driving Test') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
-                        {{ __('Courses') }}
+                        {{ __('Trades Exams') }}
                     </x-nav-link>
                 </div>
             </div>

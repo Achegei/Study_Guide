@@ -1,15 +1,13 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+{{ __('Dashboard') }}
+Available Courses
+@if ($courses->isEmpty())
+No courses are currently available. Please check back later!
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+@else
+@foreach ($courses as $course)
+{{ $course->title }}
+{{ Str::limit($course->description, 100) }}
+
+View Course
+@endforeach
+@endif

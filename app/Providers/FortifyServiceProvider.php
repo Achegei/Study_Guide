@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
-use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Fortify; // Make sure this is imported
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -29,6 +29,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Removed: Fortify::routes(); // ✅ This line is moved to routes/web.php
+
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
