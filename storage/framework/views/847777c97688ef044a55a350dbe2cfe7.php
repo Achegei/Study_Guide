@@ -43,7 +43,7 @@
         <?php endif; ?>
 
         
-        <form method="POST" action="<?php echo e(route('user-password.update')); ?>">
+        <form method="POST" action="<?php echo e(route('password.update.custom')); ?>">
             <?php echo csrf_field(); ?>
             <?php echo method_field('PUT'); ?> 
 

@@ -30,7 +30,7 @@
 
                         // Reply form (shown when replyForm === this comment ID)
                         echo '<div x-show="replyForm === '. $comment->id .'" class="mt-2" x-cloak>';
-                        echo '<form method="POST" action="'. route('blogs.comment', $comment->blog_id) .'" class="space-y-2 mt-2">';
+                        echo '<form method="POST" action="'. route('citizenship-info.comment', $comment->blog_id) .'" class="space-y-2 mt-2">';
                         echo csrf_field();
                         echo '<input type="hidden" name="parent_id" value="'. $comment->id .'">';
                         echo '<input type="text" name="name" placeholder="Your Name" required class="w-full border px-3 py-1 rounded">';
@@ -58,7 +58,7 @@
         <!-- ✍️ Leave a Reply -->
         <div class="mt-10">
             <h3 class="text-lg font-semibold mb-3">Leave a Reply</h3>
-            <form method="POST" action="{{ route('blogs.comment', $blog) }}" class="space-y-4">
+            <form method="POST" action="{{ route('citizenship-info.comment', $blog) }}" class="space-y-4">
                 @csrf
                 <input type="text" name="name" placeholder="Your Name" required class="w-full border px-4 py-2 rounded">
                 <input type="email" name="email" placeholder="Your Email" required class="w-full border px-4 py-2 rounded">

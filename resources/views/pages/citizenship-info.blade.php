@@ -28,7 +28,7 @@
                         <p class="text-gray-600 leading-relaxed">
                             {{ $blog->excerpt }}
                         </p>
-                        <a href="{{ route('blogs.show', $blog->slug) }}" class="inline-flex items-center mt-4 text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-200">
+                        <a href="{{ route('citizenship-info.show', $blog->slug) }}" class="inline-flex items-center mt-4 text-blue-600 font-semibold hover:text-blue-800 transition-colors duration-200">
                             Read Full Article
                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>

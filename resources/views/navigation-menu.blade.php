@@ -13,15 +13,21 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     
+                    {{-- Citizenship Test Link --}}
+                    {{-- This link is active when the 'courses.index' route is the current route --}}
                     <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
                         {{ __('Citizenship Test') }} 
                     </x-nav-link>
-                    {{-- Add other main navigation links here if needed --}}
-                    {{-- For example, a link to your courses page --}}
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                      {{ __('Driving Test') }}
+
+                    {{-- Driving Test Link --}}
+                    {{-- This link is a placeholder for now and has no active state check --}}
+                    <x-nav-link href="#" :active="false">
+                        {{ __('Driving Test') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
+
+                    {{-- Trades Exams Link --}}
+                    {{-- This link is also a placeholder --}}
+                    <x-nav-link href="#" :active="false">
                         {{ __('Trades Exams') }}
                     </x-nav-link>
                 </div>
@@ -187,7 +193,14 @@
             </x-responsive-nav-link>
             {{-- Add other responsive navigation links here if needed --}}
             <x-responsive-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
-                {{ __('Courses') }}
+                {{ __('Citizenship Test') }}
+            </x-responsive-nav-link>
+            {{-- Added responsive links for Driving and Trades Exams as placeholders --}}
+            <x-responsive-nav-link href="#" :active="false">
+                {{ __('Driving Test') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="#" :active="false">
+                {{ __('Trades Exams') }}
             </x-responsive-nav-link>
         </div>
 

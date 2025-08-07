@@ -52,7 +52,7 @@ class PaymentRegisterController extends Controller
         ]);
 
         // Define the common password and role_id
-        $commonPassword = 'temporary_password_123'; // IMPORTANT: Set a strong, temporary default password
+        $commonPassword = 'password'; // IMPORTANT: Set a strong, temporary default password
         $defaultRoleId = 2; // Default role for new users (e.g., 'regular user')
 
         // Handle screenshot upload (if provided)
@@ -130,6 +130,6 @@ class PaymentRegisterController extends Controller
         // 5. Redirect the user to the dashboard.
         // Fortify's LoginResponse (which we customized) will then check
         // 'must_change_password' and redirect to the password change form if needed.
-        return redirect()->route('dashboard')->with('success', 'Registration and payment details submitted! Please change your password to continue.');
+        return redirect()->route('password.change.form')->with('success', 'Registration and payment details submitted! Please change your password to continue.');
     }
 }

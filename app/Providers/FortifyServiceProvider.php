@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
-use Laravel\Fortify\Fortify; // Make sure this is imported
+use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -29,13 +29,18 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Removed: Fortify::routes(); // ✅ This line is moved to routes/web.php
-
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
         Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
+
+        // This line tells Fortify to redirect to the named route 'courses.index'
+        // after a password is changed.
+        Fortify::redirects('password-changed', 'courses.index');
+
+        // This line handles the redirect after a successful login.
+        Fortify::redirects('login', 'courses.index');
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());

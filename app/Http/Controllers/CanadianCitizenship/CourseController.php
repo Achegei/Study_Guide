@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\CanadianCitizenship;
 
+use App\Http\Controllers\Controller;
 use App\Models\CourseSection;
 use Illuminate\Http\Request;
 

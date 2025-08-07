@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\CanadianCitizenship;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller; // <-- THIS IS THE LINE YOU NEED TO ADD
 use App\Models\Blog;
 use App\Models\Comment;
 
@@ -39,6 +40,4 @@ class BlogController extends Controller
 
             return back()->with('success', 'Comment submitted successfully!');
         }
-
-
 }

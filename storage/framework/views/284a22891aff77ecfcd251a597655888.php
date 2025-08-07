@@ -32,6 +32,8 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     
+                    
+                    
                     <?php if (isset($component)) { $__componentOriginalc295f12dca9d42f28a259237a5724830 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc295f12dca9d42f28a259237a5724830 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.nav-link','data' => ['href' => ''.e(route('courses.index')).'','active' => request()->routeIs('courses.index')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -53,19 +55,20 @@
 <?php $component = $__componentOriginalc295f12dca9d42f28a259237a5724830; ?>
 <?php unset($__componentOriginalc295f12dca9d42f28a259237a5724830); ?>
 <?php endif; ?>
+
                     
                     
                     <?php if (isset($component)) { $__componentOriginalc295f12dca9d42f28a259237a5724830 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc295f12dca9d42f28a259237a5724830 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.nav-link','data' => ['href' => ''.e(route('dashboard')).'','active' => request()->routeIs('dashboard')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.nav-link','data' => ['href' => '#','active' => false]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('nav-link'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['href' => ''.e(route('dashboard')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('dashboard'))]); ?>
-                      <?php echo e(__('Driving Test')); ?>
+<?php $component->withAttributes(['href' => '#','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false)]); ?>
+                        <?php echo e(__('Driving Test')); ?>
 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -77,16 +80,19 @@
 <?php $component = $__componentOriginalc295f12dca9d42f28a259237a5724830; ?>
 <?php unset($__componentOriginalc295f12dca9d42f28a259237a5724830); ?>
 <?php endif; ?>
+
+                    
+                    
                     <?php if (isset($component)) { $__componentOriginalc295f12dca9d42f28a259237a5724830 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc295f12dca9d42f28a259237a5724830 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.nav-link','data' => ['href' => ''.e(route('courses.index')).'','active' => request()->routeIs('courses.index')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.nav-link','data' => ['href' => '#','active' => false]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('nav-link'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['href' => ''.e(route('courses.index')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('courses.index'))]); ?>
+<?php $component->withAttributes(['href' => '#','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false)]); ?>
                         <?php echo e(__('Trades Exams')); ?>
 
                      <?php echo $__env->renderComponent(); ?>
@@ -104,7 +110,7 @@
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Teams Dropdown -->
-                <?php if(Laravel\Jetstream\Jetstream::hasTeamFeatures()): ?>
+                <!--[if BLOCK]><![endif]--><?php if(Laravel\Jetstream\Jetstream::hasTeamFeatures()): ?>
                     <div class="ms-3 relative">
                         <?php if (isset($component)) { $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe = $attributes; } ?>
@@ -120,12 +126,12 @@
                                 <span class="inline-flex rounded-md">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                         
-                                        <?php if(auth()->guard()->check()): ?>
+                                        <!--[if BLOCK]><![endif]--><?php if(auth()->guard()->check()): ?>
                                             <?php echo e(Auth::user()->currentTeam->name); ?>
 
                                         <?php else: ?>
                                             Teams
-                                        <?php endif; ?>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
                                         <svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
@@ -143,7 +149,7 @@
                                     </div>
 
                                     
-                                    <?php if(auth()->guard()->check()): ?>
+                                    <!--[if BLOCK]><![endif]--><?php if(auth()->guard()->check()): ?>
                                         <?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown-link','data' => ['href' => ''.e(route('teams.show', Auth::user()->currentTeam->id)).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -193,7 +199,7 @@
                                         <?php endif; ?>
 
                                         <!-- Team Switcher -->
-                                        <?php if(Auth::user()->allTeams()->count() > 1): ?>
+                                        <!--[if BLOCK]><![endif]--><?php if(Auth::user()->allTeams()->count() > 1): ?>
                                             <div class="border-t border-gray-200"></div>
 
                                             <div class="block px-4 py-2 text-xs text-gray-400">
@@ -201,7 +207,7 @@
 
                                             </div>
 
-                                            <?php $__currentLoopData = Auth::user()->allTeams(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $team): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = Auth::user()->allTeams(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $team): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <?php if (isset($component)) { $__componentOriginal12b9baaa9d085739b53a541d2c8778fa = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal12b9baaa9d085739b53a541d2c8778fa = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.switchable-team','data' => ['team' => $team]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -222,15 +228,15 @@
 <?php $component = $__componentOriginal12b9baaa9d085739b53a541d2c8778fa; ?>
 <?php unset($__componentOriginal12b9baaa9d085739b53a541d2c8778fa); ?>
 <?php endif; ?>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                     <?php else: ?>
                                         
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             <?php echo e(__('Please log in to manage teams.')); ?>
 
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                 </div>
                              <?php $__env->endSlot(); ?>
                          <?php echo $__env->renderComponent(); ?>
@@ -244,7 +250,7 @@
 <?php unset($__componentOriginaldf8083d4a852c446488d8d384bbc7cbe); ?>
 <?php endif; ?>
                     </div>
-                <?php endif; ?>
+                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
                 <!-- Settings Dropdown -->
                 <div class="ms-3 relative">
@@ -260,8 +266,8 @@
 <?php $component->withAttributes(['align' => 'right','width' => '48']); ?>
                          <?php $__env->slot('trigger', null, []); ?> 
                             
-                            <?php if(auth()->guard()->check()): ?>
-                                <?php if(Laravel\Jetstream\Jetstream::managesProfilePhotos()): ?>
+                            <!--[if BLOCK]><![endif]--><?php if(auth()->guard()->check()): ?>
+                                <!--[if BLOCK]><![endif]--><?php if(Laravel\Jetstream\Jetstream::managesProfilePhotos()): ?>
                                     <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                         <img class="size-8 rounded-full object-cover" src="<?php echo e(Auth::user()->profile_photo_url); ?>" alt="<?php echo e(Auth::user()->name); ?>" />
                                     </button>
@@ -275,7 +281,7 @@
                                             </svg>
                                         </button>
                                     </span>
-                                <?php endif; ?>
+                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                             <?php else: ?>
                                 
                                 <span class="inline-flex rounded-md">
@@ -287,7 +293,7 @@
                                         </svg>
                                     </button>
                                 </span>
-                            <?php endif; ?>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                          <?php $__env->endSlot(); ?>
 
                          <?php $__env->slot('content', null, []); ?> 
@@ -298,7 +304,7 @@
                             </div>
 
                             
-                            <?php if(auth()->guard()->check()): ?>
+                            <!--[if BLOCK]><![endif]--><?php if(auth()->guard()->check()): ?>
                                 <?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown-link','data' => ['href' => ''.e(route('profile.show')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -322,7 +328,7 @@
 <?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
 <?php endif; ?>
 
-                                <?php if(Laravel\Jetstream\Jetstream::hasApiFeatures()): ?>
+                                <!--[if BLOCK]><![endif]--><?php if(Laravel\Jetstream\Jetstream::hasApiFeatures()): ?>
                                     <?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown-link','data' => ['href' => ''.e(route('api-tokens.index')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -345,7 +351,7 @@
 <?php $component = $__componentOriginal68cb1971a2b92c9735f83359058f7108; ?>
 <?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
 <?php endif; ?>
-                                <?php endif; ?>
+                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
                                 <div class="border-t border-gray-200"></div>
 
@@ -421,7 +427,7 @@
 <?php $component = $__componentOriginal68cb1971a2b92c9735f83359058f7108; ?>
 <?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
 <?php endif; ?>
-                            <?php endif; ?>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                          <?php $__env->endSlot(); ?>
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -484,7 +490,52 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => ''.e(route('courses.index')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('courses.index'))]); ?>
-                <?php echo e(__('Courses')); ?>
+                <?php echo e(__('Citizenship Test')); ?>
+
+             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $attributes = $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $component = $__componentOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+            
+            <?php if (isset($component)) { $__componentOriginald69b52d99510f1e7cd3d80070b28ca18 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.responsive-nav-link','data' => ['href' => '#','active' => false]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('responsive-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => '#','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false)]); ?>
+                <?php echo e(__('Driving Test')); ?>
+
+             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $attributes = $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $component = $__componentOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+            <?php if (isset($component)) { $__componentOriginald69b52d99510f1e7cd3d80070b28ca18 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.responsive-nav-link','data' => ['href' => '#','active' => false]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('responsive-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => '#','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false)]); ?>
+                <?php echo e(__('Trades Exams')); ?>
 
              <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -501,13 +552,13 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             
-            <?php if(auth()->guard()->check()): ?>
+            <!--[if BLOCK]><![endif]--><?php if(auth()->guard()->check()): ?>
                 <div class="flex items-center px-4">
-                    <?php if(Laravel\Jetstream\Jetstream::managesProfilePhotos()): ?>
+                    <!--[if BLOCK]><![endif]--><?php if(Laravel\Jetstream\Jetstream::managesProfilePhotos()): ?>
                         <div class="shrink-0 me-3">
                             <img class="size-10 rounded-full object-cover" src="<?php echo e(Auth::user()->profile_photo_url); ?>" alt="<?php echo e(Auth::user()->name); ?>" />
                         </div>
-                    <?php endif; ?>
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
                     <div>
                         <div class="font-medium text-base text-gray-800"><?php echo e(Auth::user()->name); ?></div>
@@ -540,7 +591,7 @@
 <?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
 <?php endif; ?>
 
-                    <?php if(Laravel\Jetstream\Jetstream::hasApiFeatures()): ?>
+                    <!--[if BLOCK]><![endif]--><?php if(Laravel\Jetstream\Jetstream::hasApiFeatures()): ?>
                         <?php if (isset($component)) { $__componentOriginald69b52d99510f1e7cd3d80070b28ca18 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.responsive-nav-link','data' => ['href' => ''.e(route('api-tokens.index')).'','active' => request()->routeIs('api-tokens.index')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -563,7 +614,7 @@
 <?php $component = $__componentOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
 <?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
 <?php endif; ?>
-                    <?php endif; ?>
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
                     <!-- Authentication -->
                     <form method="POST" action="<?php echo e(route('logout')); ?>" x-data>
@@ -594,7 +645,7 @@
                     </form>
 
                     <!-- Team Management -->
-                    <?php if(Laravel\Jetstream\Jetstream::hasTeamFeatures()): ?>
+                    <!--[if BLOCK]><![endif]--><?php if(Laravel\Jetstream\Jetstream::hasTeamFeatures()): ?>
                         <div class="border-t border-gray-200"></div>
 
                         <div class="block px-4 py-2 text-xs text-gray-400">
@@ -652,7 +703,7 @@
                         <?php endif; ?>
 
                         <!-- Team Switcher -->
-                        <?php if(Auth::user()->allTeams()->count() > 1): ?>
+                        <!--[if BLOCK]><![endif]--><?php if(Auth::user()->allTeams()->count() > 1): ?>
                             <div class="border-t border-gray-200"></div>
 
                             <div class="block px-4 py-2 text-xs text-gray-400">
@@ -660,7 +711,7 @@
 
                             </div>
 
-                            <?php $__currentLoopData = Auth::user()->allTeams(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $team): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = Auth::user()->allTeams(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $team): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if (isset($component)) { $__componentOriginal12b9baaa9d085739b53a541d2c8778fa = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal12b9baaa9d085739b53a541d2c8778fa = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.switchable-team','data' => ['team' => $team,'component' => 'responsive-nav-link']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -681,9 +732,9 @@
 <?php $component = $__componentOriginal12b9baaa9d085739b53a541d2c8778fa; ?>
 <?php unset($__componentOriginal12b9baaa9d085739b53a541d2c8778fa); ?>
 <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
-                    <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
             <?php else: ?>
                 
@@ -739,7 +790,7 @@
 <?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
 <?php endif; ?>
                 </div>
-            <?php endif; ?>
+            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
         </div>
     </div>
 </nav>

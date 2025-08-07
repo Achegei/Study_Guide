@@ -42,7 +42,7 @@
         @endif
 
         {{-- This form submits to Fortify's default password update endpoint --}}
-        <form method="POST" action="{{ route('user-password.update') }}">
+        <form method="POST" action="{{ route('password.update.custom') }}">
             @csrf
             @method('PUT') {{-- Fortify's password update uses PUT method --}}
 

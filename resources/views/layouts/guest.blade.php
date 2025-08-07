@@ -4,6 +4,7 @@
     - Increased the gap between navigation links.
     - Confirmed that the mobile "pancake" collapse menu remains fully functional.
     - The professional navy blue and bright yellow color scheme is maintained.
+    - NEW: Conditional rendering for login/logout buttons and a dashboard link.
 -->
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -118,13 +119,29 @@
                 <li><a href="{{ route('free-test') }}" class="hover:text-bright-yellow">Prep Guides & Resources</a></li>
                 <li><a href="{{ route('blogs.index') }}" class="hover:text-bright-yellow">News & Updates</a></li>
                 <li><a href="{{ route('testimonials') }}" class="hover:text-bright-yellow">Our Community</a></li>
-                <li>
-                    <a href="{{ route('login') }}">
-                        <button class="bg-bright-yellow hover:bg-yellow-400 text-navy-blue text-sm font-bold px-5 py-2 rounded-full transition">
-                            Login
-                        </button>
-                    </a>
-                </li>
+                
+                <!-- AUTH LOGIC FOR DESKTOP NAV -->
+                @auth
+                    <li><a href="{{ route('dashboard') }}" class="hover:text-bright-yellow">Dashboard</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <a href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                <button class="bg-bright-yellow hover:bg-yellow-400 text-navy-blue text-sm font-bold px-5 py-2 rounded-full transition">
+                                    Logout
+                                </button>
+                            </a>
+                        </form>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('login') }}">
+                            <button class="bg-bright-yellow hover:bg-yellow-400 text-navy-blue text-sm font-bold px-5 py-2 rounded-full transition">
+                                Login
+                            </button>
+                        </a>
+                    </li>
+                @endauth
             </ul>
             
             <!-- Mobile Menu Toggle Button -->
@@ -142,7 +159,21 @@
                 <li><a href="{{ route('free-test') }}" class="block py-1">Prep Guides & Resources</a></li>
                 <li><a href="{{ route('blogs.index') }}" class="block py-1">News & Updates</a></li>
                 <li><a href="{{ route('testimonials') }}" class="block py-1">Our Community</a></li>
-                <li><a href="{{ route('login') }}" class="block py-1">Login</a></li>
+                
+                <!-- AUTH LOGIC FOR MOBILE NAV -->
+                @auth
+                    <li><a href="{{ route('dashboard') }}" class="block py-1">Dashboard</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="block py-1">
+                                Logout
+                            </a>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}" class="block py-1">Login</a></li>
+                @endauth
             </ul>
         </div>
     </nav>
