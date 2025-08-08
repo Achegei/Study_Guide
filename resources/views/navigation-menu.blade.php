@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <img src="{{ asset('images/das-logo.png') }}" alt="Your Company Logo" class="block h-9 w-auto" />
                     </a>
                 </div>
 
@@ -16,10 +16,10 @@
                     {{-- Citizenship Test Link --}}
                     {{-- This link is active when the 'courses.index' route is the current route --}}
                     <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
-                        {{ __('Citizenship Test') }} 
+                        {{ __('Citizenship Test Preparation Quizzes') }} 
                     </x-nav-link>
 
-                    {{-- Driving Test Link --}}
+                    <!--{{-- Driving Test Link --}}
                     {{-- This link is a placeholder for now and has no active state check --}}
                     <x-nav-link href="#" :active="false">
                         {{ __('Driving Test') }}
@@ -29,7 +29,7 @@
                     {{-- This link is also a placeholder --}}
                     <x-nav-link href="#" :active="false">
                         {{ __('Trades Exams') }}
-                    </x-nav-link>
+                    </x-nav-link> -->
                 </div>
             </div>
 
