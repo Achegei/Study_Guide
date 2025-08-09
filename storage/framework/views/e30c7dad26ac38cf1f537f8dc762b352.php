@@ -1,10 +1,7 @@
 <!--
     This code has been updated to improve spacing and maintain mobile responsiveness.
-    - Added margin-right to the logo container to create space between it and the nav links.
-    - Increased the gap between navigation links.
-    - Confirmed that the mobile "pancake" collapse menu remains fully functional.
-    - The professional navy blue and bright yellow color scheme is maintained.
-    - NEW: Conditional rendering for login/logout buttons and a dashboard link.
+    - Removed redundant Alpine.js script to prevent conflicts with Livewire.
+    - Confirmed all other scripts and Livewire directives are in the correct order.
 -->
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -15,9 +12,6 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Alpine.js -->
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -39,7 +33,27 @@
         .text-navy-blue { color: #0A192F; }
         .bg-bright-yellow { background-color: #FCD34D; }
         .text-bright-yellow { color: #FCD34D; }
+
+        /* Custom scrollbar for the chat widget */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
+
+    <!-- Livewire Styles -->
+    <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::styles(); ?>
+
 </head>
 
 <body class="bg-gray-50 text-gray-800">
@@ -141,7 +155,7 @@
     <!-- ✅ Footer Bottom -->
     <footer class="bg-gray-900 text-gray-400 text-xs py-6">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            &copy;<?php echo e(now()->year); ?> <span class="text-white">Prepify Canada</span>. All Rights Reserved.
+            &copy;<?php echo e(now()->year); ?> <span class="text-white">Canadian Citizenship Prep</span>. All Rights Reserved.
         </div>
     </footer>
 
@@ -160,7 +174,25 @@
     <script src="<?php echo e(asset('js/script.js')); ?>"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
+    <!-- ⚡️ LIVEWIRE COMPONENT & SCRIPTS ⚡️ -->
+    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('test-prep');
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-4114231079-0', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
+    <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::scripts(); ?>
 
 </body>
 </html>
