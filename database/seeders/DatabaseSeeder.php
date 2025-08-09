@@ -18,6 +18,7 @@
                 CourseSectionsTableSeeder::class,
                 QuestionSeeder::class,
                 UserSeeder::class, // This will now correctly create your users
+                FreeQuizSeeder::class,
             ]);
         }
     }

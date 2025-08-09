@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{url('/')}}">
                         <img src="{{ asset('images/das-logo.png') }}" alt="Your Company Logo" class="block h-9 w-auto" />
                     </a>
                 </div>
@@ -188,21 +188,17 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-            {{-- Add other responsive navigation links here if needed --}}
             <x-responsive-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
                 {{ __('Citizenship Test') }}
             </x-responsive-nav-link>
-            {{-- Added responsive links for Driving and Trades Exams as placeholders --}}
+           <!-- {{-- Added responsive links for Driving and Trades Exams as placeholders --}}
             <x-responsive-nav-link href="#" :active="false">
                 {{ __('Driving Test') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="#" :active="false">
                 {{ __('Trades Exams') }}
             </x-responsive-nav-link>
-        </div>
+        </div> -->
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

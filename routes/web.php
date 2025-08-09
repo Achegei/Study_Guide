@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentRegisterController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\PasswordChangeController;
+use App\Http\Controllers\FreeQuizController;
 
 // Other necessary imports
 use App\Models\Post;
@@ -46,6 +47,12 @@ Route::prefix('canadian-citizenship')->group(function () {
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 });
 
+//Free Quiz Routes
+// Route for showing the quiz.
+Route::get('/free-quiz', [FreeQuizController::class, 'showQuiz'])->name('free-quiz.show');
+
+// Route for submitting the quiz and showing results.
+Route::post('/free-quiz', [FreeQuizController::class, 'submitQuiz'])->name('free-quiz.submit');
 
 // ----------------------------------------------------
 // --- OTHER APPLICATION ROUTES ---
@@ -102,7 +109,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('password.update.custom');
 
     // Dashboard route using the modularized controller
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Protected courses.show route:
     Route::get('/courses/{id}', [CourseController::class, 'show'])

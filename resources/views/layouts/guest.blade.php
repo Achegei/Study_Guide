@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Prepify Canada' }}</title>
+    <title>{{ $title ?? 'Canadian Citizenship Prep' }}</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -50,79 +50,20 @@
             <!-- Logo section with added right margin for spacing -->
             <div class="flex items-center gap-3 mr-6">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10">
-                <span class="text-xl font-bold text-bright-yellow hidden md:block">Prepify Canada</span>
+                <span class="text-xl font-bold text-bright-yellow hidden md:block">Canadian Citizenship Prep</span>
             </div>
 
             <!-- Navigation Links and Login Button (Desktop) -->
             <ul class="hidden md:flex items-center gap-6 font-semibold">
                 <li><a href="/" class="hover:text-bright-yellow">Home</a></li>
-                
-                <!-- START: Nested Dropdown Menu -->
-                <li class="relative" x-data="{ open: false, openSub: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <a href="{{ route('purchase') }}" class="hover:text-bright-yellow inline-flex items-center">
-                        Exams & Certifications
-                        <svg class="w-4 h-4 ml-1 transform transition-transform" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </a>
-                    
-                    <div x-show="open"
-                         x-transition:enter="transition ease-out duration-200"
-                         x-transition:enter-start="opacity-0 scale-95"
-                         x-transition:enter-end="opacity-100 scale-100"
-                         x-transition:leave="transition ease-in duration-75"
-                         x-transition:leave-start="opacity-100 scale-100"
-                         x-transition:leave-end="opacity-0 scale-95"
-                         class="absolute top-full mt-2 w-56 bg-white rounded-md dropdown-menu z-10">
-                        <ul class="py-2">
-                            <li>
-                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                    Canadian Citizenship Test
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                    Driving license
-                                </a>
-                            </li>
-                            
-                            <li class="relative" @mouseenter="openSub = true" @mouseleave="openSub = false">
-                                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 inline-flex justify-between items-center w-full">
-                                    <span>Trade service Exams</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-
-                                <div x-show="openSub"
-                                     x-transition:enter="transition ease-out duration-200"
-                                     x-transition:enter-start="opacity-0 scale-95"
-                                     x-transition:enter-end="opacity-100 scale-100"
-                                     x-transition:leave="transition ease-in duration-75"
-                                     x-transition:leave-start="opacity-100 scale-100"
-                                     x-transition:leave-end="opacity-0 scale-95"
-                                     class="absolute submenu-menu mt-2 bg-white rounded-md dropdown-menu z-20">
-                                    <ul class="py-2">
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                                Red Seal by Trade
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <!-- END: Nested Dropdown Menu -->
-                
+                <li><a href="{{ route('purchase') }}" class="hover:text-bright-yellow">Canadian Citizenship Test</a></li>
                 <li><a href="{{ route('free-test') }}" class="hover:text-bright-yellow">Prep Guides & Resources</a></li>
                 <li><a href="{{ route('blogs.index') }}" class="hover:text-bright-yellow">News & Updates</a></li>
                 <li><a href="{{ route('testimonials') }}" class="hover:text-bright-yellow">Our Community</a></li>
                 
                 <!-- AUTH LOGIC FOR DESKTOP NAV -->
                 @auth
-                    <li><a href="{{ route('dashboard') }}" class="hover:text-bright-yellow">Dashboard</a></li>
+                    <li><a href="{{ route('courses.index') }}" class="hover:text-bright-yellow">Dashboard</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
@@ -162,7 +103,7 @@
                 
                 <!-- AUTH LOGIC FOR MOBILE NAV -->
                 @auth
-                    <li><a href="{{ route('dashboard') }}" class="block py-1">Dashboard</a></li>
+                    <li><a href="/" class="block py-1">Home</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
