@@ -115,7 +115,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/courses/{id}', [CourseController::class, 'show'])
         ->middleware('check.role')
         ->name('courses.show');
+
+    // ✅ NEW ROUTES: Routes to handle saving and resetting user progress
+    Route::post('/courses/save-progress', [CourseController::class, 'saveProgress'])
+        ->name('courses.save-progress');
+    
+    Route::post('/courses/reset-progress/{id}', [CourseController::class, 'resetProgress'])
+        ->name('courses.reset-progress');
 });
-
-
-
