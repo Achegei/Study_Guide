@@ -27,7 +27,7 @@ class CheckUserRole
         // Assuming 'role_id' is a column on your 'users' table
         if (Auth::user()->role_id !== 2) {
             // If role is not 2, redirect to dashboard or show an unauthorized message
-            return redirect()->route('dashboard')->with('error', 'You do not have permission to access this content.');
+            return redirect()->route('admin')->with('error', 'You do not have permission to access this content.');
             // Alternatively, you could abort with a 403 Forbidden error:
             // abort(403, 'Unauthorized access.');
         }

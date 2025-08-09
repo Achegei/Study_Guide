@@ -20,60 +20,86 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Support\Enums\MaxWidth;
 
 class AdminPanelProvider extends PanelProvider
 {
-  public function panel(Panel $panel): Panel
-{
-    return $panel
-        ->default()
-        ->id('admin')
-        ->path('admin')
-        ->login()
-        ->colors([
-            'primary' => Color::Blue,
-            'gray' => Color::Slate,
-        ])
-        ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-        ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
-        ->pages([
-            Pages\Dashboard::class,
-        ])
-        ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-        ->widgets([
-            Widgets\AccountWidget::class,
-            Widgets\FilamentInfoWidget::class,
-        ])
-        ->middleware([
-            EncryptCookies::class,
-            AddQueuedCookiesToResponse::class,
-            StartSession::class,
-            AuthenticateSession::class,
-            ShareErrorsFromSession::class,
-            VerifyCsrfToken::class,
-            SubstituteBindings::class,
-            DisableBladeIconComponents::class,
-            DispatchServingFilamentEvent::class,
-        ])
-        ->authMiddleware([
-            Authenticate::class,
-        ])
-        ->sidebarCollapsibleOnDesktop()
-        ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
-            return $builder->groups([
-                NavigationGroup::make('Content')
-                    ->items([
-                        NavigationItem::make('Blogs')
-                            ->url(fn () => route('filament.admin.resources.blogs.index'))
-                            ->icon('heroicon-o-document'), // ✅ Note: iconColor is removed
-                    ]),
-                NavigationGroup::make('Users')
-                    ->items([
-                        NavigationItem::make('Manage Users')
-                            ->url(fn () => route('filament.admin.resources.users.index'))
-                            ->icon('heroicon-o-user-group'),
-                    ]),
-            ]);
-        });
-}
+    public function panel(Panel $panel): Panel
+    {
+        return $panel
+            ->default()
+            ->id('admin')
+            ->path('admin')
+            ->login()
+            // ✅ Set the primary color to the full mustard yellow palette
+            ->colors([
+                'primary' => self::mustardYellow(),
+                'gray' => Color::Zinc,
+            ])
+            ->darkMode(true)
+            ->brandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('3rem')
+            ->maxContentWidth(MaxWidth::Full)
+            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
+            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->pages([
+                Pages\Dashboard::class,
+            ])
+            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->widgets([
+                Widgets\AccountWidget::class,
+                Widgets\FilamentInfoWidget::class,
+            ])
+            ->middleware([
+                EncryptCookies::class,
+                AddQueuedCookiesToResponse::class,
+                StartSession::class,
+                AuthenticateSession::class,
+                ShareErrorsFromSession::class,
+                VerifyCsrfToken::class,
+                SubstituteBindings::class,
+                DisableBladeIconComponents::class,
+                DispatchServingFilamentEvent::class,
+            ])
+            ->authMiddleware([
+                Authenticate::class,
+            ])
+            ->sidebarCollapsibleOnDesktop()
+            ->sidebarWidth('8rem')
+            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                return $builder->groups([
+                    NavigationGroup::make('Content')
+                        ->items([
+                            NavigationItem::make('Blogs')
+                                ->url(fn () => route('filament.admin.resources.blogs.index'))
+                                ->icon('heroicon-o-document')
+                                ->badge(fn (): string => '', color: 'danger'),
+                        ]),
+                    NavigationGroup::make('Users')
+                        ->items([
+                            NavigationItem::make('Manage')
+                                ->url(fn () => route('filament.admin.resources.users.index'))
+                                ->icon('heroicon-o-user-group'),
+                        ]),
+                ]);
+            });
+    }
+
+    // ✅ Add this static method to define the color palette
+    public static function mustardYellow(): array
+    {
+        return [
+            50 => '#fefce8',
+            100 => '#fff8e1',
+            200 => '#fce899',
+            300 => '#fce899',
+            400 => '#ffd700',
+            500 => '#ffdb58', // This is the base color
+            600 => '#e59900',
+            700 => '#b27300',
+            800 => '#805300',
+            900 => '#4d3300',
+            950 => '#261a00',
+        ];
+    }
 }
