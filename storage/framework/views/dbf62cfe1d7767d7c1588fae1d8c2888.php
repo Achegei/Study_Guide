@@ -59,38 +59,65 @@
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
                 </div>
 
-                <!-- Course Selected -->
+                <!-- Course Selected (Displayed to user for their choice of course name) -->
                 <div>
                     <label for="course_selected" class="block text-sm font-medium text-gray-700 mb-1">Course Selected</label>
                     <select name="course_selected" id="course_selected" required
                             class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors bg-white">
-                        <option value="Canadian Citizenship Test Preparation" <?php echo e(old('course_selected') == 'Canadian Citizenship Test Preparation' ? 'selected' : ''); ?>>Canadian Citizenship Test Preparation</option>
-                        
+                        <option value="">Select a Course</option>
+                        <?php $__currentLoopData = $courseOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>" <?php echo e(old('course_selected') == $value ? 'selected' : ''); ?>>
+                                <?php echo e($label); ?>
+
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
             </div>
 
             <div class="grid sm:grid-cols-2 gap-6">
+                <!-- NEW: Registration Type (Maps to user_type for access control) -->
+                <div>
+                    <label for="registration_type" class="block text-sm font-medium text-gray-700 mb-1">Access Type</label>
+                    <select name="registration_type" id="registration_type" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors bg-white">
+                        <option value="">Select how you'll use the platform</option>
+                        <option value="citizenship" <?php echo e(old('registration_type') == 'citizenship' ? 'selected' : ''); ?>>Citizenship Test Access Only</option>
+                        <option value="driving" <?php echo e(old('registration_type') == 'driving' ? 'selected' : ''); ?>>Driving Test Access Only</option>
+                        <option value="both" <?php echo e(old('registration_type') == 'both' ? 'selected' : ''); ?>>Access Both Test Types</option>
+                    </select>
+                    <?php $__errorArgs = ['registration_type'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <span class="text-red-500 text-sm mt-1"><?php echo e($message); ?></span>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                </div>
+
                 <!-- Amount Sent (CAD) -->
                 <div>
                     <label for="amount_sent" class="block text-sm font-medium text-gray-700 mb-1">Amount Sent (CAD)</label>
                     <input type="number" name="amount_sent" id="amount_sent" step="0.01" value="<?php echo e(old('amount_sent')); ?>" required
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
                 </div>
+            </div>
 
-                <!-- Interac e-Transfer Reference Number -->
-                <div>
-                    <label for="interac_reference" class="block text-sm font-medium text-gray-700 mb-1">Interac e-Transfer Reference Number</label>
-                    <input type="text" name="interac_reference" id="interac_reference" value="<?php echo e(old('interac_reference')); ?>" required
-                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
-                </div>
+            <!-- Interac e-Transfer Reference Number -->
+            <div>
+                <label for="interac_reference" class="block text-sm font-medium text-gray-700 mb-1">Interac e-Transfer Reference Number</label>
+                <input type="text" name="interac_reference" id="interac_reference" value="<?php echo e(old('interac_reference')); ?>" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
             </div>
 
             <!-- Upload Screenshot of Payment (Optional) -->
             <div>
                 <label for="payment_screenshot" class="block text-sm font-medium text-gray-700 mb-1">Upload Screenshot of Payment (Optional)</label>
                 <input type="file" name="payment_screenshot" id="payment_screenshot" accept="image/*"
-                       class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-full cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors">
+                       class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-full cursor-pointer bg-gray-50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors">
                 <p class="mt-2 text-xs text-gray-500">Max 2MB. PNG, JPG, JPEG.</p>
             </div>
 

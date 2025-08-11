@@ -16,22 +16,21 @@ class CheckUserRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is authenticated
+        // Check if the user is authenticated.
+        // If not, redirect them to the login page.
         if (!Auth::check()) {
-            // If not authenticated, redirect to the login page
-            // Adjust 'login' route name if your login route is different (e.g., 'filament.admin.auth.login')
             return redirect()->route('login');
         }
 
-        // Check if the authenticated user has role_id of 2
-        // Assuming 'role_id' is a column on your 'users' table
-        if (Auth::user()->role_id !== 2) {
-            // If role is not 2, redirect to dashboard or show an unauthorized message
-            return redirect()->route('admin')->with('error', 'You do not have permission to access this content.');
-            // Alternatively, you could abort with a 403 Forbidden error:
-            // abort(403, 'Unauthorized access.');
+        // Now, check if the authenticated user has the Admin role_id (which is 1).
+        // If their role_id is NOT 1, they are not an admin and should be redirected.
+        if (Auth::user()->role_id !== 1) { // Changed from 2 to 1 (Admin role)
+            // Redirect non-admin users to the home page (or a general user dashboard if one exists).
+            // This is a safe default to avoid errors if specific admin routes aren't accessible.
+            return redirect('/')->with('error', 'You do not have permission to access this admin content.');
         }
 
+        // If the user is authenticated and has the correct admin role_id, allow them to proceed.
         return $next($request);
     }
 }

@@ -1,10 +1,12 @@
-<!-- resources/views/frontend/courses.blade.php -->
+<!-- resources/views/frontend/driving-courses.blade.php -->
 <?php
-    use App\Models\UserProgress;
+    // Use the new UserDrivingProgress model if you created one
+    use App\Models\UserDrivingProgress;
     use Illuminate\Support\Facades\Auth;
 
     $user = Auth::user();
-    $userProgress = $user ? UserProgress::where('user_id', $user->id)->get()->keyBy('course_section_id') : collect();
+    // Fetch user driving progress specific to driving sections
+    $userDrivingProgress = $user ? UserDrivingProgress::where('user_id', $user->id)->get()->keyBy('driving_section_id') : collect();
 ?>
 
 <?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
@@ -21,7 +23,7 @@
         <!-- This container centers the header content on the page -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <?php echo e(__('Select a Region')); ?>
+                <?php echo e(__('Select a Driving Course Region')); ?>
 
             </h2>
         </div>
@@ -29,37 +31,39 @@
 
     <div class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
                 <?php
-                    $progress = $userProgress->get($section->id);
+                    // Get progress from the new userDrivingProgress collection
+                    $progress = $userDrivingProgress->get($section->id);
                     $questionsCount = $section->questions()->count();
-                    $resumeLink = route('courses.show', ['id' => $section->id]);
+                    // Ensure this route name matches your new driving course routes
+                    $resumeLink = route('driving.show', ['id' => $section->id]);
 
                     if ($progress) {
+                        // Ensure 'questions()' method is defined on DrivingSection and queries correctly
                         $questionsBefore = $section->questions()->where('id', '<=', $progress->last_question_id)->count();
-                        $startPage = (int) ceil($questionsBefore / 10);
+                        $questionsPerPage = 10; // Make sure this matches controller logic
+                        $startPage = (int) ceil($questionsBefore / $questionsPerPage);
                         if ($questionsBefore < $questionsCount) {
-                            $resumeLink = route('courses.show', ['id' => $section->id, 'page' => $startPage]);
+                            // Link to the correct page for resuming
+                            $resumeLink = route('driving.show', ['id' => $section->id, 'page' => $startPage]);
                         }
                     }
                 ?>
                 <a href="<?php echo e($resumeLink); ?>" class="block">
-                    <!-- Refined card design with better spacing and hover effect -->
                     <div class="bg-white rounded-xl shadow-md overflow-hidden p-5 flex items-center space-x-5 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                        <!-- Slightly larger, rounded flag icon for more impact -->
                         <div class="w-16 h-16 flex-shrink-0">
-                            <img src="<?php echo e(asset($section->flag)); ?>" alt="Flag of <?php echo e($section->title); ?>" class="w-full h-full object-cover rounded-full border border-gray-200">
+                            
+                            <img src="<?php echo e(asset($section->flag ?? 'images/default-driving-icon.png')); ?>" alt="Icon of <?php echo e($section->title); ?>" class="w-full h-full object-cover rounded-full border border-gray-200">
                         </div>
-                        
-                        <!-- Text content with clearer hierarchy -->
+
                         <div>
                             <h5 class="text-lg font-bold text-gray-900 leading-tight">
                                 <?php echo e($section->title); ?>
 
                             </h5>
                             <p class="text-sm text-gray-500 mt-1">
-                                <?php echo e(ucfirst($section->type)); ?> - <?php echo e($section->capital); ?>
-
+                                <?php echo e(ucfirst($section->type ?? 'Driving Course')); ?> 
                             </p>
                             <?php if($progress && $questionsBefore < $questionsCount): ?>
                                 <span class="text-sm text-indigo-500 font-semibold mt-2 block"><?php echo e(__('Resume from Q')); ?> <?php echo e($questionsBefore + 1); ?></span>
@@ -84,4 +88,4 @@
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
 <?php endif; ?>
-<?php /**PATH /Users/mohamudhassanmayow/Desktop/Study_Guide/resources/views/frontend/courses.blade.php ENDPATH**/ ?>
+<?php /**PATH /Users/mohamudhassanmayow/Desktop/Study_Guide/resources/views/frontend/driving-courses.blade.php ENDPATH**/ ?>

@@ -278,7 +278,9 @@
                     <li>The West Coast consists of British Columbia, known for its majestic mountains and as Canada's Pacific gateway. The province has a temperate climate and an economy driven by forestry, mining, and fishing. Vancouver's port is the largest in Canada and a major hub for trade with Asia.</li>
                     <li>The Northern Territories (Yukon, Northwest Territories, and Nunavut) make up one-third of Canada's landmass but have a small population. The economy is based on mining (gold, diamonds) and developing oil and gas deposits. The North is also known for its unique climate, with extended periods of daylight and darkness. Nunavut, established in 1999, has a population that is 85% Inuit. The Canadian Rangers play a crucial role in maintaining security and sovereignty in this isolated and challenging region.</li>
                 </ul>
-
+                <a href="https://www.canada.ca/content/dam/ircc/migration/ircc/english/pdf/pub/discover.pdf" style="display: inline-block; padding: 12px 24px; background-image: linear-gradient(to right, #4a90e2, #50e3c2); color: white; text-align: center; text-decoration: none; border-radius: 30px; font-weight: bold; font-family: sans-serif; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                Summarized Discover Canada Guide
+                </a>
             </div>
 
             <!-- CTA to take the free test -->

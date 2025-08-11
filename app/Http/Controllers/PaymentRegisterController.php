@@ -24,7 +24,8 @@ class PaymentRegisterController extends Controller
         // You can pass course options here if they come from DB
         $courseOptions = [
             'Canadian Citizenship Test Preparation' => 'Canadian Citizenship Test Preparation',
-            // Add other courses if they become available later
+            'Driving Test Preparation' => 'Driving Test Preparation', // Add driving option for selection
+            'Both Citizenship and Driving Tests' => 'Both Citizenship and Driving Tests', // Option for both
         ];
         return view('auth.register-payment', compact('courseOptions'));
     }
@@ -42,11 +43,15 @@ class PaymentRegisterController extends Controller
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone_number' => ['nullable', 'string', 'max:20'], // Optional phone number
-            'course_selected' => ['required', 'string', 'in:Canadian Citizenship Test Preparation'], // Validate against available options
+            // Updated validation for course_selected to include new options
+            'course_selected' => ['required', 'string', 'in:Canadian Citizenship Test Preparation,Driving Test Preparation,Both Citizenship and Driving Tests'],
             'amount_sent' => ['required', 'numeric', 'min:0.01'],
             'interac_reference' => ['required', 'string', 'max:255'],
             'payment_screenshot' => ['nullable', 'image', 'max:2048'], // Max 2MB image
             'payment_confirmation' => ['accepted'], // Checkbox must be checked
+            // NEW: Validate the 'registration_type' received from the form
+            // This is the direct mapping for the user's access type
+            'registration_type' => ['required', 'string', 'in:citizenship,driving,both'], // <-- Introduced
         ], [
             'payment_confirmation.accepted' => 'You must confirm that you have sent the payment.',
         ]);
@@ -69,6 +74,7 @@ class PaymentRegisterController extends Controller
             'password' => Hash::make($commonPassword),
             'role_id' => $defaultRoleId,
             'must_change_password' => true, // ✅ Flag for forced password change
+            'user_type' => $request->registration_type, // <-- Introduced: Set user_type based on form input
         ]);
 
         // ✅ GOOGLE SHEETS API INTEGRATION START
@@ -87,7 +93,7 @@ class PaymentRegisterController extends Controller
 
             // Prepare the values to be appended as a new row
             // The order here MUST match the column order in your Google Sheet:
-            // Timestamp | Full Name | Email Address | Phone Number | Course Selected | Amount Sent (CAD) | Interac e-Transfer Reference Number | Upload Screenshot of Payment | I confirm I have sent payment...
+            // Timestamp | Full Name | Email Address | Phone Number | Course Selected | Amount Sent (CAD) | Interac e-Transfer Reference Number | Upload Screenshot of Payment | I confirm I have sent payment... | User Type (NEW)
             $values = [
                 [
                     now()->toDateTimeString(), // Timestamp
@@ -99,6 +105,7 @@ class PaymentRegisterController extends Controller
                     $request->interac_reference,
                     $screenshotPath ? asset('storage/' . $screenshotPath) : 'N/A', // Public URL of screenshot
                     $request->payment_confirmation ? 'Confirmed' : 'Not Confirmed', // Checkbox value
+                    $request->registration_type, // <-- NEW: Include user type in Google Sheet
                 ]
             ];
 
@@ -127,9 +134,8 @@ class PaymentRegisterController extends Controller
         // 4. Log the user in
         Auth::login($user);
 
-        // 5. Redirect the user to the dashboard.
-        // Fortify's LoginResponse (which we customized) will then check
-        // 'must_change_password' and redirect to the password change form if needed.
+        // 5. Redirect the user to the password change form as per your existing flow.
+        // The check.test.access middleware will then take over after the password change.
         return redirect()->route('password.change.form')->with('success', 'Registration and payment details submitted! Please change your password to continue.');
     }
 }

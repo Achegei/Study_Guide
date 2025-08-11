@@ -210,6 +210,9 @@
                         </p>
                     </div>
                 </div>
+                <a href="https://www.canada.ca/content/dam/ircc/migration/ircc/english/pdf/pub/discover.pdf" style="display: inline-block; padding: 12px 24px; background-image: linear-gradient(to right, #4a90e2, #50e3c2); color: white; text-align: center; text-decoration: none; border-radius: 30px; font-weight: bold; font-family: sans-serif; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                            Summarized Discover Canada Guide
+                        </a>
             </div>
             
             <!-- 🚀 New, Merged Call to Action for Full Access -->

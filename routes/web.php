@@ -10,6 +10,7 @@ use App\Http\Controllers\CanadianCitizenship\BlogController;
 use App\Http\Controllers\CanadianCitizenship\CommentController;
 use App\Http\Controllers\CanadianCitizenship\CourseController;
 use App\Http\Controllers\CanadianCitizenship\DashboardController;
+use App\Http\Controllers\CanadianCitizenship\DrivingController;
 
 // Non-Modularized Controllers (for now)
 use App\Http\Controllers\LandingPageController;
@@ -27,61 +28,71 @@ use App\Models\CourseSection;
 // ----------------------------------------------------
 // --- ROUTES FOR CANADIAN CITIZENSHIP MODULE ---
 // ----------------------------------------------------
-// This group simplifies routes and automatically applies the new namespace
 Route::prefix('canadian-citizenship')->group(function () {
-    // Blog Routes
+    // Blog Routes (generally public, but comment routes require auth)
     Route::get('/info', [BlogController::class, 'index'])->name('blogs.index');
     Route::get('/info/{slug}', [BlogController::class, 'show'])->name('citizenship-info.show');
 
-    // Comment Routes
+    // Comment Routes - require authentication
     Route::post('/info/{blog}/comment', [CommentController::class, 'store'])->name('citizenship-info.comment');
     Route::middleware('auth')->group(function () {
-        // Optional future features:
         Route::get('/comment/{comment}/edit', [CommentController::class, 'edit'])->name('comment.edit');
         Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
         Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
         Route::patch('/comment/{comment}/approve', [CommentController::class, 'approve'])->name('comment.approve');
     });
 
-    // Courses Routes
-    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+    // Citizenship Courses Routes - Protected by 'auth' and 'check.test.access'
+    // This group ensures all routes within it are authenticated and checked for user_type access.
+    Route::middleware(['auth', 'check.test.access'])->group(function () {
+        Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+        Route::get('/courses/{id}', [CourseController::class, 'show'])->name('courses.show');
+        Route::post('/courses/save-progress', [CourseController::class, 'saveProgress'])->name('courses.save-progress');
+        Route::post('/courses/{id}/reset-progress', [CourseController::class, 'resetProgress'])->name('courses.reset-progress');
+    });
+
+    // Driving Course Routes - Protected by 'auth' and 'check.test.access'
+    // These routes are also nested under the 'canadian-citizenship' prefix for organization
+    Route::middleware(['auth', 'check.test.access'])->group(function () {
+        Route::get('/driving-courses', [DrivingController::class, 'index'])->name('driving.index');
+        Route::get('/driving-courses/{id}', [DrivingController::class, 'show'])->name('driving.show');
+        Route::post('/driving-courses/save-progress', [DrivingController::class, 'saveProgress'])->name('driving.save-progress');
+        Route::post('/driving-courses/{id}/reset-progress', [DrivingController::class, 'resetProgress'])->name('driving.reset-progress');
+    });
 });
 
-//Free Quiz Routes
-// Route for showing the quiz.
-Route::get('/free-quiz', [FreeQuizController::class, 'showQuiz'])->name('free-quiz.show');
 
-// Route for submitting the quiz and showing results.
+//Free Quiz Routes (No change, generally public)
+Route::get('/free-quiz', [FreeQuizController::class, 'showQuiz'])->name('free-quiz.show');
 Route::post('/free-quiz', [FreeQuizController::class, 'submitQuiz'])->name('free-quiz.submit');
 
 // ----------------------------------------------------
 // --- OTHER APPLICATION ROUTES ---
 // ----------------------------------------------------
-// Landing Page
+// Landing Page (no change)
 Route::get('/', [LandingPageController::class, 'home'])->name('home');
 
-// Customer Testimonials
+// Customer Testimonials (no change)
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials');
 Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
 
-// Pages
+// Pages (no change)
 Route::view('/purchase', 'pages.purchase')->name('purchase');
 Route::view('/free-test', 'frontend.canadian-citizenship.free-test')->name('free-test');
 Route::view('/canadian-citizenship-prep', 'frontend.canadian-citizenship.canadian-citizenship-prep')->name('canadian-citizenship-prep');
 Route::view('/about', 'pages.about')->name('about');
 
-// Post Routes (these should probably be modularized with blogs)
+// Post Routes (no change)
 Route::get('/citizenship-tips', function () {
     $posts = Post::where('status', 'PUBLISHED')->latest()->paginate(10);
     return view('pages.tips', compact('posts'));
 })->name('citizenship.tips');
 
-// Course Payment Registration
+// Course Payment Registration (no change)
 Route::get('/register-payment', [PaymentRegisterController::class, 'showRegistrationForm'])->name('register.payment');
 Route::post('/register-payment', [PaymentRegisterController::class, 'register']);
 
-
-// 🌐 Language switch route
+// 🌐 Language switch route (no change)
 Route::get('/language-switch/{locale}', function ($locale) {
     if ($locale === 'more') {
         return redirect('/all-languages');
@@ -95,31 +106,38 @@ Route::get('/language-switch/{locale}', function ($locale) {
 
 
 // ----------------------------------------------------
-// --- AUTHENTICATED & PROTECTED ROUTES ---
+// --- ADMIN AREA ROUTES (Introduced/Modified) ---
 // ----------------------------------------------------
-// Authentication-related routes that require a logged-in user
+// All routes within this group require authentication and an Admin role (role_id = 1)
+Route::prefix('admin')->middleware(['auth', 'check.role'])->group(function () {
+    // Admin Dashboard Route
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); // No additional middleware here, as the group handles it
+
+    // If you have other admin-specific routes, define them here:
+    // Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    // Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
+});
+
+// Admin Login Route (Added to satisfy the URL request, points to default login for now)
+// Note: For a truly separate admin login with distinct authentication,
+// you might need a custom guard and different authentication methods (beyond this file).
+Route::get('/admin/login', function () {
+    return view('auth.login'); // Assuming you want to use the default login view
+})->name('admin.login');
+
+
+// ----------------------------------------------------
+// --- AUTHENTICATED & PROTECTED ROUTES (General) ---
+// ----------------------------------------------------
+// This group handles general authenticated routes not specific to course types or admin areas.
 Route::middleware(['auth'])->group(function () {
     // This is the dedicated route for the *forced* password change form.
     Route::get('/change-password', function () {
         return view('auth.change-password');
     })->name('password.change.form');
 
-     // ✅ NEW ROUTE: Handle the password update with our custom controller
-    Route::put('/password-update', [PasswordChangeController::class, 'update'])
-        ->name('password.update.custom');
-
-    // Dashboard route using the modularized controller
-    //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    // Protected courses.show route:
-    Route::get('/courses/{id}', [CourseController::class, 'show'])
-        ->middleware('check.role')
-        ->name('courses.show');
-
-    // ✅ NEW ROUTES: Routes to handle saving and resetting user progress
-    Route::post('/courses/save-progress', [CourseController::class, 'saveProgress'])
-        ->name('courses.save-progress');
-    
-    Route::post('/courses/reset-progress/{id}', [CourseController::class, 'resetProgress'])
-        ->name('courses.reset-progress');
+    // Handle the password update with our custom controller
+    Route::put('/password-update', [PasswordChangeController::class, 'update'])->name('password.update.custom');
 });
+
+// Add any other routes your application needs here
