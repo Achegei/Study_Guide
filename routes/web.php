@@ -106,24 +106,18 @@ Route::get('/language-switch/{locale}', function ($locale) {
 
 
 // ----------------------------------------------------
-// --- ADMIN AREA ROUTES (Introduced/Modified) ---
+// --- ADMIN AREA ROUTES (Managed by Filament) ---
 // ----------------------------------------------------
-// All routes within this group require authentication and an Admin role (role_id = 1)
+// **IMPORTANT:** Filament typically registers its own '/admin' routes, including login,
+// automatically. Do NOT manually define '/admin/login' here, as it will conflict.
+// If you access /admin, Filament's middleware should direct you to its login.
+
+// This group continues to protect your custom dashboard if you still use it.
 Route::prefix('admin')->middleware(['auth', 'check.role'])->group(function () {
-    // Admin Dashboard Route
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); // No additional middleware here, as the group handles it
-
-    // If you have other admin-specific routes, define them here:
-    // Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
-    // Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
+    // This is for your custom dashboard if you still use it.
+    // Filament will have its own dashboard, typically just at /admin
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
-
-// Admin Login Route (Added to satisfy the URL request, points to default login for now)
-// Note: For a truly separate admin login with distinct authentication,
-// you might need a custom guard and different authentication methods (beyond this file).
-Route::get('/admin/login', function () {
-    return view('auth.login'); // Assuming you want to use the default login view
-})->name('admin.login');
 
 
 // ----------------------------------------------------

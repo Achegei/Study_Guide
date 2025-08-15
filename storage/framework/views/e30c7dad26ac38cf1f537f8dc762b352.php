@@ -75,6 +75,24 @@
                 <li><a href="<?php echo e(route('blogs.index')); ?>" class="hover:text-bright-yellow">News & Updates</a></li>
                 <li><a href="<?php echo e(route('testimonials')); ?>" class="hover:text-bright-yellow">Our Community</a></li>
                 
+                <!-- Language Switcher (Desktop) -->
+                <li>
+                    <div class="relative inline-block text-left">
+                        <select onchange="window.location.href = this.value"
+                                class="block appearance-none bg-navy-blue border border-gray-700 text-white px-4 py-2 rounded-full shadow leading-tight focus:outline-none focus:border-bright-yellow focus:ring focus:ring-bright-yellow focus:ring-opacity-50 text-sm font-semibold">
+                            <option value=""><?php echo e(strtoupper(App::getLocale())); ?></option> 
+                            <option value="<?php echo e(route('language.switch', 'en')); ?>" <?php if(App::getLocale() == 'en'): ?> selected <?php endif; ?>>English</option>
+                            <option value="<?php echo e(route('language.switch', 'fr')); ?>" <?php if(App::getLocale() == 'fr'): ?> selected <?php endif; ?>>Français</option>
+                            <option value="<?php echo e(route('language.switch', 'ar')); ?>" <?php if(App::getLocale() == 'ar'): ?> selected <?php endif; ?>>العربية</option>
+                            <option value="<?php echo e(route('language.switch', 'so')); ?>" <?php if(App::getLocale() == 'so'): ?> selected <?php endif; ?>>Soomaali</option>
+                            <option value="<?php echo e(route('language.switch', 'es')); ?>" <?php if(App::getLocale() == 'es'): ?> selected <?php endif; ?>>Español</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </li>
+                
                 <!-- AUTH LOGIC FOR DESKTOP NAV -->
                 <?php if(auth()->guard()->check()): ?>
                     <li><a href="<?php echo e(route('courses.index')); ?>" class="hover:text-bright-yellow">Dashboard</a></li>
@@ -114,10 +132,29 @@
                 <li><a href="<?php echo e(route('free-test')); ?>" class="block py-1">Prep Guides & Resources</a></li>
                 <li><a href="<?php echo e(route('blogs.index')); ?>" class="block py-1">News & Updates</a></li>
                 <li><a href="<?php echo e(route('testimonials')); ?>" class="block py-1">Our Community</a></li>
-                
+
+                <!-- Language Switcher (Mobile) -->
+                <li>
+                    <div class="relative inline-block w-full text-left">
+                        <select onchange="window.location.href = this.value"
+                                class="block appearance-none w-full bg-navy-blue border border-gray-700 text-white px-4 py-2 rounded-md shadow leading-tight focus:outline-none focus:border-bright-yellow focus:ring focus:ring-bright-yellow focus:ring-opacity-50 text-sm font-semibold">
+                            <option value=""><?php echo e(strtoupper(App::getLocale())); ?></option> 
+                            <option value="<?php echo e(route('language.switch', 'en')); ?>" <?php if(App::getLocale() == 'en'): ?> selected <?php endif; ?>>English</option>
+                            <option value="<?php echo e(route('language.switch', 'fr')); ?>" <?php if(App::getLocale() == 'fr'): ?> selected <?php endif; ?>>Français</option>
+                            <option value="<?php echo e(route('language.switch', 'ar')); ?>" <?php if(App::getLocale() == 'ar'): ?> selected <?php endif; ?>>العربية</option>
+                            <option value="<?php echo e(route('language.switch', 'so')); ?>" <?php if(App::getLocale() == 'so'): ?> selected <?php endif; ?>>Soomaali</option>
+                            <option value="<?php echo e(route('language.switch', 'es')); ?>" <?php if(App::getLocale() == 'es'): ?> selected <?php endif; ?>>Español</option>
+                            <option value="<?php echo e(route('language.switch', 'more')); ?>">More Languages...</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </li>
+
                 <!-- AUTH LOGIC FOR MOBILE NAV -->
                 <?php if(auth()->guard()->check()): ?>
-                    <li><a href="/" class="block py-1">Home</a></li>
+                    <li><a href="<?php echo e(route('courses.index')); ?>" class="block py-1">Dashboard</a></li>
                     <li>
                         <form method="POST" action="<?php echo e(route('logout')); ?>" x-data>
                             <?php echo csrf_field(); ?>

@@ -1,4 +1,8 @@
 {{-- resources/views/frontend/questions.blade.php --}}
+{{-- This view is specifically for Citizenship Course Questions --}}
+@php
+    // The $progress and $user variables are expected to be passed from the controller.
+@endphp
 
 <x-app-layout>
     {{-- Main container for the layout, with Alpine.js for sidebar toggle --}}
@@ -211,7 +215,10 @@
                 const feedbackMessage = feedbackArea.querySelector('.feedback-message');
                 const feedbackIcon = feedbackArea.querySelector('.feedback-icon');
                 const correctIcon = feedbackIcon.querySelector('.correct-icon');
+                // Ensure incorrectIcon is properly queried and then hidden
                 const incorrectIcon = feedbackIcon.querySelector('.incorrect-icon');
+                incorrectIcon.classList.add('hidden'); // Initially hide it
+
                 const correctAnswerDisplay = feedbackArea.querySelector('.correct-answer-display');
                 const statusMessageDiv = form.querySelector('.status-message');
                 const radioInputs = form.querySelectorAll('input[type="radio"]');
@@ -298,8 +305,8 @@
                         feedbackMessage.textContent = 'Correct! Well done.';
                         selectedAnswerInput.closest('label').classList.add('bg-green-100', 'border-green-500');
 
-                        // ✅ NEW: Save the user's progress via an API call
-                        fetch('/courses/save-progress', {
+                        // IMPORTANT: Update fetch URL to save progress for CITIZENSHIP courses
+                        fetch('/canadian-citizenship/courses/save-progress', { // Corrected URL
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

@@ -2,25 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 class Question extends Model
 {
     use HasFactory;
 
-    // ✅ Updated $fillable array with your provided columns
     protected $fillable = [
         'course_section_id',
-        'question', // The actual question text
-        'choices',  // The options for the question
+        'question',
+        'type', // Added 'type' for question distinction (e.g., 'Multiple Choice', 'True or False')
+        'choices',
         'correct_answer',
+        'audio_url',
     ];
 
-    // ✅ Cast the 'choices' attribute to an array
-    // This will automatically convert JSON from the database into a PHP array
-    // and convert PHP arrays into JSON when saving to the database.
     protected $casts = [
-        'choices' => 'array',
+        'choices' => 'array', // This is the crucial line for automatic JSON to array conversion
     ];
 
     /**

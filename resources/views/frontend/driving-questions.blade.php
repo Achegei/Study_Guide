@@ -1,14 +1,8 @@
 {{-- resources/views/frontend/driving-questions.blade.php --}}
 {{-- This view is specifically for Driving Course Questions --}}
 @php
-    // Use the new UserDrivingProgress model
-    use App\Models\UserDrivingProgress;
-    use Illuminate\Support\Facades\Auth;
-
-    $user = Auth::user();
-    // The $progress variable from the controller is typically passed directly,
-    // so this PHP block might be slightly redundant if $progress is always passed.
-    // However, it clarifies which model is expected.
+    // The $progress and $user variables are expected to be passed from the controller.
+    // Explicit 'use' statements for models within Blade are generally not needed if passed from controller.
 @endphp
 
 <x-app-layout>
@@ -43,7 +37,7 @@
         <button @click="sidebarOpen = !sidebarOpen"
                 class="lg:hidden fixed top-4 left-4 z-50 p-3 bg-indigo-600 text-white rounded-full shadow-lg
                        transition-all duration-300 ease-in-out hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-            <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
         </button>
@@ -180,10 +174,10 @@
                                 {{-- Feedback Area --}}
                                 <div class="feedback-area mt-6 p-6 rounded-2xl border-2 transition-all duration-300 ease-in-out hidden flex items-start space-x-4">
                                     <div class="feedback-icon size-8 flex-shrink-0 flex items-center justify-center text-white rounded-full">
-                                        <svg class="w-5 h-5 hidden correct-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="w-5 h-5 hidden correct-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                         </svg>
-                                        <svg class="w-5 h-5 hidden incorrect-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <svg class="w-5 h-5 hidden incorrect-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                         </svg>
                                     </div>
@@ -359,4 +353,4 @@
     </script>
     @endpush
 </x-app-layout>
-
+{{-- End of resources/views/frontend/driving-questions.blade.php --}}

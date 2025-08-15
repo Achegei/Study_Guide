@@ -74,6 +74,24 @@
                 <li><a href="{{ route('blogs.index') }}" class="hover:text-bright-yellow">News & Updates</a></li>
                 <li><a href="{{ route('testimonials') }}" class="hover:text-bright-yellow">Our Community</a></li>
                 
+                <!-- Language Switcher (Desktop) -->
+                <li>
+                    <div class="relative inline-block text-left">
+                        <select onchange="window.location.href = this.value"
+                                class="block appearance-none bg-navy-blue border border-gray-700 text-white px-4 py-2 rounded-full shadow leading-tight focus:outline-none focus:border-bright-yellow focus:ring focus:ring-bright-yellow focus:ring-opacity-50 text-sm font-semibold">
+                            <option value="">{{ strtoupper(App::getLocale()) }}</option> {{-- Display current locale --}}
+                            <option value="{{ route('language.switch', 'en') }}" @if(App::getLocale() == 'en') selected @endif>English</option>
+                            <option value="{{ route('language.switch', 'fr') }}" @if(App::getLocale() == 'fr') selected @endif>Français</option>
+                            <option value="{{ route('language.switch', 'ar') }}" @if(App::getLocale() == 'ar') selected @endif>العربية</option>
+                            <option value="{{ route('language.switch', 'so') }}" @if(App::getLocale() == 'so') selected @endif>Soomaali</option>
+                            <option value="{{ route('language.switch', 'es') }}" @if(App::getLocale() == 'es') selected @endif>Español</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </li>
+                
                 <!-- AUTH LOGIC FOR DESKTOP NAV -->
                 @auth
                     <li><a href="{{ route('courses.index') }}" class="hover:text-bright-yellow">Dashboard</a></li>
@@ -113,10 +131,29 @@
                 <li><a href="{{ route('free-test') }}" class="block py-1">Prep Guides & Resources</a></li>
                 <li><a href="{{ route('blogs.index') }}" class="block py-1">News & Updates</a></li>
                 <li><a href="{{ route('testimonials') }}" class="block py-1">Our Community</a></li>
-                
+
+                <!-- Language Switcher (Mobile) -->
+                <li>
+                    <div class="relative inline-block w-full text-left">
+                        <select onchange="window.location.href = this.value"
+                                class="block appearance-none w-full bg-navy-blue border border-gray-700 text-white px-4 py-2 rounded-md shadow leading-tight focus:outline-none focus:border-bright-yellow focus:ring focus:ring-bright-yellow focus:ring-opacity-50 text-sm font-semibold">
+                            <option value="">{{ strtoupper(App::getLocale()) }}</option> {{-- Display current locale --}}
+                            <option value="{{ route('language.switch', 'en') }}" @if(App::getLocale() == 'en') selected @endif>English</option>
+                            <option value="{{ route('language.switch', 'fr') }}" @if(App::getLocale() == 'fr') selected @endif>Français</option>
+                            <option value="{{ route('language.switch', 'ar') }}" @if(App::getLocale() == 'ar') selected @endif>العربية</option>
+                            <option value="{{ route('language.switch', 'so') }}" @if(App::getLocale() == 'so') selected @endif>Soomaali</option>
+                            <option value="{{ route('language.switch', 'es') }}" @if(App::getLocale() == 'es') selected @endif>Español</option>
+                            <option value="{{ route('language.switch', 'more') }}">More Languages...</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </li>
+
                 <!-- AUTH LOGIC FOR MOBILE NAV -->
                 @auth
-                    <li><a href="/" class="block py-1">Home</a></li>
+                    <li><a href="{{ route('courses.index') }}" class="block py-1">Dashboard</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf

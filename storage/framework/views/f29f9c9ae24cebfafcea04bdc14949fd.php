@@ -1,5 +1,9 @@
 
 
+<?php
+    // The $progress and $user variables are expected to be passed from the controller.
+?>
+
 <?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
 <?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -228,7 +232,10 @@
                 const feedbackMessage = feedbackArea.querySelector('.feedback-message');
                 const feedbackIcon = feedbackArea.querySelector('.feedback-icon');
                 const correctIcon = feedbackIcon.querySelector('.correct-icon');
+                // Ensure incorrectIcon is properly queried and then hidden
                 const incorrectIcon = feedbackIcon.querySelector('.incorrect-icon');
+                incorrectIcon.classList.add('hidden'); // Initially hide it
+
                 const correctAnswerDisplay = feedbackArea.querySelector('.correct-answer-display');
                 const statusMessageDiv = form.querySelector('.status-message');
                 const radioInputs = form.querySelectorAll('input[type="radio"]');
@@ -315,8 +322,8 @@
                         feedbackMessage.textContent = 'Correct! Well done.';
                         selectedAnswerInput.closest('label').classList.add('bg-green-100', 'border-green-500');
 
-                        // ✅ NEW: Save the user's progress via an API call
-                        fetch('/courses/save-progress', {
+                        // IMPORTANT: Update fetch URL to save progress for CITIZENSHIP courses
+                        fetch('/canadian-citizenship/courses/save-progress', { // Corrected URL
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

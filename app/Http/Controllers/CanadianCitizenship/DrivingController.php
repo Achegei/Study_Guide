@@ -3,121 +3,150 @@
 namespace App\Http\Controllers\CanadianCitizenship;
 
 use App\Http\Controllers\Controller;
-// Use your new DrivingSection model
 use App\Models\DrivingSection;
-// Use your new DrivingQuestion model (needed if you directly query it, or for clarity)
 use App\Models\DrivingQuestion;
-// Use your new UserDrivingProgress model
-use App\Models\UserDrivingProgress;
+use App\Models\UserDrivingProgress; // Make sure this model exists
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DrivingController extends Controller
 {
     /**
-     * Show all driving course sections (regions/cards).
+     * Display a listing of the driving sections (regions).
      */
     public function index()
     {
         $sections = DrivingSection::all();
-        // Ensure this view exists: resources/views/frontend/driving-courses.blade.php
-        return view('frontend.driving-courses', compact('sections'));
+        $user = Auth::user();
+        $userDrivingProgress = $user ? UserDrivingProgress::where('user_id', $user->id)->get()->keyBy('driving_section_id') : collect();
+
+        return view('frontend.driving-courses', compact('sections', 'userDrivingProgress'));
     }
 
     /**
-     * Show questions for a specific driving section, resuming from the correct spot.
+     * Display the questions for a specific driving section.
+     *
+     * @param int $id The ID of the DrivingSection.
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function show($id, Request $request)
     {
         $section = DrivingSection::findOrFail($id);
-        $allSections = DrivingSection::all()->sortBy('title'); // Fetch all sections for navigation, sorted by title
-
         $user = Auth::user();
 
-        // Get the progress for the current user and the specific driving section
-        // Uses the new UserDrivingProgress model and driving_section_id
-        $progress = $user ? UserDrivingProgress::where('user_id', $user->id)
-                                        ->where('driving_section_id', $id) // IMPORTANT: Changed to driving_section_id
-                                        ->first() : null;
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please log in to view quizzes and track progress.');
+        }
 
-        $lastQuestionId = $progress ? $progress->last_question_id : 0;
+        $progress = UserDrivingProgress::firstOrNew([
+            'user_id' => $user->id,
+            'driving_section_id' => $section->id,
+        ]);
 
-        // Determine the starting page for the quiz based on user's last progress
-        $questionsCount = $section->questions()->count(); // Uses DrivingSection's hasMany(DrivingQuestion::class)
-        $questionsPerPage = 10;
+        if (!$progress->exists) {
+            $progress->last_question_id = 0;
+            $progress->save();
+        }
 
-        $startPage = 1;
+        $allQuestions = DrivingQuestion::where('driving_section_id', $section->id)->get();
+        $questionsCount = $allQuestions->count();
+
+        $lastQuestionId = $progress->last_question_id ?? 0;
+        $startQuestionIndex = 0;
+
         if ($lastQuestionId > 0) {
-            // Find the last answered question within this section
-            $lastQuestion = $section->questions()->find($lastQuestionId);
-            if ($lastQuestion) {
-                // Calculate how many questions come before or at the last answered question's ID
-                $questionsBefore = $section->questions()->where('id', '<=', $lastQuestionId)->count();
-                // Determine the page number to resume from
-                $startPage = (int) ceil($questionsBefore / $questionsPerPage);
-                // Ensure startPage is at least 1
-                if ($startPage < 1) {
-                    $startPage = 1;
+            $lastAnsweredQuestion = $allQuestions->firstWhere('id', $lastQuestionId);
+            if ($lastAnsweredQuestion) {
+                $index = $allQuestions->search(function ($q) use ($lastQuestionId) {
+                    return $q->id == $lastQuestionId;
+                });
+                if ($index !== false && ($index + 1) < $questionsCount) {
+                    $startQuestionIndex = $index + 1;
+                } else if ($index !== false && ($index + 1) === $questionsCount) {
+                    $startQuestionIndex = $index;
                 }
             }
         }
+        
+        $questionsPerPage = 1;
+        $currentPage = (int) ($request->query('page', 1));
 
-        // Use the page number from the URL request (e.g., from pagination links)
-        // If no page is in the URL, use our calculated startPage
-        $currentPage = $request->input('page', $startPage);
+        $targetPage = (int) floor($startQuestionIndex / $questionsPerPage) + 1;
+        if ($currentPage < $targetPage) {
+             return redirect()->route('driving.show', ['id' => $id, 'page' => $targetPage]);
+        }
 
-        // Fetch the questions for the current page using pagination
-        // Uses DrivingSection's hasMany(DrivingQuestion::class)
-        $questions = $section->questions()->paginate($questionsPerPage, ['*'], 'page', $currentPage);
+        $currentQuestions = $allQuestions->slice(($currentPage - 1) * $questionsPerPage, $questionsPerPage);
 
-        // Pass all necessary data to the view
-        // Ensure this view exists: resources/views/frontend/driving-questions.blade.php
+        $questions = new LengthAwarePaginator(
+            $currentQuestions,
+            $questionsCount,
+            $questionsPerPage,
+            $currentPage,
+            ['path' => $request->url()]
+        );
+
+
+        $allSections = DrivingSection::all();
+
         return view('frontend.driving-questions', compact('section', 'questions', 'allSections', 'progress'));
     }
 
     /**
-     * Handle the user saving their progress for a driving quiz question.
+     * Save user progress for a driving question.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function saveProgress(Request $request)
     {
         $request->validate([
-            // Validate 'section_id' against the 'driving_sections' table
             'section_id' => 'required|exists:driving_sections,id',
-            // Validate 'question_id' against the 'driving_questions' table
             'question_id' => 'required|exists:driving_questions,id',
         ]);
 
         $user = Auth::user();
         if (!$user) {
-            return response()->json(['error' => 'User not authenticated.'], 401);
+            return response()->json(['success' => false, 'message' => 'Unauthorized'], 401);
         }
 
-        // Use the new UserDrivingProgress model to update or create progress
-        UserDrivingProgress::updateOrCreate(
-            ['user_id' => $user->id, 'driving_section_id' => $request->section_id], // IMPORTANT: Changed to driving_section_id
-            ['last_question_id' => $request->question_id]
-        );
+        $progress = UserDrivingProgress::firstOrNew([
+            'user_id' => $user->id,
+            'driving_section_id' => $request->section_id,
+        ]);
 
-        return response()->json(['success' => 'Progress saved successfully!']);
+        if ($progress->last_question_id < $request->question_id) {
+            $progress->last_question_id = $request->question_id;
+            $progress->save();
+            return response()->json(['success' => true, 'message' => 'Progress saved.']);
+        }
+        return response()->json(['success' => true, 'message' => 'Progress is already at or beyond this question.']);
     }
 
     /**
-     * Handle the user resetting their progress for a specific driving section.
+     * Reset user progress for a specific driving section.
+     *
+     * @param int $id The ID of the DrivingSection to reset.
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function resetProgress($id)
     {
         $user = Auth::user();
         if (!$user) {
-            return redirect()->route('login')->with('error', 'You must be logged in to reset your progress.');
+            return redirect()->route('login')->with('error', 'Please log in to reset progress.');
         }
 
-        // Use the new UserDrivingProgress model to delete progress
-        UserDrivingProgress::where('user_id', $user->id)
-                    ->where('driving_section_id', $id) // IMPORTANT: Changed to driving_section_id
-                    ->delete();
+        $progress = UserDrivingProgress::where('user_id', $user->id)
+                                       ->where('driving_section_id', $id)
+                                       ->first();
 
-        // Redirect back to the specific driving section's show page after resetting
-        // Ensure 'driving.show' is the correct route name for your driving course sections
-        return redirect()->route('driving.show', $id)->with('success', 'Your progress has been reset.');
+        if ($progress) {
+            $progress->delete();
+            return redirect()->route('driving.show', $id)->with('success', 'Your progress for this driving region has been reset! You can now start from question 1.');
+        }
+
+        return redirect()->route('driving.show', $id)->with('error', 'No progress found to reset for this driving region.');
     }
 }

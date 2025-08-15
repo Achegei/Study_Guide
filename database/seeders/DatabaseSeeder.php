@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User; // Make sure to import the User model if you use it below
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,26 +13,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // ✅ Only call other Seeder classes here
         $this->call([
             // Your existing seeders (e.g., for Canadian Citizenship)
-            CourseSectionsTableSeeder::class,
-            QuestionSeeder::class,
-            UserSeeder::class, // This will now correctly create your users
+            //CourseSectionsTableSeeder::class,
+            QuestionSeeder::class, // <-- IMPORTANT: Comment this line out!
+                                    // We are relying on specific province seeders for questions.
+            UserSeeder::class,
             FreeQuizSeeder::class,
 
-            // --- Introduced: Driving Course Seeders ---
-            DrivingSectionsTableSeeder::class, // <-- New Seeder for Driving Sections
-            DrivingQuestionsTableSeeder::class, // <-- New Seeder for Driving Questions
+            // --- Driving Course Seeders ---
+            DrivingSectionsTableSeeder::class,
+            DrivingQuestionsTableSeeder::class,
             // -----------------------------------------
+
+            AlbertaQuestionsSeeder::class, // <-- Ensure this is present and uncommented!
+            NewBrunswickQuestionsSeeder::class,
+            PrinceEdwardIslandQuestionsSeeder::class,
+            CanadaQuestionsSeeder::class,
+            NunavutQuestionsSeeder::class,
+            NewfoundlandandLabradorQuestionsSeeder::class,
+            ManitobaQuestionsSeeder::class,
+            NorthwestTerritoriesQuestionsSeeder::class,
+            NovaScotiaQuestionsSeeder::class,
+            QuebecQuestionsSeeder::class,
+            YukonQuestionsSeeder::class,
+            BritishColumbiaQuestionsSeeder::class,
+            OntarioQuestionsSeeder::class,
+            SaskatchewanQuestionsSeeder::class,
         ]);
-
-        // If you were using factories for users, you can keep them here.
-        // \App\Models\User::factory(10)->create(); // Example of user factory if used
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

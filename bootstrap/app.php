@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Session\Middleware\StartSession; // Import StartSession
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,22 +14,31 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Ensure that StartSession is part of your web middleware group.
+        // It's crucial for session functionality, including locale persistence.
+        $middleware->web(append: [
+            StartSession::class, // <-- Crucial for session to work correctly
+        ]);
+
         $middleware->append(\App\Http\Middleware\SetLocale::class);
 
-        // ✅ Add your custom middleware aliases here
+        // Add your custom middleware aliases here
         $middleware->alias([
             'check.role' => \App\Http\Middleware\CheckUserRole::class,
             'password.change.required' => \App\Http\Middleware\RedirectIfPasswordNotChanged::class,
-            // NEW: Register your custom access middleware for user types
-            'check.test.access' => \App\Http\Middleware\CheckUserTestAccess::class, // <-- Introduced
+            'check.test.access' => \App\Http\Middleware\CheckUserTestAccess::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })
-    // ✅ ADD THIS BLOCK to register service providers
+    // NEW: Define command scheduling here for Laravel 11
+    ->withSchedule(function (Schedule $schedule) { // <-- Introduced: Scheduling configuration
+        $schedule->command('users:delete-expired')->dailyAt('01:00'); // Runs daily at 1:00 AM
+        // You can adjust the frequency as needed: ->hourly(), ->everyFiveMinutes(), etc.
+    }) // <-- End of scheduling configuration
     ->withProviders([
-        Laravel\Fortify\FortifyServiceProvider::class, // ✅ Add Fortify's service provider
+        Laravel\Fortify\FortifyServiceProvider::class,
     ])
     ->create();
 

@@ -4,61 +4,102 @@ namespace App\Http\Controllers\CanadianCitizenship;
 
 use App\Http\Controllers\Controller;
 use App\Models\CourseSection;
-use App\Models\UserProgress;
+use App\Models\Question; // Assuming this is your Citizenship Question model
+use App\Models\UserProgress; // Corrected: Using UserProgress for citizenship progress
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CourseController extends Controller
 {
-    // Show all cards (regions)
+    /**
+     * Display a listing of the course sections (regions).
+     */
     public function index()
     {
         $sections = CourseSection::all();
-        return view('frontend.courses', compact('sections'));
+        $user = Auth::user();
+        // Fetch user course progress specific to course sections using the correct model
+        $userCourseProgress = $user ? UserProgress::where('user_id', $user->id)->get()->keyBy('course_section_id') : collect();
+
+        return view('frontend.canadian-citizenship.courses', compact('sections', 'userCourseProgress'));
     }
 
-    // Show questions for a specific region, starting at the correct spot
+    /**
+     * Display the questions for a specific course section.
+     *
+     * @param int $id The ID of the CourseSection.
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function show($id, Request $request)
     {
         $section = CourseSection::findOrFail($id);
-        $allSections = CourseSection::all()->sortBy('title');
-
         $user = Auth::user();
 
-        // Get the progress for the current user and section
-        $progress = $user ? UserProgress::where('user_id', $user->id)
-                                        ->where('course_section_id', $id)
-                                        ->first() : null;
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please log in to view quizzes and track progress.');
+        }
 
-        $lastQuestionId = $progress ? $progress->last_question_id : 0;
-        
-        // Find the index of the last question answered to determine the page number
-        $questionsCount = $section->questions()->count();
-        $questionsPerPage = 10;
-        
-        $startPage = 1;
+        // Fetch user's progress for this specific section using UserProgress
+        $progress = UserProgress::firstOrNew([
+            'user_id' => $user->id,
+            'course_section_id' => $section->id,
+        ]);
+
+        if (!$progress->exists) {
+            $progress->last_question_id = 0;
+            $progress->save();
+        }
+
+        $allQuestions = Question::where('course_section_id', $section->id)->get();
+        $questionsCount = $allQuestions->count();
+
+        $lastQuestionId = $progress->last_question_id ?? 0;
+        $startQuestionIndex = 0;
+
         if ($lastQuestionId > 0) {
-            $lastQuestion = $section->questions()->find($lastQuestionId);
-            if ($lastQuestion) {
-                // Determine the correct page to resume from
-                $questionsBefore = $section->questions()->where('id', '<=', $lastQuestionId)->count();
-                $startPage = (int) ceil($questionsBefore / $questionsPerPage);
+            $lastAnsweredQuestion = $allQuestions->firstWhere('id', $lastQuestionId);
+            if ($lastAnsweredQuestion) {
+                $index = $allQuestions->search(function ($q) use ($lastQuestionId) {
+                    return $q->id == $lastQuestionId;
+                });
+                if ($index !== false && ($index + 1) < $questionsCount) {
+                    $startQuestionIndex = $index + 1;
+                } else if ($index !== false && ($index + 1) === $questionsCount) {
+                    $startQuestionIndex = $index;
+                }
             }
         }
         
-        // If a page number is explicitly passed in the URL (e.g., from the paginator), use it.
-        // Otherwise, use our calculated startPage.
-        $currentPage = $request->input('page', $startPage);
+        $questionsPerPage = 1;
+        $currentPage = (int) ($request->query('page', 1));
 
-        // Fetch the questions for the correct page
-        $questions = $section->questions()->paginate($questionsPerPage, ['*'], 'page', $currentPage);
-        
-        // Pass the user progress data to the view
+        $targetPage = (int) floor($startQuestionIndex / $questionsPerPage) + 1;
+        if ($currentPage < $targetPage) {
+             return redirect()->route('courses.show', ['id' => $id, 'page' => $targetPage]);
+        }
+
+        $currentQuestions = $allQuestions->slice(($currentPage - 1) * $questionsPerPage, $questionsPerPage);
+
+        $questions = new LengthAwarePaginator(
+            $currentQuestions,
+            $questionsCount,
+            $questionsPerPage,
+            $currentPage,
+            ['path' => $request->url()]
+        );
+
+        $allSections = CourseSection::all();
+
         return view('frontend.questions', compact('section', 'questions', 'allSections', 'progress'));
     }
 
     /**
-     * Handle the user saving their progress for a quiz question.
+     * Save user progress for a citizenship question.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function saveProgress(Request $request)
     {
@@ -69,31 +110,45 @@ class CourseController extends Controller
 
         $user = Auth::user();
         if (!$user) {
-            return response()->json(['error' => 'User not authenticated.'], 401);
+            return response()->json(['success' => false, 'message' => 'Unauthorized'], 401);
         }
 
-        UserProgress::updateOrCreate(
-            ['user_id' => $user->id, 'course_section_id' => $request->section_id],
-            ['last_question_id' => $request->question_id]
-        );
+        $progress = UserProgress::firstOrNew([ // Corrected: Using UserProgress
+            'user_id' => $user->id,
+            'course_section_id' => $request->section_id,
+        ]);
 
-        return response()->json(['success' => 'Progress saved successfully!']);
+        if ($progress->last_question_id < $request->question_id) {
+            $progress->last_question_id = $request->question_id;
+            $progress->save();
+            return response()->json(['success' => true, 'message' => 'Progress saved.']);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Progress is already at or beyond this question.']);
     }
 
     /**
-     * Handle the user resetting their progress for a region.
+     * Reset user progress for a specific course section.
+     *
+     * @param int $id The ID of the CourseSection to reset.
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function resetProgress($id)
     {
         $user = Auth::user();
         if (!$user) {
-            return redirect()->route('login')->with('error', 'You must be logged in to reset your progress.');
+            return redirect()->route('login')->with('error', 'Please log in to reset progress.');
         }
 
-        UserProgress::where('user_id', $user->id)
-                    ->where('course_section_id', $id)
-                    ->delete();
+        $progress = UserProgress::where('user_id', $user->id) // Corrected: Using UserProgress
+                                       ->where('course_section_id', $id)
+                                       ->first();
 
-        return redirect()->route('courses.show', $id)->with('success', 'Your progress has been reset.');
+        if ($progress) {
+            $progress->delete();
+            return redirect()->route('courses.show', $id)->with('success', 'Your progress for this region has been reset! You can now start from question 1.');
+        }
+
+        return redirect()->route('courses.show', $id)->with('error', 'No progress found to reset for this region.');
     }
 }
