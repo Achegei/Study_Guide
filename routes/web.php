@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\ReadingResourceController; 
 
 // --- Imports ---
 // Modularized Controllers
@@ -23,6 +24,7 @@ use App\Http\Controllers\FreeQuizController;
 // Other necessary imports
 use App\Models\Post;
 use App\Models\CourseSection;
+
 
 
 // ----------------------------------------------------
@@ -50,6 +52,8 @@ Route::prefix('canadian-citizenship')->group(function () {
         Route::post('/courses/save-progress', [CourseController::class, 'saveProgress'])->name('courses.save-progress');
         Route::post('/courses/{id}/reset-progress', [CourseController::class, 'resetProgress'])->name('courses.reset-progress');
     });
+    Route::get('/courses/{section}/reading-resources', [ReadingResourceController::class, 'show'])
+    ->name('courses.reading-resources');
 
     // Driving Course Routes - Protected by 'auth' and 'check.test.access'
     // These routes are also nested under the 'canadian-citizenship' prefix for organization

@@ -1829,75 +1829,82 @@ Nuclear power accounts for the majority of Ontario’s electricity generation.
 Answer: True
 (Explanation: Ontario relies heavily on nuclear energy for its power supply, particularly from plants like Bruce and Pickering.)
 
-251. 
+251.
 Multiple Choice:
-Which is Ontario’s official mineral?
-A. Gold
-B. Nickel
-C. Amethyst
-D. Granite
-Answer: C. Amethyst
+Which Ontario city is known for its large underground nickel mine tours?
+A. Timmins
+B. North Bay
+C. Kenora
+D. Sudbury
+Answer: D. Sudbury
 
-252. 
+252.
 True or False:
-Ontario spans two time zones (Eastern and Central).
+Ontario has more than one time zone.
 Answer: True
+(Most of Ontario is in Eastern Time, but the far west observes Central Time.)
 
-253. 
+253.
 Multiple Choice:
-What is the name of the provincial service where residents renew health cards and driver’s licences?
-A. ServiceCanada
-B. ServiceOntario
-C. Ontario Services Agency
-D. Citizen Ontario
-Answer: B. ServiceOntario
+Which Ontario river connects Lake Ontario to the Atlantic Ocean?
+A. Ottawa River
+B. St. Lawrence River
+C. Niagara River
+D. Detroit River
+Answer: B. St. Lawrence River
 
-254. 
+254.
 True or False:
-The Ontario Greenbelt was created to protect farmland, forests, and wetlands around the Greater Golden Horseshoe.
-Answer: True
+The Parliament of Canada meets in Toronto.
+Answer: False
+(It meets in Ottawa, the nation’s capital.)
 
-255. 
+
+255.
 Multiple Choice:
-Bruce Power’s nuclear generating station is located on the shore of which Great Lake?
-A. Lake Erie
-B. Lake Huron
-C. Lake Ontario
-D. Lake Superior
-Answer: B. Lake Huron
+Which Ontario city is home to the Royal Ontario Museum?
+A. Toronto
+B. Ottawa
+C. Sudbury
+D. Kitchener
+Answer: A. Toronto
 
-256. 
+256.
 True or False:
-Coal-fired electricity generation has been fully phased out in Ontario.
+Ontario shares a land border with Manitoba.
 Answer: True
+(The western border of Ontario meets Manitoba.)
 
-257. 
+257.
 Multiple Choice:
-Which Ontario city is nicknamed the “Nickel City”?
-A. Sudbury
-B. Thunder Bay
-C. Sault Ste. Marie
-D. North Bay
-Answer: A. Sudbury
+Which Ontario city is known as “The Limestone City” because of its historic buildings?
+A. Cornwall
+B. Kingston
+C. Guelph
+D. Thunder Bay
+Answer: B. Kingston
 
-258. 
+
+258.
 True or False:
-The Toronto Transit Commission (TTC) is the public transit agency for the City of Toronto.
+Lake Ontario is the smallest of the Great Lakes.
 Answer: True
+(It is the smallest by surface area, but not by volume.)
 
-259. 
+259.
 Multiple Choice:
-Which historic waterway links Lake Ontario to Georgian Bay on Lake Huron?
-A. Welland Canal
-B. Trent–Severn Waterway
-C. St. Lawrence Seaway
-D. Rideau Canal
-Answer: B. Trent–Severn Waterway
+Which Ontario park is the largest provincial park in the province?
+A. Killarney Provincial Park
+B. Rondeau Provincial Park
+C. Algonquin Provincial Park
+D. Awenda Provincial Park
+Answer: C. Algonquin Provincial Park
 
-260. 
+260.
 True or False:
-The Welland Canal lets ships bypass Niagara Falls between Lake Ontario and Lake Erie.
+Ontario’s flag includes the Union Jack.
 Answer: True
+(The flag features the Union Jack and the Ontario shield of arms.)
 
 261.
 Multiple Choice:

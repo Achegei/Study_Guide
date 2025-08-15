@@ -64,6 +64,12 @@
                         <img src="{{ asset($navSection->flag) }}" alt="{{ $navSection->title }}" class="size-6 rounded-full mr-3 border border-gray-600">
                         <span class="font-medium">{{ $navSection->title }}</span>
                     </a>
+                    {{-- The new button for the guide page --}}
+            <a href="{{ route('courses.reading-resources', $navSection->id) }}"
+               class="block px-4 py-2 bg-indigo-500 text-white text-center font-medium rounded-lg
+                      hover:bg-indigo-600 transition-colors duration-200">
+                {{ __('Reading Resources') }}
+            </a>
                 @endforeach
             </nav>
 
@@ -81,15 +87,24 @@
         <main class="flex-1 p-6 lg:ml-0">
             <div class="max-w-2xl mx-auto">
                 <div class="flex justify-between items-center mb-8">
-                    <h1 class="text-3xl font-extrabold text-gray-900 text-center">
-                        {{ __('Questions for') }} <span class="text-indigo-600">{{ $section->title }}</span>
-                    </h1>
+                     <div class="mb-8 text-center">
+                    <a href="{{ route('courses.reading-resources', $section->id) }}"
+                    class="inline-block px-8 py-4 bg-purple-600 text-white font-bold rounded-xl shadow-lg
+                            hover:bg-purple-700 transition-all duration-300 transform hover:scale-105">
+                        {{ __('Reading Resources for') }} {{ $section->title }}
+                    </a>
+                </div>
                     @if ($progress)
                         <button @click="showResetModal = true" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-xl shadow-md hover:bg-red-600 transition-colors">
                             {{ __('Reset Progress') }}
                         </button>
+                        
                     @endif
                 </div>
+                {{-- NEW: Button for the Discover Guide in the main area --}}
+                <h1 class="text-3xl font-extrabold text-gray-900 text-center">
+                        {{ __('Questions for') }} <span class="text-indigo-600">{{ $section->title }}</span>
+                    </h1>
 
                 @if (session('error'))
                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl relative mb-4" role="alert">
