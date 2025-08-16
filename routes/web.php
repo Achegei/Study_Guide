@@ -82,9 +82,29 @@ Route::post('/testimonials', [TestimonialController::class, 'store'])->name('tes
 
 // Pages (no change)
 Route::view('/purchase', 'pages.purchase')->name('purchase');
+Route::view('/buy-now', 'pages.buy-now')->name('buy-now');
 Route::view('/free-test', 'frontend.canadian-citizenship.free-test')->name('free-test');
 Route::view('/canadian-citizenship-prep', 'frontend.canadian-citizenship.canadian-citizenship-prep')->name('canadian-citizenship-prep');
 Route::view('/about', 'pages.about')->name('about');
+Route::get('/terms-of-use', function () {
+    return view('terms');
+});
+Route::get('/policy', function () {
+    return view('policy');
+});
+Route::get('/disclaimer', function () {
+    return view('disclaimer');
+});
+Route::get('/cookie-policy', function () {
+    return view('cookie');
+});
+Route::get('/copyright', function () {
+    return view('copyright');
+});
+Route::get('/contactus', function () {
+    return view('contactus');
+});
+
 
 // Post Routes (no change)
 Route::get('/citizenship-tips', function () {

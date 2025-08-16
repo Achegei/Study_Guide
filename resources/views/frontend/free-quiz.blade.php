@@ -23,9 +23,9 @@
                     Unlock over 400+ additional practice questions to fully prepare for your citizenship test.
                     Get lifetime access for a one-time payment.
                 </p>
-                <a href="{{route('register.payment')}}" class="inline-block bg-white text-blue-700 px-8 py-4 rounded-full font-bold shadow-md
+                <a href="{{route('buy-now')}}" class="inline-block bg-white text-blue-700 px-8 py-4 rounded-full font-bold shadow-md
                                   hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
-                    Unlock All 400+ Questions
+                    Access Full Course
                 </a>
             </div>
 

@@ -18,6 +18,7 @@
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Optional custom styles for better visual separation */
         .dropdown-menu {
@@ -70,9 +71,10 @@
             <!-- Navigation Links and Login Button (Desktop) -->
             <ul class="hidden md:flex items-center gap-6 font-semibold">
                 <li><a href="/" class="hover:text-bright-yellow">Home</a></li>
-                <li><a href="<?php echo e(route('purchase')); ?>" class="hover:text-bright-yellow">Canadian Citizenship Test</a></li>
-                <li><a href="<?php echo e(route('free-test')); ?>" class="hover:text-bright-yellow">Prep Guides & Resources</a></li>
-                <li><a href="<?php echo e(route('blogs.index')); ?>" class="hover:text-bright-yellow">News & Updates</a></li>
+                <li><a href="<?php echo e(route('purchase')); ?>" class="hover:text-bright-yellow">Citizenship Test Prep</a></li>
+                <li><a href="<?php echo e(route('free-test')); ?>" class="hover:text-bright-yellow">Driving Test Prep</a></li>
+                <li><a href="<?php echo e(route('buy-now')); ?>" class="hover:text-bright-yellow">Buy Now</a></li>
+                <!--<li><a href="<?php echo e(route('blogs.index')); ?>" class="hover:text-bright-yellow">Buy Now</a></li> -->
                 <li><a href="<?php echo e(route('testimonials')); ?>" class="hover:text-bright-yellow">Our Community</a></li>
                 
                 <!-- Language Switcher (Desktop) -->
@@ -179,11 +181,12 @@
     <footer class="bg-gray-800 text-white text-sm py-10">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-6">
             <div class="flex flex-wrap gap-4">
-                <a href="#" class="hover:underline">Privacy</a>
-                <a href="#" class="hover:underline">Cookie Policy</a>
-                <a href="#" class="hover:underline">Terms</a>
-                <a href="#" class="hover:underline">Copyright</a>
-                <a href="#" class="hover:underline">Help</a>
+                <a href="<?php echo e(url('policy')); ?>" class="hover:underline">Privacy</a>
+                <a href="<?php echo e(url('cookie-policy')); ?>" class="hover:underline">Cookie Policy</a>
+                <a href="<?php echo e(url('terms-of-use')); ?>" class="hover:underline">Terms</a>
+                <a href="<?php echo e(url('disclaimer')); ?>" class="hover:underline">Legal Disclaimer</a>
+                <a href="<?php echo e(url('copyright')); ?>" class="hover:underline">Copyright</a>
+                <a href="<?php echo e(url('contactus')); ?>" class="hover:text-gray-300 transition">Contact</a>
                 <a href="<?php echo e(route('about')); ?>" class="hover:underline">About Us</a>
             </div>
         </div>

@@ -18,7 +18,7 @@ class TestPrep extends Component
         // Greet the user with a welcome message on mount
         $this->messages[] = [
             'role' => 'assistant',
-            'text' => 'Hello! I am TestPrep, your study assistant. How can I help you today?'
+            'text' => 'Your 24/7 Prep Assistant— Whether you have a quick question or need extra help, we’ll provide the guidance you need. Your success is our mission, and we’ll be with you every step of the way until you pass your test.'
         ];
     }
 

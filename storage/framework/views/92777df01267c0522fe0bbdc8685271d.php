@@ -1,17 +1,24 @@
 <div>
-    <!-- Fixed Chat Icon -->
-    <div wire:click="toggleChat" class="fixed bottom-16 right-5 md:bottom-5 md:right-5 z-50 cursor-pointer">
+    <div class="fixed bottom-16 right-5 md:bottom-5 md:right-5 z-50 cursor-pointer group">
+    <div wire:click="toggleChat" class="relative">
         <svg xmlns="http://www.w3.org/2000/svg" fill="#FCD34D" viewBox="0 0 24 24" stroke-width="1.5" stroke="#0A192F" class="w-12 h-12 hover:scale-110 transition duration-300 ease-in-out">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.279 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.529 20.25a5.978 5.978 0 01-1.272-.259A1.5 1.5 0 013 18.919v-2.031a5.975 5.975 0 01-1.042-3.644 8.252 8.252 0 00.222.093A8.528 8.528 0 0012 3.75c4.721 0 9 3.694 9 8.25z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 16.5a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zM17.25 16.5a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9h.008v.008H12z" />
         </svg>
+
+        <span class="absolute -top-full left-1/2 -translate-x-1/2 mb-2 scale-0 transition-transform origin-bottom group-hover:scale-100 bg-gray-800 text-white text-sm rounded py-1 px-2 pointer-events-none">
+            Your 24/7 Prep Assistant
+        </span>
     </div>
+</div>
 
     <!-- Chat Window -->
     <div x-show="$wire.isOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-90" class="fixed bottom-28 right-5 md:bottom-20 md:right-5 z-50 w-80 h-96 bg-white rounded-lg shadow-lg flex flex-col overflow-hidden">
         
         <!-- Header -->
         <div class="bg-navy-blue text-bright-yellow p-4 flex items-center justify-between shadow-md">
-            <h5 class="text-lg font-bold">Canadian Citizenship Prep Assistant</h5>
+            <h5 class="text-lg font-bold">24/7 Prep Assistant</h5>
             <button wire:click="toggleChat">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-bright-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

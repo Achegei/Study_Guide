@@ -25,7 +25,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => ''.e(route('courses.index')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('courses.index'))]); ?>
-                        <?php echo e(__('Citizenship Test Preparation Quizzes')); ?> 
+                        <?php echo e(__('Citizenship Test Prep')); ?> 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalc295f12dca9d42f28a259237a5724830)): ?>
@@ -49,7 +49,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => ''.e(route('driving.index')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('driving.*'))]); ?>
-                        <?php echo e(__('Driving Test')); ?>
+                        <?php echo e(__('Driving Test Prep')); ?>
 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -448,7 +448,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => ''.e(route('courses.index')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('courses.index'))]); ?>
-                <?php echo e(__('Citizenship Test')); ?>
+                <?php echo e(__('Citizenship Test Prep')); ?>
 
              <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -471,7 +471,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => ''.e(route('driving.index')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false)]); ?>
-                <?php echo e(__('Driving Test')); ?>
+                <?php echo e(__('Driving Test Prep')); ?>
 
              <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

@@ -16,13 +16,13 @@
                     {{-- Citizenship Test Link --}}
                     {{-- This link is active when the 'courses.index' route is the current route --}}
                     <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
-                        {{ __('Citizenship Test Preparation Quizzes') }} 
+                        {{ __('Citizenship Test Prep') }} 
                     </x-nav-link>
 
                     {{-- Driving Test Link --}}
                     {{-- This link is a placeholder for now and has no active state check --}}
                     <x-nav-link href="{{route('driving.index')}}" :active="request()->routeIs('driving.*')">
-                        {{ __('Driving Test') }}
+                        {{ __('Driving Test Prep') }}
                     </x-nav-link>
 
                    <!-- {{-- Trades Exams Link --}}
@@ -189,11 +189,11 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
-                {{ __('Citizenship Test') }}
+                {{ __('Citizenship Test Prep') }}
             </x-responsive-nav-link>
            {{-- Added responsive links for Driving and Trades Exams as placeholders --}}
             <x-responsive-nav-link href="{{route('driving.index')}}" :active="false">
-                {{ __('Driving Test') }}
+                {{ __('Driving Test Prep') }}
             </x-responsive-nav-link>
                <!-- <x-responsive-nav-link href="#" :active="false">
                 {{ __('Trades Exams') }}
