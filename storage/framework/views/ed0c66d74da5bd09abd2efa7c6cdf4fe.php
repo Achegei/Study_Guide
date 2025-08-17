@@ -5,7 +5,7 @@
             
             <a href="/">
                 <img src="<?php echo e(asset('images/logo.png')); ?>" alt="Logo" class="h-12 mx-auto">
-                <h2 class="text-2xl font-bold text-red-600 text-center mt-2">Canadian Citizenship Prep</h2>
+                <h2 class="text-2xl font-bold text-red-600 text-center mt-2">IQRA Canada Test Prep</h2>
             </a>
         </div>
 

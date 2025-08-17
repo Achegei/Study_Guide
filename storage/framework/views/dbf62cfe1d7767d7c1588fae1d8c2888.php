@@ -11,6 +11,11 @@
         <p class="mb-8 text-gray-600 text-center max-w-2xl mx-auto">
             Thank you for your interest in our course! Please complete this form after sending your Interac e-Transfer payment. Once we confirm your payment, your course access will be delivered via email or WhatsApp.
         </p>
+        <div class="flex justify-center mb-8">
+        <a href="<?php echo e(url('buy-now')); ?>" class="bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition duration-300 ease-in-out">
+            Click here for Payment Instructions
+        </a>
+    </div>
 
         <!-- Status Messages -->
         <?php if(session('success')): ?>

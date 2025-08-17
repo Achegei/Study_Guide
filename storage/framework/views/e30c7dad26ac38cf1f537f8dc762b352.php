@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo e($title ?? 'Canadian Citizenship Prep'); ?></title>
+    <title><?php echo e($title ?? 'IQRA Canada Test Prep'); ?></title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -65,7 +65,7 @@
             <!-- Logo section with added right margin for spacing -->
             <div class="flex items-center gap-3 mr-6">
                 <img src="<?php echo e(asset('images/logo.png')); ?>" alt="Logo" class="h-10">
-                <span class="text-xl font-bold text-bright-yellow hidden md:block">Canadian Citizenship Prep</span>
+                <span class="text-xl font-bold text-bright-yellow hidden md:block">IQRA Canada Test Prep</span>
             </div>
 
             <!-- Navigation Links and Login Button (Desktop) -->
@@ -130,9 +130,9 @@
         <div x-show="open" x-transition class="md:hidden px-4 pb-4">
             <ul class="space-y-2">
                 <li><a href="/" class="block py-1">Home</a></li>
-                <li><a href="<?php echo e(route('purchase')); ?>" class="block py-1">Exams & Certifications</a></li>
-                <li><a href="<?php echo e(route('free-test')); ?>" class="block py-1">Prep Guides & Resources</a></li>
-                <li><a href="<?php echo e(route('blogs.index')); ?>" class="block py-1">News & Updates</a></li>
+                <li><a href="<?php echo e(route('purchase')); ?>" class="block py-1">Citizenship Test Prep</a></li>
+                <li><a href="<?php echo e(route('free-test')); ?>" class="block py-1">Driving Test Prep</a></li>
+                <li><a href="<?php echo e(route('buy-now')); ?>" class="block py-1">Buy Now</a></li>
                 <li><a href="<?php echo e(route('testimonials')); ?>" class="block py-1">Our Community</a></li>
 
                 <!-- Language Switcher (Mobile) -->
