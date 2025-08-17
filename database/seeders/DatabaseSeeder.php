@@ -24,6 +24,16 @@ class DatabaseSeeder extends Seeder
             // --- Driving Course Seeders ---
             DrivingSectionsTableSeeder::class,
             DrivingQuestionsTableSeeder::class,
+            OntarioDrivingQuestionsTableSeeder::class,
+            NovaScotiaDrivingQuestionsTableSeeder::class,
+            BritishColumbiaDrivingQuestionsTableSeeder::class,
+            NewfoundlandandLabradorDrivingQuestionsTableSeeder::class,
+            NewbrunswickDrivingQuestionsTableSeeder::class,
+            PrinceEdwardsIslandDrivingQuestionsTableSeeder::class,
+            QuebecDrivingQuestionsTableSeeder::class,
+            SaskatchewanDrivingQuestionsTableSeeder::class,
+            ManitobaDrivingQuestionsTableSeeder::class,
+            AlbertaDrivingQuestionsTableSeeder::class,
             // -----------------------------------------
 
             AlbertaQuestionsSeeder::class, // <-- Ensure this is present and uncommented!
