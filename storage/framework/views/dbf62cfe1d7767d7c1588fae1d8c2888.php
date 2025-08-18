@@ -12,10 +12,10 @@
             Thank you for your interest in our course! Please complete this form after sending your Interac e-Transfer payment. Once we confirm your payment, your course access will be delivered via email or WhatsApp.
         </p>
         <div class="flex justify-center mb-8">
-        <a href="<?php echo e(url('buy-now')); ?>" class="bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition duration-300 ease-in-out">
-            Click here for Payment Instructions
-        </a>
-    </div>
+            <a href="<?php echo e(url('buy-now')); ?>" class="bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition duration-300 ease-in-out">
+                Click here for Payment Instructions
+            </a>
+        </div>
 
         <!-- Status Messages -->
         <?php if(session('success')): ?>
@@ -64,6 +64,33 @@
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
                 </div>
 
+                <!-- ✅ NEW: Province of Choice -->
+                <div>
+                    <label for="province_of_choice" class="block text-sm font-medium text-gray-700 mb-1">Province / Territory of Choice</label>
+                    <select name="province_of_choice" id="province_of_choice" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors bg-white">
+                        <option value="">Select your Province/Territory</option>
+                        <?php $__currentLoopData = $provinces; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $province): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($province); ?>" <?php echo e(old('province_of_choice') == $province ? 'selected' : ''); ?>>
+                                <?php echo e($province); ?>
+
+                            </option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                    <?php $__errorArgs = ['province_of_choice'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <span class="text-red-500 text-sm mt-1"><?php echo e($message); ?></span>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
                 <!-- Course Selected (Displayed to user for their choice of course name) -->
                 <div>
                     <label for="course_selected" class="block text-sm font-medium text-gray-700 mb-1">Course Selected</label>
@@ -78,10 +105,8 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
-            </div>
 
-            <div class="grid sm:grid-cols-2 gap-6">
-                <!-- NEW: Registration Type (Maps to user_type for access control) -->
+                <!-- Registration Type (Maps to user_type for access control) -->
                 <div>
                     <label for="registration_type" class="block text-sm font-medium text-gray-700 mb-1">Access Type</label>
                     <select name="registration_type" id="registration_type" required
@@ -102,20 +127,22 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                 </div>
+            </div>
 
+            <div class="grid sm:grid-cols-2 gap-6">
                 <!-- Amount Sent (CAD) -->
                 <div>
                     <label for="amount_sent" class="block text-sm font-medium text-gray-700 mb-1">Amount Sent (CAD)</label>
                     <input type="number" name="amount_sent" id="amount_sent" step="0.01" value="<?php echo e(old('amount_sent')); ?>" required
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
                 </div>
-            </div>
 
-            <!-- Interac e-Transfer Reference Number -->
-            <div>
-                <label for="interac_reference" class="block text-sm font-medium text-gray-700 mb-1">Interac e-Transfer Reference Number</label>
-                <input type="text" name="interac_reference" id="interac_reference" value="<?php echo e(old('interac_reference')); ?>" required
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
+                <!-- Interac e-Transfer Reference Number -->
+                <div>
+                    <label for="interac_reference" class="block text-sm font-medium text-gray-700 mb-1">Interac e-Transfer Reference Number</label>
+                    <input type="text" name="interac_reference" id="interac_reference" value="<?php echo e(old('interac_reference')); ?>" required
+                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
+                </div>
             </div>
 
             <!-- Upload Screenshot of Payment (Optional) -->

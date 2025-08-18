@@ -26,4 +26,10 @@ class CourseSection extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    // ✅ Define many-to-many relationship to users who have access to this course section
+    public function usersWithAccess()
+    {
+        return $this->belongsToMany(User::class, 'course_section_user', 'course_section_id', 'user_id')->withTimestamps();
+    }
 }

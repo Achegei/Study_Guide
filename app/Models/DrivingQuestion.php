@@ -9,27 +9,32 @@ class DrivingQuestion extends Model
 {
     use HasFactory;
 
-    // Specify the table name if it's not the default plural of the model name
-    // (e.g., if model is DrivingQuestion, default table is driving_questions)
-    // protected $table = 'driving_questions'; // Only needed if different from 'driving_questions'
-
+    // Assuming fillable properties are already defined, if not, add them.
     protected $fillable = [
-        'driving_section_id',
-        'question',
-        'choices',
-        'correct_answer',
-        'audio_url',
+        'title',
+        'type', // Or whatever column holds the 'Driving Course' type if applicable
+        'flag', // Or icon if you renamed it
+        // Add other fillable attributes as per your table structure
     ];
 
-    protected $casts = [
-        'choices' => 'array', // Cast the JSON column to an array
+     protected $casts = [
+        'choices' => 'array', // ✅ This is the crucial line for automatic JSON to array conversion
     ];
+
+
+    // ✅ Define many-to-many relationship to users
+    public function usersWithAccess()
+    {
+        return $this->belongsToMany(User::class, 'driving_section_user', 'driving_section_id', 'user_id')->withTimestamps();
+    }
 
     /**
-     * Get the driving section that owns the question.
+     * Get the questions for the driving section.
+     * This relationship is already defined and correctly links
+     * a DrivingSection to its many DrivingQuestion instances.
      */
-    public function drivingSection()
+    public function questions()
     {
-        return $this->belongsTo(DrivingSection::class);
+        return $this->hasMany(DrivingQuestion::class);
     }
 }

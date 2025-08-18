@@ -15,10 +15,10 @@
             Thank you for your interest in our course! Please complete this form after sending your Interac e-Transfer payment. Once we confirm your payment, your course access will be delivered via email or WhatsApp.
         </p>
         <div class="flex justify-center mb-8">
-        <a href="{{url('buy-now')}}" class="bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition duration-300 ease-in-out">
-            Click here for Payment Instructions
-        </a>
-    </div>
+            <a href="{{url('buy-now')}}" class="bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition duration-300 ease-in-out">
+                Click here for Payment Instructions
+            </a>
+        </div>
 
         <!-- Status Messages -->
         @if(session('success'))
@@ -66,6 +66,25 @@
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
                 </div>
 
+                <!-- ✅ NEW: Province of Choice -->
+                <div>
+                    <label for="province_of_choice" class="block text-sm font-medium text-gray-700 mb-1">Province / Territory of Choice</label>
+                    <select name="province_of_choice" id="province_of_choice" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors bg-white">
+                        <option value="">Select your Province/Territory</option>
+                        @foreach($provinces as $province)
+                            <option value="{{ $province }}" {{ old('province_of_choice') == $province ? 'selected' : '' }}>
+                                {{ $province }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('province_of_choice')
+                        <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
                 <!-- Course Selected (Displayed to user for their choice of course name) -->
                 <div>
                     <label for="course_selected" class="block text-sm font-medium text-gray-700 mb-1">Course Selected</label>
@@ -79,10 +98,8 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
 
-            <div class="grid sm:grid-cols-2 gap-6">
-                <!-- NEW: Registration Type (Maps to user_type for access control) -->
+                <!-- Registration Type (Maps to user_type for access control) -->
                 <div>
                     <label for="registration_type" class="block text-sm font-medium text-gray-700 mb-1">Access Type</label>
                     <select name="registration_type" id="registration_type" required
@@ -96,20 +113,22 @@
                         <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                     @enderror
                 </div>
+            </div>
 
+            <div class="grid sm:grid-cols-2 gap-6">
                 <!-- Amount Sent (CAD) -->
                 <div>
                     <label for="amount_sent" class="block text-sm font-medium text-gray-700 mb-1">Amount Sent (CAD)</label>
                     <input type="number" name="amount_sent" id="amount_sent" step="0.01" value="{{ old('amount_sent') }}" required
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
                 </div>
-            </div>
 
-            <!-- Interac e-Transfer Reference Number -->
-            <div>
-                <label for="interac_reference" class="block text-sm font-medium text-gray-700 mb-1">Interac e-Transfer Reference Number</label>
-                <input type="text" name="interac_reference" id="interac_reference" value="{{ old('interac_reference') }}" required
-                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
+                <!-- Interac e-Transfer Reference Number -->
+                <div>
+                    <label for="interac_reference" class="block text-sm font-medium text-gray-700 mb-1">Interac e-Transfer Reference Number</label>
+                    <input type="text" name="interac_reference" id="interac_reference" value="{{ old('interac_reference') }}" required
+                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
+                </div>
             </div>
 
             <!-- Upload Screenshot of Payment (Optional) -->

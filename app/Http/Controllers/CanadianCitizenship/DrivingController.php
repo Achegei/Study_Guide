@@ -9,14 +9,20 @@ use App\Models\UserDrivingProgress; // Make sure this model exists
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DrivingController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the driving sections (regions).
      */
     public function index()
     {
+        // ✅ Apply policy check for viewing any DrivingSection.
+        // This ensures only authorized users (e.g., logged-in) can see the list.
+        $this->authorize('viewAny', DrivingSection::class);
+
         $sections = DrivingSection::all();
         $user = Auth::user();
         $userDrivingProgress = $user ? UserDrivingProgress::where('user_id', $user->id)->get()->keyBy('driving_section_id') : collect();
@@ -39,6 +45,10 @@ class DrivingController extends Controller
         if (!$user) {
             return redirect()->route('login')->with('error', 'Please log in to view quizzes and track progress.');
         }
+
+        // ✅ Apply policy check for viewing this specific DrivingSection.
+        // This ensures the authenticated user has access to THIS particular driving section.
+        $this->authorize('view', $section);
 
         $progress = UserDrivingProgress::firstOrNew([
             'user_id' => $user->id,

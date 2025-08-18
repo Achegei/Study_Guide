@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-//use Laravel\Jetstream\HasTeams;
+// use Illuminate\Contracts\Auth\MustVerifyEmail; // This line was commented out in your original, keep it that way if not using email verification through MustVerifyEmail interface
+//use Laravel\Jetstream\HasTeams; // This line was commented out in your original, keep it that way if not using Jetstream Teams
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -34,6 +34,7 @@ class User extends Authenticatable
         'must_change_password',
         'user_type', // Added for user type access control
         'access_expires_at', // Added for account expiration
+        'province_of_choice', // ✅ Added for storing the user's selected province
     ];
 
     /**
@@ -95,5 +96,16 @@ class User extends Authenticatable
     {
         return $this->role_id === 1;
     }
-}
 
+    // ✅ Define many-to-many relationship for citizenship course sections access
+    public function citizenshipSections()
+    {
+        return $this->belongsToMany(CourseSection::class, 'course_section_user', 'user_id', 'course_section_id')->withTimestamps();
+    }
+
+    // ✅ Define many-to-many relationship for driving course sections access
+    public function drivingSections()
+    {
+        return $this->belongsToMany(DrivingSection::class, 'driving_section_user', 'user_id', 'driving_section_id')->withTimestamps();
+    }
+}

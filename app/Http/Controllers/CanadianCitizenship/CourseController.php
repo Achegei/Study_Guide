@@ -9,14 +9,22 @@ use App\Models\UserProgress; // Corrected: Using UserProgress for citizenship pr
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests; // ✅ Add this line
 
 class CourseController extends Controller
 {
+     use AuthorizesRequests; // ✅ Add this line
     /**
      * Display a listing of the course sections (regions).
      */
     public function index()
     {
+        // ✅ Apply policy check for viewing any CourseSection.
+        // If a user is not authorized to view *any* CourseSection (e.g., not logged in),
+        // the policy's viewAny method will handle it, typically throwing a 403 Forbidden.
+        // The policy is set up to allow any logged-in user to see the list.
+        $this->authorize('viewAny', CourseSection::class);
+
         $sections = CourseSection::all();
         $user = Auth::user();
         // Fetch user course progress specific to course sections using the correct model
@@ -40,6 +48,11 @@ class CourseController extends Controller
         if (!$user) {
             return redirect()->route('login')->with('error', 'Please log in to view quizzes and track progress.');
         }
+
+        // ✅ Apply policy check for viewing this specific CourseSection.
+        // If the authenticated user does not have access to this $section,
+        // the policy's 'view' method will handle it (e.g., throwing a 403 Forbidden).
+        $this->authorize('view', $section);
 
         // Fetch user's progress for this specific section using UserProgress
         $progress = UserProgress::firstOrNew([

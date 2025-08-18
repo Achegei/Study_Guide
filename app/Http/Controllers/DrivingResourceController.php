@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\DrivingSection; 
+use App\Models\DrivingSection; // Ensure this is imported
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth; // ✅ Added Auth facade
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DrivingResourceController extends Controller
 {
+     use AuthorizesRequests;
 /**
      * Display the driving resources for a specific section (region).
      *
@@ -17,6 +20,11 @@ class DrivingResourceController extends Controller
      */
     public function show(DrivingSection $section) // Updated: Parameter type is now DrivingSection
     {
+        // ✅ Apply policy check for viewing this specific DrivingSection.
+        // This ensures the authenticated user has access to THIS particular driving section.
+        // If not authorized, it will abort with a 403 Forbidden.
+        $this->authorize('view', $section);
+
         // Get all driving sections for the sidebar navigation
         $allSections = DrivingSection::orderBy('title')->get(); // Updated: Use DrivingSection here
 
@@ -26,8 +34,10 @@ class DrivingResourceController extends Controller
 
         // Check if the specific driving resource view exists
         if (!View::exists($viewName)) {
-            // If the view doesn't exist, redirect or show an error
-            return redirect()->route('driving_sections.show', $section->id) // Adjust route name if different
+            // If the view doesn't exist, redirect to the main driving courses list
+            // or a more generic error page, as the specific resource content is missing.
+            // Changed from 'driving_sections.show' to 'driving.index' (main driving course list)
+            return redirect()->route('driving-courses.index') // Assuming 'driving-courses.index' is the route for your main list of driving sections
                              ->with('error', 'Driving resources for ' . $section->title . ' are not yet available.');
         }
 

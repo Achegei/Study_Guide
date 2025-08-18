@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\CourseSection; // Import CourseSection model
+use App\Models\DrivingSection; // Import DrivingSection model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Google\Client;
 use Google\Service\Sheets;
 use Carbon\Carbon; // Import Carbon for date manipulation
+use Illuminate\Support\Str; // Import Str for slugging
 
 class PaymentRegisterController extends Controller
 {
@@ -24,10 +26,28 @@ class PaymentRegisterController extends Controller
     {
         $courseOptions = [
             'Canadian Citizenship Test Preparation' => 'Canadian Citizenship Test Preparation',
-            'Driving Test Preparation' => 'Driving Test Preparation', // Add driving option for selection
-            'Both Citizenship and Driving Tests' => 'Both Citizenship and Driving Tests', // Option for both
+            'Driving Test Preparation' => 'Driving Test Preparation',
+            'Both Citizenship and Driving Tests' => 'Both Citizenship and Driving Tests',
         ];
-        return view('auth.register-payment', compact('courseOptions'));
+
+        // Array of Canadian provinces and territories for the dropdown
+        $provinces = [
+            'Alberta',
+            'British Columbia',
+            'Manitoba',
+            'New Brunswick',
+            'Newfoundland and Labrador',
+            'Nova Scotia',
+            'Ontario',
+            'Prince Edward Island',
+            'Quebec',
+            'Saskatchewan',
+            'Northwest Territories',
+            'Nunavut',
+            'Yukon',
+        ];
+
+        return view('auth.register-payment', compact('courseOptions', 'provinces'));
     }
 
     /**
@@ -49,8 +69,10 @@ class PaymentRegisterController extends Controller
             'payment_screenshot' => ['nullable', 'image', 'max:2048'],
             'payment_confirmation' => ['accepted'],
             'registration_type' => ['required', 'string', 'in:citizenship,driving,both'],
+            'province_of_choice' => ['required', 'string'],
         ], [
             'payment_confirmation.accepted' => 'You must confirm that you have sent the payment.',
+            'province_of_choice.required' => 'Please select your Province/Territory of Choice.',
         ]);
 
         $commonPassword = 'password';
@@ -69,9 +91,71 @@ class PaymentRegisterController extends Controller
             'role_id' => $defaultRoleId,
             'must_change_password' => true,
             'user_type' => $request->registration_type,
-            'email_verified_at' => now(),
-            'access_expires_at' => Carbon::now()->addYear(), // Set expiration date to one year from now
+            'access_expires_at' => Carbon::now()->addYear(),
+            'province_of_choice' => $request->province_of_choice, // Save province to user
         ]);
+
+        // ✅ START ACCESS ASSIGNMENT LOGIC BASED ON REGISTRATION TYPE
+        $chosenProvince = $request->province_of_choice;
+        $registrationType = $request->registration_type;
+
+        // Fetch common citizenship sections needed for multiple scenarios
+        // IMPORTANT: Verify the exact 'title' value for your National/Country section in the database.
+        // E.g., if its title is 'National Citizenship' in your DB, use that.
+        $nationalCitizenshipSection = CourseSection::where('title', 'Canada')->first(); // Adjust 'National' to your actual title if different
+        $territoriesCitizenshipSections = CourseSection::whereIn('title', ['Northwest Territories', 'Nunavut', 'Yukon'])->get();
+        $chosenCitizenshipSection = CourseSection::where('title', $chosenProvince)->first();
+
+        // SCENARIO 1: Citizenship Test Access Only OR Both Bundled
+        if ($registrationType === 'citizenship' || $registrationType === 'both') {
+            $citizenshipSectionsToAttach = collect();
+
+            // Always add the user's chosen province's citizenship section
+            if ($chosenCitizenshipSection) {
+                $citizenshipSectionsToAttach->push($chosenCitizenshipSection->id);
+            } else {
+                Log::warning("Citizenship section not found for chosen province: {$chosenProvince} for user {$user->email}.");
+            }
+
+            // Always add the National/Country citizenship section
+            if ($nationalCitizenshipSection) {
+                $citizenshipSectionsToAttach->push($nationalCitizenshipSection->id);
+            } else {
+                Log::warning("National/Country citizenship section not found for user {$user->email}. Please check its title in the database.");
+            }
+
+            // Always add all 3 territories citizenship sections
+            if ($territoriesCitizenshipSections->isNotEmpty()) {
+                foreach ($territoriesCitizenshipSections as $territorySection) {
+                    $citizenshipSectionsToAttach->push($territorySection->id);
+                }
+            } else {
+                Log::warning("Territories citizenship sections not found for user {$user->email}.");
+            }
+
+            // Attach all collected unique citizenship section IDs to the user
+            if ($citizenshipSectionsToAttach->isNotEmpty()) {
+                $user->citizenshipSections()->attach($citizenshipSectionsToAttach->unique()->all());
+                Log::info("User {$user->email} granted citizenship access to sections: " . $citizenshipSectionsToAttach->unique()->implode(', '));
+            } else {
+                Log::warning("No citizenship sections found to attach for user {$user->email}.");
+            }
+        }
+
+        // SCENARIO 2: Driving Test Access Only OR Both Bundled
+        if ($registrationType === 'driving' || $registrationType === 'both') {
+            // User gets access only to their chosen province's driving course
+            $chosenDrivingSection = DrivingSection::where('title', $chosenProvince)->first();
+
+            if ($chosenDrivingSection) {
+                $user->drivingSections()->attach($chosenDrivingSection->id);
+                Log::info("User {$user->email} granted driving access to section: " . $chosenDrivingSection->id);
+            } else {
+                Log::warning("Driving section not found for chosen province: {$chosenProvince} for user {$user->email}.");
+            }
+        }
+        // ✅ END ACCESS ASSIGNMENT LOGIC
+
 
         // ✅ GOOGLE SHEETS API INTEGRATION START
         try {
@@ -97,8 +181,8 @@ class PaymentRegisterController extends Controller
                     $screenshotPath ? asset('storage/' . $screenshotPath) : 'N/A',
                     $request->payment_confirmation ? 'Confirmed' : 'Not Confirmed',
                     $request->registration_type,
-                    // Fixed: Use null-safe operator or ternary to handle potential null access_expires_at
-                    $user->access_expires_at ? $user->access_expires_at->toDateTimeString() : 'N/A', // <-- Changed this line
+                    $user->access_expires_at ? $user->access_expires_at->toDateTimeString() : 'N/A',
+                    $user->province_of_choice, // Added province of choice to Google Sheet
                 ]
             ];
 
@@ -118,7 +202,7 @@ class PaymentRegisterController extends Controller
         } catch (\Google\Exception $e) {
             Log::error('Google Sheets API error for user: ' . $user->email . ' - ' . $e->getMessage());
         } catch (\Exception $e) {
-            Log::error('General error during Google Sheets API call for user: ' . $user->email . ' - ' . $e->getMessage());
+            Log::error('General error during Google Sheets API call for user: ' . $e->getMessage());
         }
         // ✅ GOOGLE SHEETS API INTEGRATION END
 
