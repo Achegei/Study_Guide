@@ -21,6 +21,8 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\PasswordChangeController;
 use App\Http\Controllers\FreeQuizController;
+use App\Http\Controllers\FreeCitizenshipQuizController;
+use App\Http\Controllers\FreeDriverQuizController;
 
 // Other necessary imports
 use App\Models\Post;
@@ -69,10 +71,12 @@ Route::prefix('canadian-citizenship')->group(function () {
 });
 
 
-//Free Quiz Routes (No change, generally public)
-Route::get('/free-quiz', [FreeQuizController::class, 'showQuiz'])->name('free-quiz.show');
-Route::post('/free-quiz', [FreeQuizController::class, 'submitQuiz'])->name('free-quiz.submit');
+Route::get('/free-quiz', [FreeCitizenshipQuizController::class, 'showQuiz'])->name('free-quiz.show'); // ✅ Corrected: Use FreeCitizenshipQuizController
+Route::post('/free-quiz', [FreeCitizenshipQuizController::class, 'submitQuiz'])->name('free-quiz.submit'); // ✅ Corrected: Use FreeCitizenshipQuizController
 
+// Free Driver Quiz Routes
+Route::get('/free-driver-quiz', [FreeDriverQuizController::class, 'showQuiz'])->name('free-driver-quiz.show');
+Route::post('/free-driver-quiz', [FreeDriverQuizController::class, 'submitQuiz'])->name('free-driver-quiz.submit');
 // ----------------------------------------------------
 // --- OTHER APPLICATION ROUTES ---
 // ----------------------------------------------------

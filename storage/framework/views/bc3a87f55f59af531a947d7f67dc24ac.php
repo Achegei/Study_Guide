@@ -28,7 +28,7 @@
                 <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                     Access Full Course
                 </a>
-                <a href="#" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                <a href="<?php echo e(route('free-driver-quiz.show')); ?>" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                     Start With Free Test
                 </a>
             </div>
@@ -109,7 +109,7 @@
             <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                 Access Full Course
             </a>
-            <a href="#" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+            <a href="<?php echo e(route('free-driver-quiz.show')); ?>" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                 Start With Free Test
             </a>
         </div>

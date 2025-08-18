@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
                                     // We are relying on specific province seeders for questions.
             UserSeeder::class,
             FreeQuizSeeder::class,
+            FreeDriverQuizSeeder::class,
 
             // --- Driving Course Seeders ---
             DrivingSectionsTableSeeder::class,

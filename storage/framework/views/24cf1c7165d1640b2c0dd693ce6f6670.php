@@ -87,7 +87,7 @@
                         <li>Simulated exam mode</li>
                     </ul>
                     <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Acces Full Driving Test Course</a>
-                    <a href="#" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Start With Free Test</a>
+                    <a href="<?php echo e(route('free-driver-quiz.show')); ?>" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Start With Free Test</a>
                 </div>
             </div>
         </div>

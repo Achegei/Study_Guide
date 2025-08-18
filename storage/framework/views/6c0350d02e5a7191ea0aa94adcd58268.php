@@ -24,7 +24,7 @@
                     
                     <div class="flex flex-col items-center p-6 border rounded-xl transition-transform transform hover:scale-105">
                         <h3 class="text-2xl font-bold text-gray-800">Citizenship Prep</h3>
-                        <p class="mt-2 text-4xl font-extrabold text-blue-600">$30 CAD</p>
+                        <p class="mt-2 text-4xl font-extrabold text-blue-600">$25 CAD</p>
                         <p class="mt-2 text-2xl font-extrabold text-blue-400">(One Year, One-Time Payment)</p>
                         <ul class="mt-4 text-sm text-gray-600 list-disc list-inside text-left">
                             <li>5000+ Questions and answers( Each province, Territories and National/Common has 400+ Questions and answers).</li>
@@ -39,7 +39,7 @@
                     
                     <div class="flex flex-col items-center p-6 border rounded-xl transition-transform transform hover:scale-105">
                         <h3 class="text-2xl font-bold text-gray-800">Driving Prep</h3>
-                        <p class="mt-2 text-4xl font-extrabold text-blue-600">$30 CAD</p>
+                        <p class="mt-2 text-4xl font-extrabold text-blue-600">$25 CAD</p>
                          <p class="mt-2 text-2xl font-extrabold text-blue-400">(One Year, One-Time Payment)</p>
                         <ul class="mt-4 text-sm text-gray-600 list-disc list-inside text-left">
                             <li>5000+ Questions and answers( Each province, Territories and National/Common has 400+ Questions and answers).</li>
@@ -55,8 +55,8 @@
                     <div class="flex flex-col items-center p-6 border-4 border-red-500 rounded-xl transition-transform transform hover:scale-105 relative">
                         <span class="absolute top-0 right-0 -mt-4 -mr-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Save 20%</span>
                         <h3 class="text-2xl font-bold text-gray-800">Citizenship Test prep and Driving Test prep</h3>
-                        <p class="mt-2 text-4xl font-extrabold text-red-600">$50 CAD</p>
-                        <p class="text-sm line-through text-gray-400 mt-1">$60 CAD value</p>
+                        <p class="mt-2 text-4xl font-extrabold text-red-600">$40 CAD</p>
+                        <p class="text-sm line-through text-gray-400 mt-1">$50 CAD value</p>
                         <ul class="mt-4 text-sm text-gray-600 list-disc list-inside text-left">
                             <li>All Citizenship Prep content</li>
                             <li>All Driving Prep content</li>
@@ -124,9 +124,9 @@
                             <li>
                                 <strong>Amount:</strong>
                                 <ul class="list-none pl-4 text-sm mt-1 space-y-1">
-                                    <li>- Canadian Citizenship Test – 30 CAD (One Year, One-Time Payment)</li>
-                                    <li>- Canadian Driving Test – 30 CAD (One Year, One-Time Payment)</li>
-                                    <li>- Access to Both (Citizenship + Driving Test) – 50 CAD (One Year, One-Time Payment)</li>
+                                    <li>- Canadian Citizenship Test – 25 CAD (One Year, One-Time Payment)</li>
+                                    <li>- Canadian Driving Test – 25 CAD (One Year, One-Time Payment)</li>
+                                    <li>- Access to Both (Citizenship + Driving Test) – 40 CAD (One Year, One-Time Payment)</li>
                                 </ul>
                             </li>
                             <li>

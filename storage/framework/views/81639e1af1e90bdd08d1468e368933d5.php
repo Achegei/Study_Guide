@@ -216,9 +216,18 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
                         </div>
-                        <p class="faq-answer">A: Yes, but if you got **access to the course - all sales will be final**.</p>
+                        <p class="faq-answer">A: Yes, but if you got access to the Material - all sales will be final.</p>
                     </div>
-
+                    
+                    <div class="faq-item">
+                        <div class="faq-question-header">
+                            <h3 class="faq-question">Q: Where is your main office?</h3>
+                            <svg class="faq-toggle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <p class="faq-answer">A: We have an office presence in every province to support learners. Our headquarters is in Edmonton, Alberta.</p>
+                    </div>
                 </div>
             </div>
         </div>
