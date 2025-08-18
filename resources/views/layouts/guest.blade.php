@@ -88,13 +88,15 @@
                             <option value="{{ route('language.switch', 'ar') }}" @if(App::getLocale() == 'ar') selected @endif>العربية</option>
                             <option value="{{ route('language.switch', 'so') }}" @if(App::getLocale() == 'so') selected @endif>Soomaali</option>
                             <option value="{{ route('language.switch', 'es') }}" @if(App::getLocale() == 'es') selected @endif>Español</option>
+                            <option value="{{ route('language.switch', 'zh') }}" @if(App::getLocale() == 'zh') selected @endif>简体中文 (Mandarin)</option> {{-- ✅ Added Mandarin --}}
+                            <option value="{{ route('language.switch', 'pa') }}" @if(App::getLocale() == 'pa') selected @endif>ਪੰਜਾਬੀ (Punjabi)</option>   {{-- ✅ Added Punjabi --}}
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
                 </li>
-                
+
                 <!-- AUTH LOGIC FOR DESKTOP NAV -->
                 @auth
                     <li><a href="{{ route('courses.index') }}" class="hover:text-bright-yellow">Dashboard</a></li>
@@ -148,6 +150,8 @@
                             <option value="{{ route('language.switch', 'ar') }}" @if(App::getLocale() == 'ar') selected @endif>العربية</option>
                             <option value="{{ route('language.switch', 'so') }}" @if(App::getLocale() == 'so') selected @endif>Soomaali</option>
                             <option value="{{ route('language.switch', 'es') }}" @if(App::getLocale() == 'es') selected @endif>Español</option>
+                            <option value="{{ route('language.switch', 'zh') }}" @if(App::getLocale() == 'zh') selected @endif>简体中文 (Mandarin)</option> {{-- ✅ Added Mandarin --}}
+                            <option value="{{ route('language.switch', 'pa') }}" @if(App::getLocale() == 'pa') selected @endif>ਪੰਜਾਬੀ (Punjabi)</option>   {{-- ✅ Added Punjabi --}}
                             <option value="{{ route('language.switch', 'more') }}">More Languages...</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">

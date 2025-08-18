@@ -14,13 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // Ensure that StartSession is part of your web middleware group.
-        // It's crucial for session functionality, including locale persistence.
         $middleware->web(append: [
-            StartSession::class, // <-- Crucial for session to work correctly
+            StartSession::class, // Crucial for session to work correctly
+            \App\Http\Middleware\SetLocale::class, // Ensure SetLocale runs within the web group, after StartSession
         ]);
 
-        $middleware->append(\App\Http\Middleware\SetLocale::class);
+        // Remove this line, as it was appending SetLocale globally and might conflict
+        // $middleware->append(\App\Http\Middleware\SetLocale::class);
 
         // Add your custom middleware aliases here
         $middleware->alias([
@@ -33,12 +33,11 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     // NEW: Define command scheduling here for Laravel 11
-    ->withSchedule(function (Schedule $schedule) { // <-- Introduced: Scheduling configuration
+    ->withSchedule(function (Schedule $schedule) {
         $schedule->command('users:delete-expired')->dailyAt('01:00'); // Runs daily at 1:00 AM
         // You can adjust the frequency as needed: ->hourly(), ->everyFiveMinutes(), etc.
-    }) // <-- End of scheduling configuration
+    })
     ->withProviders([
         Laravel\Fortify\FortifyServiceProvider::class,
     ])
     ->create();
-

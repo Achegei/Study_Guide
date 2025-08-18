@@ -13,7 +13,7 @@ class CourseSectionsTableSeeder extends Seeder
     public function run(): void
     {
         $regions = [
-            ['title' => 'Canada', 'type' => 'country', 'capital' => 'Ottawa', 'flag' => '/images/flags/canada.png', 'description' => 'Questions about Canada as a whole.', 'summary_audio_url' => '/audio/summary_canada.mp3'],
+            ['title' => 'National', 'type' => 'General', 'capital' => 'General', 'flag' => '/images/flags/logo.png', 'description' => 'Questions about Canada as a whole.', 'summary_audio_url' => '/audio/summary_canada.mp3'],
             ['title' => 'Alberta', 'type' => 'province', 'capital' => 'Edmonton', 'flag' => '/images/flags/alberta.png', 'description' => 'Questions specific to Alberta.', 'summary_audio_url' => '/audio/summary_alberta.mp3'],
             ['title' => 'Ontario', 'type' => 'province', 'capital' => 'Toronto', 'flag' => '/images/flags/ontario.png', 'description' => 'Questions specific to Ontario.', 'summary_audio_url' => '/audio/summary_ontario.mp3'],
             ['title' => 'Nunavut', 'type' => 'territory', 'capital' => 'Iqaluit', 'flag' => '/images/flags/nunavut.png', 'description' => 'Questions specific to Nunavut.', 'summary_audio_url' => '/audio/summary_nunavut.mp3'],

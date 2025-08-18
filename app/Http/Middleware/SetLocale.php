@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session; // Ensure Session facade is imported
+use Symfony\Component\HttpFoundation\Response;
 
 class SetLocale
 {
@@ -18,30 +17,27 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        Log::info('--- SetLocale Middleware Start ---');
-        Log::info('Request URL: ' . $request->fullUrl());
-        Log::info('Current App Locale (before check): ' . App::getLocale());
-        Log::info('Session has locale key: ' . (Session::has('locale') ? 'Yes' : 'No'));
-        Log::info('Session contents: ' . json_encode(Session::all())); // This will be crucial
+        // 1. Check for a locale in the URL path (if you plan to use /en/, /fr/ etc. routes)
+        // This is less common with a dropdown switcher but good to have if your routes support it.
+        // $locale = $request->segment(1); // e.g., for 'example.com/en/page'
 
-        if (Session::has('locale')) {
-            $locale = Session::get('locale');
+        // 2. Prioritize locale from session
+        $locale = Session::get('locale', config('app.locale')); // Get from session, default to app.locale
+
+        // 3. Validate and set application locale
+        // Ensure the locale is one of your supported ones (including the new zh and pa)
+        $supportedLocales = ['en', 'fr', 'ar', 'so', 'es', 'zh', 'pa'];
+
+        if (in_array($locale, $supportedLocales)) {
             App::setLocale($locale);
-            Log::info('Locale set from session: ' . $locale);
+            // Re-save to session in case it was from config or a new request
+            Session::put('locale', $locale);
         } else {
-            // If no locale found, force setting a test key and try to save the session
-            // This helps confirm if session writing is working at all.
-            $testValue = 'test_value_' . time();
-            Session::put('test_session_key', $testValue);
-            Log::info('No locale in session. Set "test_session_key" to: ' . $testValue);
-
-            // Re-dump session immediately after putting to see if it's visible within the same request
-            Log::info('Session contents after putting test key: ' . json_encode(Session::all()));
+            // If the locale is invalid or not set, default to your app's fallback locale
+            App::setLocale(config('app.fallback_locale', 'en'));
+            Session::put('locale', config('app.fallback_locale', 'en'));
         }
 
-        $response = $next($request);
-
-        Log::info('--- SetLocale Middleware End ---');
-        return $response;
+        return $next($request);
     }
 }

@@ -92,7 +92,8 @@ Route::get('/language-switch/{locale}', function ($locale) {
     if ($locale === 'more') {
         return redirect('/all-languages');
     }
-    if (in_array($locale, ['en', 'fr', 'ar', 'so', 'es'])) {
+    // Updated with 'zh' for Mandarin and 'pa' for Punjabi
+    if (in_array($locale, ['en', 'fr', 'ar', 'so', 'es', 'zh', 'pa'])) {
         Session::put('locale', $locale);
         App::setLocale($locale);
     }

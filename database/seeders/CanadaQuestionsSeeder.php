@@ -18,11 +18,11 @@ class CanadaQuestionsSeeder extends Seeder
     {
         // Find the course section for Canadian Citizenship with ID 1
             $canadaSection = CourseSection::firstOrCreate(
-            ['title' => 'Canada'],
+            ['title' => 'National'],
             [
-                'type' => 'country',
-                'capital' => 'Ottawa',
-                'flag' => '/images/flags/canada.png', // Flag image URL for Canada
+                'type' => 'General',
+                'capital' => 'General',
+                'flag' => '/images/flags/logo.png', // Flag image URL for Canada
                 'description' => 'Questions specific to Canada.',
                 'summary_audio_url' => '/audio/canada_summary.mp3' // Audio URL for Canada
             ]

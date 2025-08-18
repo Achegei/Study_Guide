@@ -89,13 +89,15 @@
                             <option value="<?php echo e(route('language.switch', 'ar')); ?>" <?php if(App::getLocale() == 'ar'): ?> selected <?php endif; ?>>العربية</option>
                             <option value="<?php echo e(route('language.switch', 'so')); ?>" <?php if(App::getLocale() == 'so'): ?> selected <?php endif; ?>>Soomaali</option>
                             <option value="<?php echo e(route('language.switch', 'es')); ?>" <?php if(App::getLocale() == 'es'): ?> selected <?php endif; ?>>Español</option>
+                            <option value="<?php echo e(route('language.switch', 'zh')); ?>" <?php if(App::getLocale() == 'zh'): ?> selected <?php endif; ?>>简体中文 (Mandarin)</option> 
+                            <option value="<?php echo e(route('language.switch', 'pa')); ?>" <?php if(App::getLocale() == 'pa'): ?> selected <?php endif; ?>>ਪੰਜਾਬੀ (Punjabi)</option>   
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
                 </li>
-                
+
                 <!-- AUTH LOGIC FOR DESKTOP NAV -->
                 <?php if(auth()->guard()->check()): ?>
                     <li><a href="<?php echo e(route('courses.index')); ?>" class="hover:text-bright-yellow">Dashboard</a></li>
@@ -149,6 +151,8 @@
                             <option value="<?php echo e(route('language.switch', 'ar')); ?>" <?php if(App::getLocale() == 'ar'): ?> selected <?php endif; ?>>العربية</option>
                             <option value="<?php echo e(route('language.switch', 'so')); ?>" <?php if(App::getLocale() == 'so'): ?> selected <?php endif; ?>>Soomaali</option>
                             <option value="<?php echo e(route('language.switch', 'es')); ?>" <?php if(App::getLocale() == 'es'): ?> selected <?php endif; ?>>Español</option>
+                            <option value="<?php echo e(route('language.switch', 'zh')); ?>" <?php if(App::getLocale() == 'zh'): ?> selected <?php endif; ?>>简体中文 (Mandarin)</option> 
+                            <option value="<?php echo e(route('language.switch', 'pa')); ?>" <?php if(App::getLocale() == 'pa'): ?> selected <?php endif; ?>>ਪੰਜਾਬੀ (Punjabi)</option>   
                             <option value="<?php echo e(route('language.switch', 'more')); ?>">More Languages...</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
