@@ -3,7 +3,6 @@
 namespace App\Providers\Filament;
 
 use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationBuilder;
@@ -18,9 +17,11 @@ use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Support\Enums\MaxWidth;
+use App\Http\Middleware\EnsureAdminPanelAccess; // ✅ Import your new middleware
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,7 +32,6 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            // ✅ Set the primary color to the full mustard yellow palette
             ->colors([
                 'primary' => self::mustardYellow(),
                 'gray' => Color::Zinc,
@@ -63,7 +63,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                // ✅ Add your custom middleware here to check admin access AFTER authentication
+                EnsureAdminPanelAccess::class,
             ])
+            // ❌ Removed the problematic canAccessPanel() method, as it's not available in v2
             ->sidebarCollapsibleOnDesktop()
             ->sidebarWidth('8rem')
             ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
@@ -85,7 +88,6 @@ class AdminPanelProvider extends PanelProvider
             });
     }
 
-    // ✅ Add this static method to define the color palette
     public static function mustardYellow(): array
     {
         return [
