@@ -20,14 +20,17 @@
             <p class="text-lg md:text-xl font-light max-w-2xl mx-auto opacity-90 animate-fade-in-delay">
                 Prepare with our expert-designed, up-to-date practice tests and comprehensive study guides, trusted by thousands of new Canadians.
             </p>
-            <div class="mt-8">
-                <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-white text-red-700 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                    Access Full Course
-                </a>
-                <a href="<?php echo e(route('free-quiz.show')); ?>" class="inline-block bg-white text-red-700 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                    Start With Free Test
-                </a>
-            </div>
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <div class="mt-8 flex flex-wrap justify-center gap-8">
+            <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-white text-red-700 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                <?php echo e(__('Access Full Course')); ?>
+
+            </a>
+            <a href="<?php echo e(route('free-quiz.show')); ?>" class="inline-block bg-white text-red-700 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                <?php echo e(__('Start With Free Test')); ?>
+
+            </a>
+</div>
         </div>
     </section>
 
@@ -102,12 +105,16 @@
             <p class="text-lg text-gray-600 mb-8">
                 Start your preparation today and join the thousands of Canadians who have passed their test with our help.
             </p>
-            <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                Access Full Course
-            </a>
-            <a href="<?php echo e(route('free-quiz.show')); ?>" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                Start With Free Test
-            </a>
+            <div class="mt-8 flex flex-wrap justify-center gap-8">
+                <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <?php echo e(__('Access Full Course')); ?>
+
+                </a>
+                <a href="<?php echo e(route('free-quiz.show')); ?>" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <?php echo e(__('Start With Free Test')); ?>
+
+                </a>
+            </div>
         </div>
     </section>
 

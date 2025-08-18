@@ -27,12 +27,14 @@
                 Prepare for your learner's permit with our province-specific practice tests, road sign charts, and realistic exam simulators.
             </p>
             <div class="mt-8">
-                <a href="{{route('buy-now')}}" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                    Access Full Course
-                </a>
-                <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                    Start With Free Test
-                </a>
+                <div class="mt-8 flex flex-wrap justify-center gap-8">
+                    <a href="{{route('buy-now')}}" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                        {{ __('Access Full Course') }}
+                    </a>
+                    <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                        {{ __('Start With Free Test') }}
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -108,12 +110,15 @@
             <p class="text-lg text-gray-600 mb-8">
                 Start your preparation today and take the first step towards getting your Canadian driver's license.
             </p>
-            <a href="{{route('buy-now')}}" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                Access Full Course
-            </a>
-            <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                Start With Free Test
-            </a>
+           <div class="mt-8 flex flex-wrap justify-center gap-8">
+                <a href="{{route('buy-now')}}" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                    {{ __('Access Full Course') }}
+                </a>
+                <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                    {{ __('Start With Free Test') }}
+                </a>
+            </div>
+
         </div>
     </section>
 
