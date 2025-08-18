@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo e($title ?? 'IQRA Canada Test Prep'); ?></title>
+    <title><?php echo e($title ?? __('IQRA Canada Test Prep')); ?></title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -50,6 +50,18 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+
+        /* ✅ New: Enlarge base font size for mobile devices */
+        @media (max-width: 767px) { /* Targets screens smaller than Tailwind's 'md' breakpoint */
+            body {
+                font-size: 1.125rem; /* Equivalent to Tailwind's text-lg (18px) */
+            }
+            /* You might need to adjust specific elements if they have conflicting smaller font sizes */
+            /* For example, to also enlarge small text in nav for mobile: */
+            .md\:hidden .text-sm { /* targets mobile dropdown nav links */
+                font-size: 1.125rem; /* Adjust if needed */
+            }
+        }
     </style>
 
     <!-- Livewire Styles -->
@@ -64,19 +76,19 @@
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <!-- Logo section with added right margin for spacing -->
             <div class="flex items-center gap-3 mr-6">
-                <img src="<?php echo e(asset('images/logo.png')); ?>" alt="Logo" class="h-10">
-                <span class="text-xl font-bold text-bright-yellow hidden md:block">IQRA Canada Test Prep</span>
+                <img src="<?php echo e(asset('images/logo.png')); ?>" alt="<?php echo e(__('Logo')); ?>" class="h-10">
+                <span class="text-xl font-bold text-bright-yellow hidden md:block"><?php echo e(__('IQRA Canada Test Prep')); ?></span>
             </div>
 
             <!-- Navigation Links and Login Button (Desktop) -->
             <ul class="hidden md:flex items-center gap-6 font-semibold">
-                <li><a href="/" class="hover:text-bright-yellow">Home</a></li>
-                <li><a href="<?php echo e(route('purchase')); ?>" class="hover:text-bright-yellow">Citizenship Test Prep</a></li>
-                <li><a href="<?php echo e(route('free-test')); ?>" class="hover:text-bright-yellow">Driving Test Prep</a></li>
-                <li><a href="<?php echo e(route('buy-now')); ?>" class="hover:text-bright-yellow">Buy Now</a></li>
-                <!--<li><a href="<?php echo e(route('blogs.index')); ?>" class="hover:text-bright-yellow">Buy Now</a></li> -->
-                <li><a href="<?php echo e(route('testimonials')); ?>" class="hover:text-bright-yellow">Our Community</a></li>
-                <li><a href="<?php echo e(route('faqs')); ?>" class="hover:text-bright-yellow">FAQ's</a></li>
+                <li><a href="/" class="hover:text-bright-yellow"><?php echo e(__('Home')); ?></a></li>
+                <li><a href="<?php echo e(route('purchase')); ?>" class="hover:text-bright-yellow"><?php echo e(__('Citizenship Test Prep')); ?></a></li>
+                <li><a href="<?php echo e(route('free-test')); ?>" class="hover:text-bright-yellow"><?php echo e(__('Driving Test Prep')); ?></a></li>
+                <li><a href="<?php echo e(route('buy-now')); ?>" class="hover:text-bright-yellow"><?php echo e(__('Buy Now')); ?></a></li>
+                <!--<li><a href="<?php echo e(route('blogs.index')); ?>" class="hover:text-bright-yellow"><?php echo e(__('Blogs')); ?></a></li> -->
+                <li><a href="<?php echo e(route('testimonials')); ?>" class="hover:text-bright-yellow"><?php echo e(__('Our Community')); ?></a></li>
+                <li><a href="<?php echo e(route('faqs')); ?>" class="hover:text-bright-yellow"><?php echo e(__('FAQ\'s')); ?></a></li>
                 
                 <!-- Language Switcher (Desktop) -->
                 <li>
@@ -84,13 +96,13 @@
                         <select onchange="window.location.href = this.value"
                                 class="block appearance-none bg-navy-blue border border-gray-700 text-white px-4 py-2 rounded-full shadow leading-tight focus:outline-none focus:border-bright-yellow focus:ring focus:ring-bright-yellow focus:ring-opacity-50 text-sm font-semibold">
                             <option value=""><?php echo e(strtoupper(App::getLocale())); ?></option> 
-                            <option value="<?php echo e(route('language.switch', 'en')); ?>" <?php if(App::getLocale() == 'en'): ?> selected <?php endif; ?>>English</option>
-                            <option value="<?php echo e(route('language.switch', 'fr')); ?>" <?php if(App::getLocale() == 'fr'): ?> selected <?php endif; ?>>Français</option>
-                            <option value="<?php echo e(route('language.switch', 'ar')); ?>" <?php if(App::getLocale() == 'ar'): ?> selected <?php endif; ?>>العربية</option>
-                            <option value="<?php echo e(route('language.switch', 'so')); ?>" <?php if(App::getLocale() == 'so'): ?> selected <?php endif; ?>>Soomaali</option>
-                            <option value="<?php echo e(route('language.switch', 'es')); ?>" <?php if(App::getLocale() == 'es'): ?> selected <?php endif; ?>>Español</option>
-                            <option value="<?php echo e(route('language.switch', 'zh')); ?>" <?php if(App::getLocale() == 'zh'): ?> selected <?php endif; ?>>简体中文 (Mandarin)</option> 
-                            <option value="<?php echo e(route('language.switch', 'pa')); ?>" <?php if(App::getLocale() == 'pa'): ?> selected <?php endif; ?>>ਪੰਜਾਬੀ (Punjabi)</option>   
+                            <option value="<?php echo e(route('language.switch', 'en')); ?>" <?php if(App::getLocale() == 'en'): ?> selected <?php endif; ?>><?php echo e(__('English')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'fr')); ?>" <?php if(App::getLocale() == 'fr'): ?> selected <?php endif; ?>><?php echo e(__('Français')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'ar')); ?>" <?php if(App::getLocale() == 'ar'): ?> selected <?php endif; ?>><?php echo e(__('العربية')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'so')); ?>" <?php if(App::getLocale() == 'so'): ?> selected <?php endif; ?>><?php echo e(__('Soomaali')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'es')); ?>" <?php if(App::getLocale() == 'es'): ?> selected <?php endif; ?>><?php echo e(__('Español')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'zh')); ?>" <?php if(App::getLocale() == 'zh'): ?> selected <?php endif; ?>><?php echo e(__('简体中文 (Mandarin)')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'pa')); ?>" <?php if(App::getLocale() == 'pa'): ?> selected <?php endif; ?>><?php echo e(__('ਪੰਜਾਬੀ (Punjabi)')); ?></option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -100,13 +112,14 @@
 
                 <!-- AUTH LOGIC FOR DESKTOP NAV -->
                 <?php if(auth()->guard()->check()): ?>
-                    <li><a href="<?php echo e(route('courses.index')); ?>" class="hover:text-bright-yellow">Dashboard</a></li>
+                    <li><a href="<?php echo e(route('courses.index')); ?>" class="hover:text-bright-yellow"><?php echo e(__('Dashboard')); ?></a></li>
                     <li>
                         <form method="POST" action="<?php echo e(route('logout')); ?>" x-data>
                             <?php echo csrf_field(); ?>
                             <a href="<?php echo e(route('logout')); ?>" @click.prevent="$root.submit();">
                                 <button class="bg-bright-yellow hover:bg-yellow-400 text-navy-blue text-sm font-bold px-5 py-2 rounded-full transition">
-                                    Logout
+                                    <?php echo e(__('Logout')); ?>
+
                                 </button>
                             </a>
                         </form>
@@ -115,7 +128,8 @@
                     <li>
                         <a href="<?php echo e(route('login')); ?>">
                             <button class="bg-bright-yellow hover:bg-yellow-400 text-navy-blue text-sm font-bold px-5 py-2 rounded-full transition">
-                                Login
+                                <?php echo e(__('Login')); ?>
+
                             </button>
                         </a>
                     </li>
@@ -132,12 +146,12 @@
         <!-- ✅ Mobile Dropdown -->
         <div x-show="open" x-transition class="md:hidden px-4 pb-4">
             <ul class="space-y-2">
-                <li><a href="/" class="block py-1">Home</a></li>
-                <li><a href="<?php echo e(route('purchase')); ?>" class="block py-1">Citizenship Test Prep</a></li>
-                <li><a href="<?php echo e(route('free-test')); ?>" class="block py-1">Driving Test Prep</a></li>
-                <li><a href="<?php echo e(route('buy-now')); ?>" class="block py-1">Buy Now</a></li>
-                <li><a href="<?php echo e(route('testimonials')); ?>" class="block py-1">Our Community</a></li>
-                <li><a href="<?php echo e(route('faqs')); ?>" class="block py-1">FAQ's</a></li>
+                <li><a href="/" class="block py-1"><?php echo e(__('Home')); ?></a></li>
+                <li><a href="<?php echo e(route('purchase')); ?>" class="block py-1"><?php echo e(__('Citizenship Test Prep')); ?></a></li>
+                <li><a href="<?php echo e(route('free-test')); ?>" class="block py-1"><?php echo e(__('Driving Test Prep')); ?></a></li>
+                <li><a href="<?php echo e(route('buy-now')); ?>" class="block py-1"><?php echo e(__('Buy Now')); ?></a></li>
+                <li><a href="<?php echo e(route('testimonials')); ?>" class="block py-1"><?php echo e(__('Our Community')); ?></a></li>
+                <li><a href="<?php echo e(route('faqs')); ?>" class="block py-1"><?php echo e(__('FAQ\'s')); ?></a></li>
                 
 
                 <!-- Language Switcher (Mobile) -->
@@ -146,14 +160,14 @@
                         <select onchange="window.location.href = this.value"
                                 class="block appearance-none w-full bg-navy-blue border border-gray-700 text-white px-4 py-2 rounded-md shadow leading-tight focus:outline-none focus:border-bright-yellow focus:ring focus:ring-bright-yellow focus:ring-opacity-50 text-sm font-semibold">
                             <option value=""><?php echo e(strtoupper(App::getLocale())); ?></option> 
-                            <option value="<?php echo e(route('language.switch', 'en')); ?>" <?php if(App::getLocale() == 'en'): ?> selected <?php endif; ?>>English</option>
-                            <option value="<?php echo e(route('language.switch', 'fr')); ?>" <?php if(App::getLocale() == 'fr'): ?> selected <?php endif; ?>>Français</option>
-                            <option value="<?php echo e(route('language.switch', 'ar')); ?>" <?php if(App::getLocale() == 'ar'): ?> selected <?php endif; ?>>العربية</option>
-                            <option value="<?php echo e(route('language.switch', 'so')); ?>" <?php if(App::getLocale() == 'so'): ?> selected <?php endif; ?>>Soomaali</option>
-                            <option value="<?php echo e(route('language.switch', 'es')); ?>" <?php if(App::getLocale() == 'es'): ?> selected <?php endif; ?>>Español</option>
-                            <option value="<?php echo e(route('language.switch', 'zh')); ?>" <?php if(App::getLocale() == 'zh'): ?> selected <?php endif; ?>>简体中文 (Mandarin)</option> 
-                            <option value="<?php echo e(route('language.switch', 'pa')); ?>" <?php if(App::getLocale() == 'pa'): ?> selected <?php endif; ?>>ਪੰਜਾਬੀ (Punjabi)</option>   
-                            <option value="<?php echo e(route('language.switch', 'more')); ?>">More Languages...</option>
+                            <option value="<?php echo e(route('language.switch', 'en')); ?>" <?php if(App::getLocale() == 'en'): ?> selected <?php endif; ?>><?php echo e(__('English')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'fr')); ?>" <?php if(App::getLocale() == 'fr'): ?> selected <?php endif; ?>><?php echo e(__('Français')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'ar')); ?>" <?php if(App::getLocale() == 'ar'): ?> selected <?php endif; ?>><?php echo e(__('العربية')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'so')); ?>" <?php if(App::getLocale() == 'so'): ?> selected <?php endif; ?>><?php echo e(__('Soomaali')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'es')); ?>" <?php if(App::getLocale() == 'es'): ?> selected <?php endif; ?>><?php echo e(__('Español')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'zh')); ?>" <?php if(App::getLocale() == 'zh'): ?> selected <?php endif; ?>><?php echo e(__('简体中文 (Mandarin)')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'pa')); ?>" <?php if(App::getLocale() == 'pa'): ?> selected <?php endif; ?>><?php echo e(__('ਪੰਜਾਬੀ (Punjabi)')); ?></option>
+                            <option value="<?php echo e(route('language.switch', 'more')); ?>"><?php echo e(__('More Languages...')); ?></option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -163,17 +177,18 @@
 
                 <!-- AUTH LOGIC FOR MOBILE NAV -->
                 <?php if(auth()->guard()->check()): ?>
-                    <li><a href="<?php echo e(route('courses.index')); ?>" class="block py-1">Dashboard</a></li>
+                    <li><a href="<?php echo e(route('courses.index')); ?>" class="block py-1"><?php echo e(__('Dashboard')); ?></a></li>
                     <li>
                         <form method="POST" action="<?php echo e(route('logout')); ?>" x-data>
                             <?php echo csrf_field(); ?>
                             <a href="<?php echo e(route('logout')); ?>" @click.prevent="$root.submit();" class="block py-1">
-                                Logout
+                                <?php echo e(__('Logout')); ?>
+
                             </a>
                         </form>
                     </li>
                 <?php else: ?>
-                    <li><a href="<?php echo e(route('login')); ?>" class="block py-1">Login</a></li>
+                    <li><a href="<?php echo e(route('login')); ?>" class="block py-1"><?php echo e(__('Login')); ?></a></li>
                 <?php endif; ?>
             </ul>
         </div>
@@ -188,13 +203,13 @@
     <footer class="bg-gray-800 text-white text-sm py-10">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-6">
             <div class="flex flex-wrap gap-4">
-                <a href="<?php echo e(url('policy')); ?>" class="hover:underline">Privacy</a>
-                <a href="<?php echo e(url('cookie-policy')); ?>" class="hover:underline">Cookie Policy</a>
-                <a href="<?php echo e(url('terms-of-use')); ?>" class="hover:underline">Terms</a>
-                <a href="<?php echo e(url('disclaimer')); ?>" class="hover:underline">Legal Disclaimer</a>
-                <a href="<?php echo e(url('copyright')); ?>" class="hover:underline">Copyright</a>
-                <a href="<?php echo e(url('contactus')); ?>" class="hover:text-gray-300 transition">Contact</a>
-                <a href="<?php echo e(route('about')); ?>" class="hover:underline">About Us</a>
+                <a href="<?php echo e(url('policy')); ?>" class="hover:underline"><?php echo e(__('Privacy')); ?></a>
+                <a href="<?php echo e(url('cookie-policy')); ?>" class="hover:underline"><?php echo e(__('Cookie Policy')); ?></a>
+                <a href="<?php echo e(url('terms-of-use')); ?>" class="hover:underline"><?php echo e(__('Terms')); ?></a>
+                <a href="<?php echo e(url('disclaimer')); ?>" class="hover:underline"><?php echo e(__('Legal Disclaimer')); ?></a>
+                <a href="<?php echo e(url('copyright')); ?>" class="hover:underline"><?php echo e(__('Copyright')); ?></a>
+                <a href="<?php echo e(url('contactus')); ?>" class="hover:text-gray-300 transition"><?php echo e(__('Contact')); ?></a>
+                <a href="<?php echo e(route('about')); ?>" class="hover:underline"><?php echo e(__('About Us')); ?></a>
             </div>
         </div>
     </footer>
@@ -202,7 +217,8 @@
     <!-- ✅ Footer Bottom -->
     <footer class="bg-gray-900 text-gray-400 text-xs py-6">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            &copy;<?php echo e(now()->year); ?> <span class="text-white">Canadian Citizenship Prep</span>. All Rights Reserved.
+            &copy;<?php echo e(now()->year); ?> <span class="text-white"><?php echo e(__('Canadian Citizenship Prep')); ?></span>. <?php echo e(__('All Rights Reserved.')); ?>
+
         </div>
     </footer>
 

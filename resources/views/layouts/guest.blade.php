@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'IQRA Canada Test Prep' }}</title>
+    <title>{{ $title ?? __('IQRA Canada Test Prep') }}</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -50,6 +50,18 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+
+        /* ✅ New: Enlarge base font size for mobile devices */
+        @media (max-width: 767px) { /* Targets screens smaller than Tailwind's 'md' breakpoint */
+            body {
+                font-size: 1.125rem; /* Equivalent to Tailwind's text-lg (18px) */
+            }
+            /* You might need to adjust specific elements if they have conflicting smaller font sizes */
+            /* For example, to also enlarge small text in nav for mobile: */
+            .md\:hidden .text-sm { /* targets mobile dropdown nav links */
+                font-size: 1.125rem; /* Adjust if needed */
+            }
+        }
     </style>
 
     <!-- Livewire Styles -->
@@ -63,19 +75,19 @@
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <!-- Logo section with added right margin for spacing -->
             <div class="flex items-center gap-3 mr-6">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10">
-                <span class="text-xl font-bold text-bright-yellow hidden md:block">IQRA Canada Test Prep</span>
+                <img src="{{ asset('images/logo.png') }}" alt="{{ __('Logo') }}" class="h-10">
+                <span class="text-xl font-bold text-bright-yellow hidden md:block">{{ __('IQRA Canada Test Prep') }}</span>
             </div>
 
             <!-- Navigation Links and Login Button (Desktop) -->
             <ul class="hidden md:flex items-center gap-6 font-semibold">
-                <li><a href="/" class="hover:text-bright-yellow">Home</a></li>
-                <li><a href="{{ route('purchase') }}" class="hover:text-bright-yellow">Citizenship Test Prep</a></li>
-                <li><a href="{{ route('free-test') }}" class="hover:text-bright-yellow">Driving Test Prep</a></li>
-                <li><a href="{{ route('buy-now') }}" class="hover:text-bright-yellow">Buy Now</a></li>
-                <!--<li><a href="{{ route('blogs.index') }}" class="hover:text-bright-yellow">Buy Now</a></li> -->
-                <li><a href="{{ route('testimonials') }}" class="hover:text-bright-yellow">Our Community</a></li>
-                <li><a href="{{ route('faqs') }}" class="hover:text-bright-yellow">FAQ's</a></li>
+                <li><a href="/" class="hover:text-bright-yellow">{{ __('Home') }}</a></li>
+                <li><a href="{{ route('purchase') }}" class="hover:text-bright-yellow">{{ __('Citizenship Test Prep') }}</a></li>
+                <li><a href="{{ route('free-test') }}" class="hover:text-bright-yellow">{{ __('Driving Test Prep') }}</a></li>
+                <li><a href="{{ route('buy-now') }}" class="hover:text-bright-yellow">{{ __('Buy Now') }}</a></li>
+                <!--<li><a href="{{ route('blogs.index') }}" class="hover:text-bright-yellow">{{ __('Blogs') }}</a></li> -->
+                <li><a href="{{ route('testimonials') }}" class="hover:text-bright-yellow">{{ __('Our Community') }}</a></li>
+                <li><a href="{{ route('faqs') }}" class="hover:text-bright-yellow">{{ __('FAQ\'s') }}</a></li>
                 
                 <!-- Language Switcher (Desktop) -->
                 <li>
@@ -83,13 +95,13 @@
                         <select onchange="window.location.href = this.value"
                                 class="block appearance-none bg-navy-blue border border-gray-700 text-white px-4 py-2 rounded-full shadow leading-tight focus:outline-none focus:border-bright-yellow focus:ring focus:ring-bright-yellow focus:ring-opacity-50 text-sm font-semibold">
                             <option value="">{{ strtoupper(App::getLocale()) }}</option> {{-- Display current locale --}}
-                            <option value="{{ route('language.switch', 'en') }}" @if(App::getLocale() == 'en') selected @endif>English</option>
-                            <option value="{{ route('language.switch', 'fr') }}" @if(App::getLocale() == 'fr') selected @endif>Français</option>
-                            <option value="{{ route('language.switch', 'ar') }}" @if(App::getLocale() == 'ar') selected @endif>العربية</option>
-                            <option value="{{ route('language.switch', 'so') }}" @if(App::getLocale() == 'so') selected @endif>Soomaali</option>
-                            <option value="{{ route('language.switch', 'es') }}" @if(App::getLocale() == 'es') selected @endif>Español</option>
-                            <option value="{{ route('language.switch', 'zh') }}" @if(App::getLocale() == 'zh') selected @endif>简体中文 (Mandarin)</option> {{-- ✅ Added Mandarin --}}
-                            <option value="{{ route('language.switch', 'pa') }}" @if(App::getLocale() == 'pa') selected @endif>ਪੰਜਾਬੀ (Punjabi)</option>   {{-- ✅ Added Punjabi --}}
+                            <option value="{{ route('language.switch', 'en') }}" @if(App::getLocale() == 'en') selected @endif>{{ __('English') }}</option>
+                            <option value="{{ route('language.switch', 'fr') }}" @if(App::getLocale() == 'fr') selected @endif>{{ __('Français') }}</option>
+                            <option value="{{ route('language.switch', 'ar') }}" @if(App::getLocale() == 'ar') selected @endif>{{ __('العربية') }}</option>
+                            <option value="{{ route('language.switch', 'so') }}" @if(App::getLocale() == 'so') selected @endif>{{ __('Soomaali') }}</option>
+                            <option value="{{ route('language.switch', 'es') }}" @if(App::getLocale() == 'es') selected @endif>{{ __('Español') }}</option>
+                            <option value="{{ route('language.switch', 'zh') }}" @if(App::getLocale() == 'zh') selected @endif>{{ __('简体中文 (Mandarin)') }}</option>
+                            <option value="{{ route('language.switch', 'pa') }}" @if(App::getLocale() == 'pa') selected @endif>{{ __('ਪੰਜਾਬੀ (Punjabi)') }}</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -99,13 +111,13 @@
 
                 <!-- AUTH LOGIC FOR DESKTOP NAV -->
                 @auth
-                    <li><a href="{{ route('courses.index') }}" class="hover:text-bright-yellow">Dashboard</a></li>
+                    <li><a href="{{ route('courses.index') }}" class="hover:text-bright-yellow">{{ __('Dashboard') }}</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
                             <a href="{{ route('logout') }}" @click.prevent="$root.submit();">
                                 <button class="bg-bright-yellow hover:bg-yellow-400 text-navy-blue text-sm font-bold px-5 py-2 rounded-full transition">
-                                    Logout
+                                    {{ __('Logout') }}
                                 </button>
                             </a>
                         </form>
@@ -114,7 +126,7 @@
                     <li>
                         <a href="{{ route('login') }}">
                             <button class="bg-bright-yellow hover:bg-yellow-400 text-navy-blue text-sm font-bold px-5 py-2 rounded-full transition">
-                                Login
+                                {{ __('Login') }}
                             </button>
                         </a>
                     </li>
@@ -131,12 +143,12 @@
         <!-- ✅ Mobile Dropdown -->
         <div x-show="open" x-transition class="md:hidden px-4 pb-4">
             <ul class="space-y-2">
-                <li><a href="/" class="block py-1">Home</a></li>
-                <li><a href="{{ route('purchase') }}" class="block py-1">Citizenship Test Prep</a></li>
-                <li><a href="{{ route('free-test') }}" class="block py-1">Driving Test Prep</a></li>
-                <li><a href="{{ route('buy-now') }}" class="block py-1">Buy Now</a></li>
-                <li><a href="{{ route('testimonials') }}" class="block py-1">Our Community</a></li>
-                <li><a href="{{ route('faqs') }}" class="block py-1">FAQ's</a></li>
+                <li><a href="/" class="block py-1">{{ __('Home') }}</a></li>
+                <li><a href="{{ route('purchase') }}" class="block py-1">{{ __('Citizenship Test Prep') }}</a></li>
+                <li><a href="{{ route('free-test') }}" class="block py-1">{{ __('Driving Test Prep') }}</a></li>
+                <li><a href="{{ route('buy-now') }}" class="block py-1">{{ __('Buy Now') }}</a></li>
+                <li><a href="{{ route('testimonials') }}" class="block py-1">{{ __('Our Community') }}</a></li>
+                <li><a href="{{ route('faqs') }}" class="block py-1">{{ __('FAQ\'s') }}</a></li>
                 
 
                 <!-- Language Switcher (Mobile) -->
@@ -145,14 +157,14 @@
                         <select onchange="window.location.href = this.value"
                                 class="block appearance-none w-full bg-navy-blue border border-gray-700 text-white px-4 py-2 rounded-md shadow leading-tight focus:outline-none focus:border-bright-yellow focus:ring focus:ring-bright-yellow focus:ring-opacity-50 text-sm font-semibold">
                             <option value="">{{ strtoupper(App::getLocale()) }}</option> {{-- Display current locale --}}
-                            <option value="{{ route('language.switch', 'en') }}" @if(App::getLocale() == 'en') selected @endif>English</option>
-                            <option value="{{ route('language.switch', 'fr') }}" @if(App::getLocale() == 'fr') selected @endif>Français</option>
-                            <option value="{{ route('language.switch', 'ar') }}" @if(App::getLocale() == 'ar') selected @endif>العربية</option>
-                            <option value="{{ route('language.switch', 'so') }}" @if(App::getLocale() == 'so') selected @endif>Soomaali</option>
-                            <option value="{{ route('language.switch', 'es') }}" @if(App::getLocale() == 'es') selected @endif>Español</option>
-                            <option value="{{ route('language.switch', 'zh') }}" @if(App::getLocale() == 'zh') selected @endif>简体中文 (Mandarin)</option> {{-- ✅ Added Mandarin --}}
-                            <option value="{{ route('language.switch', 'pa') }}" @if(App::getLocale() == 'pa') selected @endif>ਪੰਜਾਬੀ (Punjabi)</option>   {{-- ✅ Added Punjabi --}}
-                            <option value="{{ route('language.switch', 'more') }}">More Languages...</option>
+                            <option value="{{ route('language.switch', 'en') }}" @if(App::getLocale() == 'en') selected @endif>{{ __('English') }}</option>
+                            <option value="{{ route('language.switch', 'fr') }}" @if(App::getLocale() == 'fr') selected @endif>{{ __('Français') }}</option>
+                            <option value="{{ route('language.switch', 'ar') }}" @if(App::getLocale() == 'ar') selected @endif>{{ __('العربية') }}</option>
+                            <option value="{{ route('language.switch', 'so') }}" @if(App::getLocale() == 'so') selected @endif>{{ __('Soomaali') }}</option>
+                            <option value="{{ route('language.switch', 'es') }}" @if(App::getLocale() == 'es') selected @endif>{{ __('Español') }}</option>
+                            <option value="{{ route('language.switch', 'zh') }}" @if(App::getLocale() == 'zh') selected @endif>{{ __('简体中文 (Mandarin)') }}</option>
+                            <option value="{{ route('language.switch', 'pa') }}" @if(App::getLocale() == 'pa') selected @endif>{{ __('ਪੰਜਾਬੀ (Punjabi)') }}</option>
+                            <option value="{{ route('language.switch', 'more') }}">{{ __('More Languages...') }}</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -162,17 +174,17 @@
 
                 <!-- AUTH LOGIC FOR MOBILE NAV -->
                 @auth
-                    <li><a href="{{ route('courses.index') }}" class="block py-1">Dashboard</a></li>
+                    <li><a href="{{ route('courses.index') }}" class="block py-1">{{ __('Dashboard') }}</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
                             <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="block py-1">
-                                Logout
+                                {{ __('Logout') }}
                             </a>
                         </form>
                     </li>
                 @else
-                    <li><a href="{{ route('login') }}" class="block py-1">Login</a></li>
+                    <li><a href="{{ route('login') }}" class="block py-1">{{ __('Login') }}</a></li>
                 @endauth
             </ul>
         </div>
@@ -187,13 +199,13 @@
     <footer class="bg-gray-800 text-white text-sm py-10">
         <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between gap-6">
             <div class="flex flex-wrap gap-4">
-                <a href="{{url('policy')}}" class="hover:underline">Privacy</a>
-                <a href="{{url('cookie-policy')}}" class="hover:underline">Cookie Policy</a>
-                <a href="{{url('terms-of-use')}}" class="hover:underline">Terms</a>
-                <a href="{{url('disclaimer')}}" class="hover:underline">Legal Disclaimer</a>
-                <a href="{{url('copyright')}}" class="hover:underline">Copyright</a>
-                <a href="{{url('contactus')}}" class="hover:text-gray-300 transition">Contact</a>
-                <a href="{{ route('about') }}" class="hover:underline">About Us</a>
+                <a href="{{url('policy')}}" class="hover:underline">{{ __('Privacy') }}</a>
+                <a href="{{url('cookie-policy')}}" class="hover:underline">{{ __('Cookie Policy') }}</a>
+                <a href="{{url('terms-of-use')}}" class="hover:underline">{{ __('Terms') }}</a>
+                <a href="{{url('disclaimer')}}" class="hover:underline">{{ __('Legal Disclaimer') }}</a>
+                <a href="{{url('copyright')}}" class="hover:underline">{{ __('Copyright') }}</a>
+                <a href="{{url('contactus')}}" class="hover:text-gray-300 transition">{{ __('Contact') }}</a>
+                <a href="{{ route('about') }}" class="hover:underline">{{ __('About Us') }}</a>
             </div>
         </div>
     </footer>
@@ -201,7 +213,7 @@
     <!-- ✅ Footer Bottom -->
     <footer class="bg-gray-900 text-gray-400 text-xs py-6">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            &copy;{{ now()->year }} <span class="text-white">Canadian Citizenship Prep</span>. All Rights Reserved.
+            &copy;{{ now()->year }} <span class="text-white">{{ __('Canadian Citizenship Prep') }}</span>. {{ __('All Rights Reserved.') }}
         </div>
     </footer>
 
