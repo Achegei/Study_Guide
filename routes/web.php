@@ -67,6 +67,11 @@ Route::get('/cookie-policy', function () { return view('cookie'); })->name('cook
 Route::get('/copyright', function () { return view('copyright'); })->name('copyright');
 Route::get('/contactus', function () { return view('contactus'); })->name('contactus');
 
+ // Course Payment Registration (assuming registration form itself is public, but this route requires auth)
+    // If 'register' leads to a form accessible to guests, only the POST route might need auth.
+Route::get('/register-payment', [PaymentRegisterController::class, 'showRegistrationForm'])->name('register.payment');
+Route::post('/register-payment', [PaymentRegisterController::class, 'register']);
+
 
 // Blog and Citizenship Info (Public access to articles)
 Route::prefix('canadian-citizenship')->group(function () {
@@ -121,11 +126,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/canadian-citizenship/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
     Route::delete('/canadian-citizenship/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::patch('/canadian-citizenship/comment/{comment}/approve', [CommentController::class, 'approve'])->name('comment.approve');
-
-    // Course Payment Registration (assuming registration form itself is public, but this route requires auth)
-    // If 'register' leads to a form accessible to guests, only the POST route might need auth.
-    Route::get('/register-payment', [PaymentRegisterController::class, 'showRegistrationForm'])->name('register.payment');
-    Route::post('/register-payment', [PaymentRegisterController::class, 'register']);
 
 });
 
