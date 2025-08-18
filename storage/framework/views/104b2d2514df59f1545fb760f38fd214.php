@@ -97,9 +97,14 @@
         <main class="flex-1 p-6 lg:ml-0">
             <div class="max-w-2xl mx-auto">
                 <div class="flex justify-between items-center mb-8">
-                    <h1 class="text-3xl font-extrabold text-gray-900 text-center">
-                        <?php echo e(__('Questions for')); ?> <span class="text-indigo-600"><?php echo e($section->title); ?></span>
-                    </h1>
+                     <div class="mb-8 text-center">
+                    <a href="<?php echo e(route('driver-courses.driving-resources', $section->id)); ?>"
+                    class="inline-block px-8 py-4 bg-purple-600 text-white font-bold rounded-xl shadow-lg
+                            hover:bg-purple-700 transition-all duration-300 transform hover:scale-105">
+                        <?php echo e(__('Driving Prep Resources for')); ?> <?php echo e($section->title); ?>
+
+                    </a>
+                </div>
                     <?php if($progress): ?>
                         <button @click="showResetModal = true" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-xl shadow-md hover:bg-red-600 transition-colors">
                             <?php echo e(__('Reset Progress')); ?>
@@ -107,7 +112,9 @@
                         </button>
                     <?php endif; ?>
                 </div>
-
+                <h1 class="text-3xl font-extrabold text-gray-900 text-center">
+                        <?php echo e(__('Questions for')); ?> <span class="text-indigo-600"><?php echo e($section->title); ?></span>
+                    </h1>
                 <?php if(session('error')): ?>
                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl relative mb-4" role="alert">
                         <?php echo e(session('error')); ?>

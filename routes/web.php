@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ReadingResourceController; 
+use App\Http\Controllers\DrivingResourceController; 
 
 // --- Imports ---
 // Modularized Controllers
@@ -54,6 +55,8 @@ Route::prefix('canadian-citizenship')->group(function () {
     });
     Route::get('/courses/{section}/reading-resources', [ReadingResourceController::class, 'show'])
     ->name('courses.reading-resources');
+    Route::get('/driving-courses/{section}/driving-resources', [DrivingResourceController::class, 'show'])
+    ->name('driver-courses.driving-resources');
 
     // Driving Course Routes - Protected by 'auth' and 'check.test.access'
     // These routes are also nested under the 'canadian-citizenship' prefix for organization
@@ -83,6 +86,7 @@ Route::post('/testimonials', [TestimonialController::class, 'store'])->name('tes
 // Pages (no change)
 Route::view('/purchase', 'pages.purchase')->name('purchase');
 Route::view('/buy-now', 'pages.buy-now')->name('buy-now');
+Route::view('/faqs', 'pages.faqs')->name('faqs');
 Route::view('/free-test', 'frontend.canadian-citizenship.free-test')->name('free-test');
 Route::view('/canadian-citizenship-prep', 'frontend.canadian-citizenship.canadian-citizenship-prep')->name('canadian-citizenship-prep');
 Route::view('/about', 'pages.about')->name('about');

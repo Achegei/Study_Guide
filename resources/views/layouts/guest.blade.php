@@ -75,6 +75,7 @@
                 <li><a href="{{ route('buy-now') }}" class="hover:text-bright-yellow">Buy Now</a></li>
                 <!--<li><a href="{{ route('blogs.index') }}" class="hover:text-bright-yellow">Buy Now</a></li> -->
                 <li><a href="{{ route('testimonials') }}" class="hover:text-bright-yellow">Our Community</a></li>
+                <li><a href="{{ route('faqs') }}" class="hover:text-bright-yellow">FAQ's</a></li>
                 
                 <!-- Language Switcher (Desktop) -->
                 <li>
@@ -133,6 +134,8 @@
                 <li><a href="{{ route('free-test') }}" class="block py-1">Driving Test Prep</a></li>
                 <li><a href="{{ route('buy-now') }}" class="block py-1">Buy Now</a></li>
                 <li><a href="{{ route('testimonials') }}" class="block py-1">Our Community</a></li>
+                <li><a href="{{ route('faqs') }}" class="block py-1">FAQ's</a></li>
+                
 
                 <!-- Language Switcher (Mobile) -->
                 <li>

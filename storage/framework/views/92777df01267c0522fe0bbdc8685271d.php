@@ -28,8 +28,8 @@
 
         <!-- Message container with custom scrollbar -->
         <div class="flex-1 p-4 overflow-y-auto custom-scrollbar flex flex-col space-y-4">
-            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <!--[if BLOCK]><![endif]--><?php if($message['role'] === 'assistant'): ?>
+            <?php $__currentLoopData = $messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($message['role'] === 'assistant'): ?>
                     <!-- Assistant Message -->
                     <div class="flex items-start space-x-2">
                         <img src="https://placehold.co/40x40/0A192F/FCD34D?text=AI" alt="AI" class="w-8 h-8 rounded-full">
@@ -44,8 +44,8 @@
                             <p class="text-sm"><?php echo e($message['text']); ?></p>
                         </div>
                     </div>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             <!-- Loading Indicator -->
             <div wire:loading wire:target="sendMessage">
