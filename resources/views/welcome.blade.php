@@ -69,7 +69,7 @@
                     <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Citizenship Test Prep</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 text-left mx-auto max-w-xs">
                         <li>5000+ Questions & Answers</li>
-                        <li>400+ Questions & Answers Per Province, territory and one general</li>
+                        <li>400+ Questions & Answers Per Province, territory and Common test</li>
                         <li>Province-specific summaries</li>
                         <li>Trusted by 350,000+ Test takers</li>
                         <li>Audio versions of the Questions available</li>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="bg-gray-100 rounded-xl shadow-lg p-8 text-center">
-                    <span class="text-6xl">🚗</span>
+                     <img src="{{ asset('images/car.png') }}" alt="{{ __('Car icon') }}" class="w-20 h-20 object-contain mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Driving Test Prep</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 text-left mx-auto max-w-xs">
                         <li>4000+ Questions & Answers</li>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="text-4xl text-green-600 mb-4">2.</div>
-                    <h3 class="font-bold text-gray-800 mb-2">Pay securely via Interac e-Transfer or PayPal</h3>
+                    <h3 class="font-bold text-gray-800 mb-2">Pay securely via Interac e-Transfer or Cheque</h3>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="text-4xl text-yellow-600 mb-4">3.</div>
@@ -185,9 +185,9 @@
                 <li>
                     <strong>Amount:</strong>
                     <ul class="list-none pl-4 text-sm mt-1 space-y-1">
-                        <li>- Canadian Citizenship Test – 30 CAD (One Year, One-Time Payment)</li>
-                        <li>- Canadian Driving Test – 30 CAD (One Year, One-Time Payment)</li>
-                        <li>- Access to Both (Citizenship + Driving Test) – 50 CAD (One Year, One-Time Payment)</li>
+                        <li>- Canadian Citizenship Test – 25 CAD (One Year, One-Time Payment)</li>
+                        <li>- Canadian Driving Test – 25 CAD (One Year, One-Time Payment)</li>
+                        <li>- Access to Both (Citizenship + Driving Test) – 40 CAD (One Year, One-Time Payment)</li>
                     </ul>
                 </li>
                 <li>
