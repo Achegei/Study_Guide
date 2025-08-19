@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             FreeQuizSeeder::class,
             FreeDriverQuizSeeder::class,
+            PostSeeder::class,
 
             // --- Driving Course Seeders ---
             DrivingSectionsTableSeeder::class,

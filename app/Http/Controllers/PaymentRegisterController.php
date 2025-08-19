@@ -25,9 +25,9 @@ class PaymentRegisterController extends Controller
     public function showRegistrationForm()
     {
         $courseOptions = [
-            'Canadian Citizenship Test Preparation' => 'Canadian Citizenship Test Preparation',
-            'Driving Test Preparation' => 'Driving Test Preparation',
-            'Both Citizenship and Driving Tests' => 'Both Citizenship and Driving Tests',
+            'Canadian Citizenship Test Preparation' => 'Canadian Citizenship Test Prep',
+            'Driving Test Preparation' => 'Driving Test Prep',
+            'Both Citizenship and Driving Tests' => 'Citizenship Test Prep and Driving Test Prep',
         ];
 
         // Array of Canadian provinces and territories for the dropdown
@@ -165,7 +165,7 @@ class PaymentRegisterController extends Controller
 
             $service = new Sheets($client);
 
-            $spreadsheetId = '1ZQr2ZO-pdb_Ric3s0Rx6acz6_6-1sU6CqxSmtyFAbYU';
+            $spreadsheetId = '1a1xXQ52pwrN-vetVV3tA6H6hVWcANmru9b_szxJZYBg';
             $range = 'Form Responses 1!A:Z';
 
             // Prepare the values to be appended as a new row, including the expiration date

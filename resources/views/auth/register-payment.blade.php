@@ -10,10 +10,24 @@
         - It maintains all original functionality for form submission and error display.
     -->
     <div class="max-w-4xl mx-auto px-4 py-12">
-        <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center text-gray-800">Course Payment & Access Request</h1>
-        <p class="mb-8 text-gray-600 text-center max-w-2xl mx-auto">
-            Thank you for your interest in our course! Please complete this form after sending your Interac e-Transfer payment. Once we confirm your payment, your course access will be delivered via email or WhatsApp.
-        </p>
+            <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center text-gray-800">
+        {{ __('Course Payment & Access Request') }}
+        </h1>
+        <div class="mb-8 text-gray-600 text-center max-w-2xl mx-auto">
+        <p class="font-semibold mb-2 text-lg text-gray-700">{{ __('Before Completing the Form:') }}</p>
+            <ul class="list-disc list-inside space-y-1 mb-4 text-left mx-auto max-w-xs">
+                <li>{{ __('Send your Interac e-Transfer to: payment@iqracanadatestprep.ca') }}</li>
+                <li>{{ __('Set the Security Answer as: IQRA (ALL CAPITAL LETTERS)') }}</li>
+            </ul>
+
+    <p class="font-semibold mb-2 text-lg text-gray-700">{{ __('After Payment Confirmation:') }}</p>
+    <ul class="list-disc list-inside space-y-1 mb-4 text-left mx-auto max-w-xs">
+        <li>{{ __('Username: Your email used to send the e-Transfer') }}</li>
+        <li>{{ __('Password: A temporary password will be sent to your email (you can change it later)') }}</li>
+    </ul>
+
+    <p class="text-lg font-bold text-gray-800">{{ __('✅ Finally, enjoy one full year of access to the platform!') }}</p>
+</div>
         <div class="flex justify-center mb-8">
             <a href="{{url('buy-now')}}" class="bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition duration-300 ease-in-out">
                 Click here for Payment Instructions

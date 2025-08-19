@@ -67,7 +67,7 @@
                     <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Citizenship Test Prep</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 text-left mx-auto max-w-xs">
                         <li>5000+ Questions & Answers</li>
-                        <li>400+ Questions & Answers Per Province, territory and one general</li>
+                        <li>400+ Questions & Answers Per Province, territory and Common test</li>
                         <li>Province-specific summaries</li>
                         <li>Trusted by 350,000+ Test takers</li>
                         <li>Audio versions of the Questions available</li>
