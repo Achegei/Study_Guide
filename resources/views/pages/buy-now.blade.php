@@ -32,7 +32,7 @@
                             <li>5000+ Questions and answers( Each province, Territories and National/Common has 400+ Questions and answers).</li>
                             <li>Study Guide Summaries per Province</li>
                             <li>Audio Lessons</li>
-                            <li>Login Credentials (1-2 hrs) after submitting Interac payment reference</li>
+                            <li>All Login Credentials will be  received within 1hr after submitting Interac payment reference</li>
                         </ul>
                         <a href="{{route('register.payment')}}" class="mt-6 w-full bg-blue-600 text-white font-bold py-3 rounded-full hover:bg-blue-700 transition">
                             Buy Now
@@ -47,7 +47,7 @@
                             <li>5000+ Questions and answers( Each province, Territories and National/Common has 400+ Questions and answers).</li>
                             <li>Road Sign Charts</li>
                             <li>Exam Simulator</li>
-                            <li>Login Credentials (1-2 hrs) after submitting Interac payment reference</li>
+                            <li>All Login Credentials will be  received within 1hr after submitting Interac payment reference</li>
                         </ul>
                         <a href="{{route('register.payment')}}" class="mt-6 w-full bg-blue-600 text-white font-bold py-3 rounded-full hover:bg-blue-700 transition">
                             Buy Now
@@ -64,7 +64,7 @@
                             <li>All Driving Prep content</li>
                             <li>Both courses in one purchase</li>
                             <li>Best Value!</li>
-                            <li>Login Credentials (1-2 hrs) after submitting Interac payment reference</li>
+                            <li>All Login Credentials will be  received within 1hr after submitting Interac payment reference</li>
                         </ul>
                         <a href="{{route('register.payment')}}" class="mt-6 w-full bg-red-600 text-white font-bold py-3 rounded-full hover:bg-red-700 transition">
                             Get the Bundle & Save

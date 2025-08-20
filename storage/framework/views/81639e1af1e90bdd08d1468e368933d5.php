@@ -161,7 +161,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
                         </div>
-                        <p class="faq-answer">A: English, French, Somali, Arabic, Spanish, Mandarin, Hindustani and Punjabi.</p>
+                        <p class="faq-answer">A: English, French, Somali, Arabic, Spanish, Mandarin, and Punjabi.</p>
                     </div>
 
                     

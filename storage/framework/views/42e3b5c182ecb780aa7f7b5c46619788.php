@@ -13,7 +13,7 @@
                     Hear From Our Successful Users
                 </h1>
                 <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
-                    Real stories from people who passed their Canadian Citizenship Test with our help.
+                    Real stories from people who passed their Canadian Citizenship Test and Driving Test with our help.
                 </p>
             </header>
 
