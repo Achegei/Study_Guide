@@ -155,7 +155,7 @@
         </div>
         <!-- ✅ Mobile Dropdown -->
         <div x-show="open" x-transition class="md:hidden px-4 pb-4">
-                    !-- PWA Install Banner (New Addition) -->
+                    <!-- PWA Install Banner (New Addition) -->
                 <div id="pwa-install-banner" class="hidden bg-white text-navy-blue text-center p-3 md:p-4 shadow-md flex items-center justify-between flex-wrap gap-2">
 
                     <div class="flex-grow text-sm md:text-base font-semibold">
@@ -263,7 +263,7 @@
     <!-- ✅ Footer Bottom -->
     <footer class="bg-gray-900 text-gray-400 text-xs py-6">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            &copy;{{ now()->year }} <span class="text-white">{{ __('Canadian Citizenship Prep') }}</span>. {{ __('All Rights Reserved.') }}
+            &copy;{{ now()->year }} <span class="text-white">{{ __('Iqra Canada Test Prep') }}</span>. {{ __('All Rights Reserved.') }}
         </div>
     </footer>
 

@@ -1,6 +1,6 @@
 // public/service-worker.js
 
-const CACHE_VERSION = 'v3'; // bump this whenever you deploy new assets
+const CACHE_VERSION = 'v4'; // bump this whenever you deploy new assets
 const CACHE_NAME = `iqra-test-prep-cache-${CACHE_VERSION}`;
 
 // Core files to precache

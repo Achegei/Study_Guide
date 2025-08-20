@@ -1,55 +1,61 @@
-// public/js/script.js
-
 let deferredPrompt; // Variable to store the beforeinstallprompt event
 
-// Listen for the beforeinstallprompt event
+// ✅ Handle beforeinstallprompt (Android/Chrome)
 window.addEventListener('beforeinstallprompt', (e) => {
-    // Prevent the mini-infobar from appearing on mobile
     e.preventDefault();
-    // Stash the event so it can be triggered later.
     deferredPrompt = e;
-    // Update UI to notify the user they can add to home screen
+
     const installBanner = document.getElementById('pwa-install-banner');
     if (installBanner) {
-        installBanner.classList.remove('hidden'); // Show the custom install banner
+        installBanner.classList.remove('hidden'); // Show banner
     }
 });
 
-// Get the install button from the banner
+// ✅ Handle Install button (Android only)
 const installButton = document.getElementById('install-pwa-button');
 if (installButton) {
     installButton.addEventListener('click', async () => {
         if (deferredPrompt) {
-            // Hide the custom install banner
             const installBanner = document.getElementById('pwa-install-banner');
-            if (installBanner) {
-                installBanner.classList.add('hidden');
-            }
+            if (installBanner) installBanner.classList.add('hidden');
 
-            // Show the native install prompt
             deferredPrompt.prompt();
-            // Wait for the user to respond to the prompt
             const { outcome } = await deferredPrompt.userChoice;
-            // Optionally, send analytics event with outcome of user choice
             console.log(`User response to the install prompt: ${outcome}`);
-            // We've used the prompt, and can't use it again. Clear it.
             deferredPrompt = null;
         }
     });
 }
 
-// Get the close button for the banner
+// ✅ Handle Close button
 const closeInstallBannerButton = document.getElementById('close-pwa-banner');
 if (closeInstallBannerButton) {
     closeInstallBannerButton.addEventListener('click', () => {
         const installBanner = document.getElementById('pwa-install-banner');
         if (installBanner) {
-            installBanner.classList.add('hidden'); // Hide the custom install banner
+            installBanner.classList.add('hidden');
         }
     });
 }
 
+// ✅ iOS Safari detection (no beforeinstallprompt)
+document.addEventListener("DOMContentLoaded", () => {
+    const installBanner = document.getElementById('pwa-install-banner');
+    const installBtn = document.getElementById('install-pwa-button');
 
+    const isIOS = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+    const isInStandalone = ("standalone" in window.navigator) && window.navigator.standalone;
+
+    if (isIOS && !isInStandalone) {
+        if (installBanner) installBanner.classList.remove('hidden');
+        if (installBtn) {
+            installBtn.textContent = "Add via Safari"; // change text
+            installBtn.disabled = true; // disable since prompt won’t work
+        }
+    }
+});
+
+// ✅ Scroll To Top
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -66,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Initialize AOS animations
+// ✅ Initialize AOS
 document.addEventListener("DOMContentLoaded", function () {
     AOS.init({
         once: true,
@@ -74,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-//Swiper initialization for testimonials
+// ✅ Swiper Init
 document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelector('.testimonial-swiper')) {
         new Swiper('.testimonial-swiper', {
@@ -86,12 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 prevEl: '.swiper-button-prev',
             },
             breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                }
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
             }
         });
     }
