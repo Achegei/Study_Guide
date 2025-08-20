@@ -79,7 +79,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-gray-200">
                 <h1 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">
-                    Comprehensive Driving Guide: Alberta 🚗
+                    Comprehensive Driving Guide: Alberta
                 </h1>
 
                 <div class="prose max-w-none text-gray-800 leading-relaxed">

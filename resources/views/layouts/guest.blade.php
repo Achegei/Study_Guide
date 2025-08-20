@@ -64,6 +64,19 @@
         }
     </style>
 
+    <!-- ✅ PWA: Web App Manifest Link -->
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
+    <!-- ✅ PWA: Apple Specific Meta Tags (for iOS "Add to Home Screen") -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="IQRA Test Prep">
+    <link rel="apple-touch-icon" href="{{ asset('/images/icons/icon-192x192.png') }}">
+    <link rel="apple-touch-startup-image" href="{{ asset('/images/icons/icon-512x512.png') }}">
+
+    <!-- ✅ PWA: Theme color for browser UI (address bar/toolbar) -->
+    <meta name="theme-color" content="#FCD34D">
+
     <!-- Livewire Styles -->
     @livewireStyles
 </head>
@@ -236,5 +249,20 @@
     <!-- ⚡️ LIVEWIRE COMPONENT & SCRIPTS ⚡️ -->
     @livewire('test-prep')
     @livewireScripts
+
+    <!-- ✅ PWA: Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             StartSession::class, // Crucial for session to work correctly
             \App\Http\Middleware\SetLocale::class, // Ensure SetLocale runs within the web group, after StartSession
+            \App\Http\Middleware\RedirectIfPasswordNotChanged::class,
         ]);
 
         // Remove this line, as it was appending SetLocale globally and might conflict

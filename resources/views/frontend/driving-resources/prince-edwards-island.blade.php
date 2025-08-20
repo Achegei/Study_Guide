@@ -79,11 +79,11 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-gray-200">
                 <h1 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">
-                    Comprehensive Driving Guide: Alberta 🚗
+                    Comprehensive Driving Guide: Prince Edward Island
                 </h1>
 
                 <div class="prose max-w-none text-gray-800 leading-relaxed">
-                    <p class="mb-6 text-center">Understanding road signs is crucial for safe driving in Alberta. These signs provide vital information about regulations, warnings, and guidance. Here's a look at some key road signs you'll encounter and their meanings.</p>
+                    <p class="mb-6 text-center">Understanding road signs is crucial for safe driving in Prince Edward Island. These signs provide vital information about regulations, warnings, and guidance. Here's a look at some key road signs you'll encounter and their meanings.</p>
 
                     <h2>Road Signs</h2>
                     <div class="prose-grid"> {{-- This div will become a two-column grid on medium screens and up --}}
