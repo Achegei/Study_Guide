@@ -8,24 +8,27 @@
         }
     </style>
 
-    <section class="relative py-20 md:py-24 text-center text-white rounded-b-3xl shadow-lg overflow-hidden"
-              style="background: linear-gradient(to right, #b72b2b, #8a1f1f);">
+    <section class="relative py-20 md:py-24 text-center rounded-b-3xl shadow-lg overflow-hidden"
+               style="background: linear-gradient(to right, #f6f9faff, #edebebff);">
         <div class="absolute inset-0 z-0">
-            <img 
-                src="<?php echo e(asset('images/driving-hero.jpg')); ?>" 
-                alt="A steering wheel with road signs in the background" 
+            <img
+                src="<?php echo e(asset('images/driving-hero.png')); ?>"
+                alt="A steering wheel with road signs in the background"
                 class="w-full h-full object-cover opacity-50"
             >
         </div>
         <div class="relative z-10 max-w-4xl mx-auto px-4">
-            <h1 class="text-3xl md:text-5xl font-bold mb-4 animate-fade-in">
-                Canadian Driving Knowledge Test Prep – All Provinces & Territories
+            <!-- Changed text color to black for the heading -->
+            <h1 class="text-3xl md:text-5xl font-bold mb-4 animate-fade-in text-black">
+                Canadian Driving Knowledge Test Prep – All Provinces
             </h1>
-            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto opacity-90 animate-fade-in-delay">
+            <!-- Changed text color to black for the paragraph -->
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto opacity-90 animate-fade-in-delay text-black">
                 Prepare for your learner's permit with our province-specific practice tests, road sign charts, and realistic exam simulators.
             </p>
             <div class="mt-8">
                 <div class="mt-8 flex flex-wrap justify-center gap-8">
+                    <!-- These buttons already use text-gray-800, which is dark -->
                     <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                         <?php echo e(__('Access Full Course')); ?>
 
@@ -38,6 +41,7 @@
             </div>
         </div>
     </section>
+
 
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4">

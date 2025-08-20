@@ -25,7 +25,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     
                     <div class="flex flex-col items-center p-6 border rounded-xl transition-transform transform hover:scale-105">
-                        <h3 class="text-2xl font-bold text-gray-800">Citizenship Prep</h3>
+                        <h3 class="text-2xl font-bold text-gray-800">Canadian Citizenship Prep</h3>
                         <p class="mt-2 text-4xl font-extrabold text-blue-600">$25 CAD</p>
                         <p class="mt-2 text-2xl font-extrabold text-blue-400">(One Year, One-Time Payment)</p>
                         <ul class="mt-4 text-sm text-gray-600 list-disc list-inside text-left">
@@ -40,7 +40,7 @@
                     </div>
                     
                     <div class="flex flex-col items-center p-6 border rounded-xl transition-transform transform hover:scale-105">
-                        <h3 class="text-2xl font-bold text-gray-800">Driving Prep</h3>
+                        <h3 class="text-2xl font-bold text-gray-800">Canadian Driving Prep</h3>
                         <p class="mt-2 text-4xl font-extrabold text-blue-600">$25 CAD</p>
                          <p class="mt-2 text-2xl font-extrabold text-blue-400">(One Year, One-Time Payment)</p>
                         <ul class="mt-4 text-sm text-gray-600 list-disc list-inside text-left">
@@ -60,8 +60,8 @@
                         <p class="mt-2 text-4xl font-extrabold text-red-600">$40 CAD</p>
                         <p class="text-sm line-through text-gray-400 mt-1">$50 CAD value</p>
                         <ul class="mt-4 text-sm text-gray-600 list-disc list-inside text-left">
-                            <li>All Citizenship Prep content</li>
-                            <li>All Driving Prep content</li>
+                            <li>All  CanadianCitizenship Prep content</li>
+                            <li>All Canadian Driving Prep content</li>
                             <li>Both courses in one purchase</li>
                             <li>Best Value!</li>
                             <li>All Login Credentials will be  received within 1hr after submitting Interac payment reference</li>

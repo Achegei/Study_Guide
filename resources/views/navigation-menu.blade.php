@@ -13,13 +13,13 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     
-                    {{-- Citizenship Test Link --}}
+                    {{-- Canadian Citizenship Test Link --}}
                     {{-- This link is active when the 'courses.index' route is the current route --}}
                     <x-nav-link href="{{ route('courses.index') }}" :active="request()->routeIs('courses.index')">
                         {{ __('Citizenship Test Prep') }} 
                     </x-nav-link>
 
-                    {{-- Driving Test Link --}}
+                    {{-- Canadian Driving Test Link --}}
                     {{-- This link is a placeholder for now and has no active state check --}}
                     <x-nav-link href="{{route('driving.index')}}" :active="request()->routeIs('driving.*')">
                         {{ __('Driving Test Prep') }}

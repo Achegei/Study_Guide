@@ -29,10 +29,10 @@
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="{{route('purchase')}}" class="inline-block bg-white text-red-800 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300">
-                    Start Citizenship Prep
+                    Start Canadian Citizenship Prep
                 </a>
                 <a href="{{route('free-test')}}" class="inline-block bg-white text-red-800 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300">
-                    Start Driving Test Prep
+                    Start Canadian Driving Test Prep
                 </a>
             </div>
         </div>
@@ -65,7 +65,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-100 rounded-xl shadow-lg p-8 text-center">
-                    <span class="text-6xl">🇨🇦</span>
+                    <img src="{{ asset('images/logo.png') }}" alt="Company Logo" class="mx-auto h-24 w-auto object-contain mb-4">
                     <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Citizenship Test Prep</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 text-left mx-auto max-w-xs">
                         <li>5000+ Questions & Answers</li>
