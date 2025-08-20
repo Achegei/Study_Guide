@@ -48,7 +48,7 @@
             <?php echo method_field('PUT'); ?> 
 
             <div class="mt-4">
-                <label for="current_password" class="block font-medium text-sm text-gray-700">Current Password</label>
+                <label for="current_password" class="block font-medium text-sm text-gray-700">Temporary Password</label>
                 <input id="current_password" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500" type="password" name="current_password" required autocomplete="current-password" />
             </div>
 

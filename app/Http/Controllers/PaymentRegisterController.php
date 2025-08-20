@@ -210,6 +210,6 @@ class PaymentRegisterController extends Controller
         Auth::login($user);
 
         // 5. Redirect the user to the password change form as per your existing flow.
-        return redirect()->route('password.change.form')->with('success', 'Registration and payment details submitted! Please change your password to continue.');
+        return redirect()->route('password.change.form')->with('success', 'Your temporary password will be sent to your email shortly. Please use it to log in and create a new password to replace the temporary one.');
     }
 }
