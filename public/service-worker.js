@@ -2,7 +2,7 @@
 // This script will run in the background, separate from your web page.
 // It handles caching and offline functionality.
 
-const CACHE_NAME = 'iqra-test-prep-cache-v1'; // Cache version. Change this to trigger updates.
+const CACHE_NAME = 'iqra-test-prep-cache-v2'; // Cache version. Change this to trigger updates.
 const urlsToCache = [
     '/', // Cache the homepage
     '/purchase',
@@ -60,39 +60,47 @@ self.addEventListener('install', (event) => {
 // --- Fetch Event ---
 // This event is fired when the browser makes a request.
 // It intercepts requests and serves cached content if available.
+// --- Fetch Event ---
 self.addEventListener('fetch', (event) => {
+    const url = new URL(event.request.url);
+
+    // ❌ Skip caching for auth & API requests
+    if (
+        url.pathname.startsWith('/login') ||
+        url.pathname.startsWith('/register') ||
+        url.pathname.startsWith('/logout') ||
+        url.pathname.startsWith('/password') || // forgot/reset password
+        url.pathname.startsWith('/sanctum') ||  // Laravel Sanctum
+        url.pathname.startsWith('/api')         // API calls
+    ) {
+        return; // Let the network handle these
+    }
+
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                // Cache hit - return response
                 if (response) {
                     return response;
                 }
-                // If not in cache, fetch from network
+
                 return fetch(event.request)
                     .then((networkResponse) => {
-                        // Check if we received a valid response
                         if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
                             return networkResponse;
                         }
-                        // IMPORTANT: Clone the response. A response is a stream
-                        // and can only be consumed once. We must clone it so that
-                        // both the browser and the cache can consume it.
+
                         const responseToCache = networkResponse.clone();
 
-                        caches.open(CACHE_NAME)
-                            .then((cache) => {
-                                // Only cache GET requests
-                                if (event.request.method === 'GET') {
-                                    cache.put(event.request, responseToCache);
-                                }
-                            });
+                        caches.open(CACHE_NAME).then((cache) => {
+                            if (event.request.method === 'GET') {
+                                cache.put(event.request, responseToCache);
+                            }
+                        });
+
                         return networkResponse;
                     })
                     .catch((error) => {
                         console.error('Fetch failed for:', event.request.url, error);
-                        // Optionally, return an offline page here
-                        // For example: return caches.match('/offline.html');
                     });
             })
     );

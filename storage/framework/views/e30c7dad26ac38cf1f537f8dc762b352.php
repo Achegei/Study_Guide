@@ -158,6 +158,28 @@
         </div>
         <!-- ✅ Mobile Dropdown -->
         <div x-show="open" x-transition class="md:hidden px-4 pb-4">
+                    !-- PWA Install Banner (New Addition) -->
+                <div id="pwa-install-banner" class="hidden bg-white text-navy-blue text-center p-3 md:p-4 shadow-md flex items-center justify-between flex-wrap gap-2">
+
+                    <div class="flex-grow text-sm md:text-base font-semibold">
+                        <?php echo e(__('Add IQRA Canada to your home screen for quick access!')); ?>
+
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <button id="install-pwa-button" class="bg-navy-blue text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition duration-300">
+                            <?php echo e(__('Install App')); ?>
+
+                        </button>
+
+                        <button id="close-pwa-banner" class="text-navy-blue hover:text-gray-700 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+    <!-- ✅ End PWA Banner -->
             <ul class="space-y-2">
                 <li><a href="/" class="block py-1"><?php echo e(__('Home')); ?></a></li>
                 <li><a href="<?php echo e(route('purchase')); ?>" class="block py-1"><?php echo e(__('Canadian Citizenship Test Prep')); ?></a></li>
