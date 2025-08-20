@@ -54,7 +54,7 @@
                 </div>
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
                     <div class="text-4xl text-yellow-600 mb-4">✅</div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Trusted by Students</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Trusted by Newcomers</h3>
                     <p class="text-sm text-gray-600">High pass rates & real success stories.</p>
                 </div>
             </div>
