@@ -20,6 +20,7 @@ class PasswordChangeController extends Controller
      */
     public function update(Request $request)
     {
+         dd('Controller Hit!');
         // Log the start of the password change attempt
         Log::info('Password change attempt initiated for user ID: ' . (Auth::id() ?? 'Guest'));
 
