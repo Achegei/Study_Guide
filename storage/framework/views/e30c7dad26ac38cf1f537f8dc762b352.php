@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo e($title ?? __('IQRA Canada Test Prep')); ?></title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ✅ Use Vite for Tailwind + App Scripts -->
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
 
     <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -307,12 +307,19 @@ if (isset($__slots)) unset($__slots);
 
     <!-- ✅ PWA: Service Worker Registration -->
     <script>
-        if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
+        window.PRECACHE_ASSETS = [
+            <?php echo json_encode(\Illuminate\Support\Facades\Vite::asset('resources/css/app.css'), 15, 512) ?>,
+            <?php echo json_encode(\Illuminate\Support\Facades\Vite::asset('resources/js/app.js'), 15, 512) ?>,
+            '/offline.html'
+        ];
+
         navigator.serviceWorker.register('/service-worker.js')
-            .then(() => console.log("Service Worker Registered"))
+            .then(reg => console.log("Service Worker Registered", reg))
             .catch(err => console.error("SW registration failed", err));
-        }
-        </script>
+    }
+</script>
+
 
 </body>
 </html>
