@@ -31,12 +31,14 @@
             <div class="mt-8">
                 <div class="mt-8 flex flex-wrap justify-center gap-8">
                     <!-- These buttons already use text-gray-800, which is dark -->
-                    <a href="{{route('buy-now')}}" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <a href="{{route('buy-now')}}" class="inline-block bg-red-700 text-white hover:bg-red-800 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                         {{ __('Access Full Course') }}
                     </a>
-                    <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-white text-gray-800 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+
+                    <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-blue-700 text-white hover:bg-blue-800 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                         {{ __('Start With Free Test') }}
                     </a>
+
                 </div>
             </div>
         </div>
@@ -115,7 +117,7 @@
                 Start your preparation today and take the first step towards getting your Canadian driver's license.
             </p>
            <div class="mt-8 flex flex-wrap justify-center gap-8">
-                <a href="{{route('buy-now')}}" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                <a href="{{route('buy-now')}}" class="inline-block bg-red-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                     {{ __('Access Full Course') }}
                 </a>
                 <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">

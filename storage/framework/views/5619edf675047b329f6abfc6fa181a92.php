@@ -22,14 +22,15 @@
             </p>
             <div class="mt-8 flex flex-wrap justify-center gap-4">
             <div class="mt-8 flex flex-wrap justify-center gap-8">
-            <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-white text-red-700 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+            <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-red-700 text-white hover:bg-red-800 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                 <?php echo e(__('Access Full Course')); ?>
 
             </a>
-            <a href="<?php echo e(route('free-quiz.show')); ?>" class="inline-block bg-white text-red-700 hover:bg-gray-200 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                <?php echo e(__('Start With Free Test')); ?>
+            <a href="<?php echo e(route('free-quiz.show')); ?>" class="inline-block bg-blue-700 text-white hover:bg-blue-800 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+            <?php echo e(__('Start With Free Test')); ?>
 
             </a>
+
 </div>
         </div>
     </section>
@@ -106,7 +107,7 @@
                 Start your preparation today and join the thousands of Canadians who have passed their test with our help.
             </p>
             <div class="mt-8 flex flex-wrap justify-center gap-8">
-                <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-red-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                     <?php echo e(__('Access Full Course')); ?>
 
                 </a>

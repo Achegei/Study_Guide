@@ -41,7 +41,6 @@
         <div class="space-y-5 text-center md:text-left" data-aos="fade-left">
             <h3 class="text-3xl font-bold text-blue-800">Proudly Canadian</h3>
             <p class="text-lg text-gray-800"><strong>100% Canadian Owned and Operated</strong></p>
-            <p class="text-base text-gray-600">We are based in beautiful Ottawa</p>
         </div>
     </div>
 </section>

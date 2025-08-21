@@ -19,6 +19,9 @@
                 <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                     Choose your course or get the bundle for a discounted price.
                 </p>
+                <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Below get citizenship test preparation and driving test preparation tailored specifically for your province.
+                </p>
             </header>
 
             <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-gray-200">

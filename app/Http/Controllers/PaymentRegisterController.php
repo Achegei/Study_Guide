@@ -7,15 +7,13 @@ use App\Models\CourseSection; // Import CourseSection model
 use App\Models\DrivingSection; // Import DrivingSection model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; // Still needed for Auth::id() in logging etc.
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Google\Client;
 use Google\Service\Sheets;
 use Carbon\Carbon; // Import Carbon for date manipulation
 use Illuminate\Support\Str; // Import Str for slugging
-// Removed: use Illuminate\Support\Facades\Mail; // No longer needed
-// Removed: use App\Mail\TemporaryPasswordMail; // No longer needed
 
 class PaymentRegisterController extends Controller
 {
@@ -77,8 +75,8 @@ class PaymentRegisterController extends Controller
             'province_of_choice.required' => 'Please select your Province/Territory of Choice.',
         ]);
 
-        // --- Generate a unique temporary password instead of a common one ---
-        $temporaryPassword = Str::random(12); // Generate a random 12-character string
+        // Generate a random 8-character string and convert it to lowercase.
+        $temporaryPassword = Str::upper(Str::random(4)); 
         $defaultRoleId = 2; // Default role for new users (e.g., 'regular user')
 
         $screenshotPath = null;
@@ -151,7 +149,6 @@ class PaymentRegisterController extends Controller
         }
         // ✅ END ACCESS ASSIGNMENT LOGIC
 
-
         // ✅ GOOGLE SHEETS API INTEGRATION START
         try {
             $client = new Client();
@@ -178,7 +175,7 @@ class PaymentRegisterController extends Controller
                     $request->registration_type,
                     $user->access_expires_at ? $user->access_expires_at->toDateTimeString() : 'N/A',
                     $user->province_of_choice,
-                    $temporaryPassword, // <--- TEMPORARY PASSWORD STILL ADDED TO GOOGLE SHEET
+                    $temporaryPassword, // TEMPORARY PASSWORD ADDED TO GOOGLE SHEET
                 ]
             ];
 
@@ -203,12 +200,11 @@ class PaymentRegisterController extends Controller
         // ✅ GOOGLE SHEETS API INTEGRATION END
 
         // Removed: Email sending logic, as it's handled by your Google workflow.
-        // Removed: try { Mail::to($user->email)->send(new TemporaryPasswordMail($user, $temporaryPassword)); Log::info("Temporary password email sent to {$user->email}."); } catch (\Exception $e) { Log::error("Failed to send temporary password email to {$user->email}: " . $e->getMessage()); }
 
-        // 4. Log the user in
-        Auth::login($user);
+        // --- 4. IMPORTANT CHANGE: DO NOT LOG THE USER IN HERE ---
+        // Auth::login($user); // <-- REMOVED THIS LINE
 
-        // 5. Redirect the user to the password change form with an updated message.
-        return redirect()->route('password.change.form')->with('success', 'Your account has been created! A temporary password has been provided to our administrators and will be sent to your email shortly through our secure system. Please use it to log in and create a new password.');
+        // 5. Redirect the user to the LOGIN page
+        return redirect()->route('login')->with('status', 'Your account has been created successfully! Please log in using your email and the temporary password (which will be sent to your email within 1 hr) to set your new password.');
     }
 }

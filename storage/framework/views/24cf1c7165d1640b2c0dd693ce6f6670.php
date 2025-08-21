@@ -11,7 +11,7 @@
              style="background: linear-gradient(to right, #e53e3e, #fbd38d);">
         <div class="absolute inset-0 z-0">
             <img 
-                src="<?php echo e(asset('images/toronto-skyline.png')); ?>" 
+                src="<?php echo e(asset('images/canadian-citizenship.png')); ?>" 
                 alt="Canadian landscape" 
                 class="w-full h-full object-cover"
             >
@@ -25,11 +25,14 @@
             <p class="text-xl sm:text-2xl font-light mb-8 max-w-3xl mx-auto opacity-90">
                 Up-to-date questions, study guides, and practice exams for newcomers and drivers across Canada.
             </p>
+            <p class="text-xl sm:text-2xl font-light mb-8 max-w-3xl mx-auto opacity-90">
+                Below get citizenship test preparation and driving test preparation tailored specifically for your province.
+            </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="<?php echo e(route('purchase')); ?>" class="inline-block bg-white text-red-800 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300">
-                    Start Canadian Citizenship Prep
+                    Start Canadian Citizenship Test Prep
                 </a>
-                <a href="<?php echo e(route('free-test')); ?>" class="inline-block bg-white text-red-800 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300">
+                <a href="<?php echo e(route('free-test')); ?>" class="inline-block bg-blue-700 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:bg-blue-800 transform hover:scale-105 transition-all duration-300">
                     Start Canadian Driving Test Prep
                 </a>
             </div>
@@ -64,7 +67,7 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-100 rounded-xl shadow-lg p-8 text-center">
                     <img src="<?php echo e(asset('images/logo.png')); ?>" alt="Company Logo" class="mx-auto h-24 w-auto object-contain mb-4">
-                    <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Citizenship Test Prep</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Canadian Citizenship Test Prep</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 text-left mx-auto max-w-xs">
                         <li>5000+ Questions & Answers</li>
                         <li>400+ Questions & Answers Per Province, territory and Common test</li>
@@ -72,13 +75,13 @@
                         <li>Trusted by 350,000+ Test takers</li>
                         <li>Audio versions of the Questions available</li>
                     </ul>
-                    <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Access Full Course</a>
+                    <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-red-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Access Full Course</a>
                      <a href="<?php echo e(route('free-quiz.show')); ?>" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Start With Free Test</a>
                 </div>
 
                 <div class="bg-gray-100 rounded-xl shadow-lg p-8 text-center">
                      <img src="<?php echo e(asset('images/car.png')); ?>" alt="<?php echo e(__('Car icon')); ?>" class="w-20 h-20 object-contain mx-auto mb-4">
-                    <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Driving Test Prep</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Canadian Driving Test Prep</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 text-left mx-auto max-w-xs">
                         <li>4000+ Questions & Answers</li>
                         <li>Provincial learner’s test practice (400 Questions per region)</li>
@@ -86,7 +89,7 @@
                         <li>Trusted by 350,000+ Test takers</li>
                         <li>Simulated exam mode</li>
                     </ul>
-                    <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Acces Full Driving Test Course</a>
+                    <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-red-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Acces Full Driving Test Course</a>
                     <a href="<?php echo e(route('free-driver-quiz.show')); ?>" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-full mt-6 hover:bg-blue-700 transition">Start With Free Test</a>
                 </div>
             </div>
