@@ -1,87 +1,108 @@
 let deferredPrompt; // Variable to store the beforeinstallprompt event
 
-// ✅ Handle beforeinstallprompt (Android/Chrome)
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    const installBanner = document.getElementById('pwa-install-banner');
-    if (installBanner) {
-        installBanner.classList.remove('hidden'); // Show banner
-    }
-});
-
-// ✅ Handle Install button (Android only)
-const installButton = document.getElementById('install-pwa-button');
-if (installButton) {
-    installButton.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            const installBanner = document.getElementById('pwa-install-banner');
-            if (installBanner) installBanner.classList.add('hidden');
-
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response to the install prompt: ${outcome}`);
-            deferredPrompt = null;
-        }
-    });
-}
-
-// ✅ Handle Close button
-const closeInstallBannerButton = document.getElementById('close-pwa-banner');
-if (closeInstallBannerButton) {
-    closeInstallBannerButton.addEventListener('click', () => {
-        const installBanner = document.getElementById('pwa-install-banner');
-        if (installBanner) {
-            installBanner.classList.add('hidden');
-        }
-    });
-}
-
-// ✅ iOS Safari detection (no beforeinstallprompt)
 document.addEventListener("DOMContentLoaded", () => {
-    const installBanner = document.getElementById('pwa-install-banner');
-    const installBtn = document.getElementById('install-pwa-button');
+    // --- PWA Elements ---
+    const pwaInstallBanner = document.getElementById('pwa-install-banner');
+    const installPwaButton = document.getElementById('install-pwa-button');
+    const closePwaBanner = document.getElementById('close-pwa-banner');
+    const androidInstructions = document.getElementById('pwa-android-instructions');
+    const iosInstructions = document.getElementById('pwa-ios-instructions');
 
-    const isIOS = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
-    const isInStandalone = ("standalone" in window.navigator) && window.navigator.standalone;
+    // --- Back To Top Elements ---
+    const backToTopBtn = document.getElementById('backToTopBtn');
 
-    if (isIOS && !isInStandalone) {
-        if (installBanner) installBanner.classList.remove('hidden');
-        if (installBtn) {
-            installBtn.textContent = "Add via Safari"; // change text
-            installBtn.disabled = true; // disable since prompt won’t work
+    // --- Helper Functions for PWA ---
+    const isIOS = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test(userAgent);
+    };
+
+    const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches;
+
+    function showInstallBanner() {
+        if (pwaInstallBanner) {
+            pwaInstallBanner.classList.remove('hidden');
         }
     }
-});
 
-// ✅ Scroll To Top
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    function hideInstallBanner() {
+        if (pwaInstallBanner) {
+            pwaInstallBanner.classList.add('hidden');
+            localStorage.setItem('pwaDismissed', 'true'); // Remember dismissal
+        }
+    }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const backToTopBtn = document.getElementById('backToTopBtn');
+    // Check if banner was previously dismissed
+    if (localStorage.getItem('pwaDismissed') === 'true') {
+        hideInstallBanner();
+    }
+
+    // --- PWA Close Button Listener ---
+    if (closePwaBanner) {
+        closePwaBanner.addEventListener('click', hideInstallBanner);
+    }
+
+    // --- PWA Logic: Detect OS and show appropriate banner ---
+    if (isIOS() && !isStandalone()) {
+        // iOS device and not already installed as PWA
+        if (androidInstructions) androidInstructions.classList.add('hidden'); // Hide Android message
+        if (installPwaButton) installPwaButton.classList.add('hidden'); // Hide install button
+        if (iosInstructions) iosInstructions.classList.remove('hidden'); // Show iOS specific message
+        showInstallBanner(); // Show the banner for iOS
+    } else if ('beforeinstallprompt' in window) {
+        // Android/Desktop browser that supports programmatic PWA installation
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault(); // Prevent the browser's default mini-infobar
+            deferredPrompt = e; // Store the event for later use
+            if (iosInstructions) iosInstructions.classList.add('hidden'); // Ensure iOS message is hidden
+            if (androidInstructions) androidInstructions.classList.remove('hidden'); // Show Android message
+            if (installPwaButton) installPwaButton.classList.remove('hidden'); // Show install button
+            showInstallBanner(); // Show the custom banner
+        });
+
+        // Handle the custom install button click for Android/Desktop
+        if (installPwaButton) {
+            installPwaButton.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    hideInstallBanner(); // Hide banner immediately on click
+
+                    deferredPrompt.prompt(); // Show the browser's install prompt
+                    const { outcome } = await deferredPrompt.userChoice;
+                    console.log(`User response to the install prompt: ${outcome}`);
+                    deferredPrompt = null; // Clear the stored event
+                }
+            });
+        }
+    }
+
+    // Hide the banner if the PWA is successfully installed (for Android/Desktop)
+    window.addEventListener('appinstalled', () => {
+        hideInstallBanner();
+    });
+
+    // --- Scroll To Top Logic ---
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Expose scrollToTop to global scope if it's called from inline HTML (like onclick)
+    window.scrollToTop = scrollToTop;
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
-            backToTopBtn.classList.remove('hidden');
+            if (backToTopBtn) backToTopBtn.classList.remove('hidden');
         } else {
-            backToTopBtn.classList.add('hidden');
+            if (backToTopBtn) backToTopBtn.classList.add('hidden');
         }
     });
-});
 
-// ✅ Initialize AOS
-document.addEventListener("DOMContentLoaded", function () {
+    // --- Initialize AOS (Animations On Scroll) ---
     AOS.init({
-        once: true,
-        duration: 800
+        once: true, // Whether animation should only happen once - while scrolling down
+        duration: 800 // Duration of animation
     });
-});
 
-// ✅ Swiper Init
-document.addEventListener('DOMContentLoaded', function () {
+    // --- Swiper Initialization for Testimonials ---
     if (document.querySelector('.testimonial-swiper')) {
         new Swiper('.testimonial-swiper', {
             loop: true,

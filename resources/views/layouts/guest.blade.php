@@ -159,25 +159,33 @@
         </div>
         <!-- ✅ Mobile Dropdown -->
         <div x-show="open" x-transition class="md:hidden px-4 pb-4">
-                    <!-- PWA Install Banner (New Addition) -->
-                <div id="pwa-install-banner" class="hidden bg-white text-navy-blue text-center p-3 md:p-4 shadow-md flex items-center justify-between flex-wrap gap-2">
+            <!-- PWA Install Banner (New Addition - Place this inside the mobile dropdown div) -->
+            <div id="pwa-install-banner" class="hidden bg-white text-navy-blue text-center p-3 md:p-4 shadow-md flex items-center justify-between flex-wrap gap-2">
 
-                    <div class="flex-grow text-sm md:text-base font-semibold">
-                        {{ __('Add IQRA Canada to your home screen for quick access!') }}
-                    </div>
-
-                    <div class="flex items-center gap-3">
-                        <button id="install-pwa-button" class="bg-navy-blue text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition duration-300">
-                            {{ __('Install App') }}
-                        </button>
-
-                        <button id="close-pwa-banner" class="text-navy-blue hover:text-gray-700 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
+                <!-- Instructions for Android/Desktop (visible by default) -->
+                <div id="pwa-android-instructions" class="flex-grow text-sm md:text-base font-semibold">
+                    {{ __('Add IQRA Canada to your home screen for quick access!') }}
                 </div>
+
+                <!-- Instructions for iOS (hidden by default, shown by JS) -->
+                <div id="pwa-ios-instructions" class="hidden flex-grow text-sm md:text-base font-semibold">
+                    {{ __('To install, tap the Share icon') }} <i class="fa-solid fa-arrow-up-from-bracket"></i> {{ __('below, then select "Add to Home Screen."') }}
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <!-- Button for Android/Desktop (hidden by default for iOS by JS) -->
+                    <button id="install-pwa-button" class="bg-navy-blue text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition duration-300">
+                        {{ __('Install App') }}
+                    </button>
+
+                    <!-- Close button for both -->
+                    <button id="close-pwa-banner" class="text-navy-blue hover:text-gray-700 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
     <!-- ✅ End PWA Banner -->
             <ul class="space-y-2">
                 <li><a href="/" class="block py-1">{{ __('Home') }}</a></li>
@@ -226,24 +234,6 @@
             </ul>
         </div>
     </nav>
-
-    <!-- PWA Install Banner (New Addition) -->
-    <div id="pwa-install-banner" class="hidden bg-white text-navy-blue text-center p-3 md:p-4 shadow-md flex items-center justify-between flex-wrap gap-2">
-        <div class="flex-grow text-sm md:text-base font-semibold">
-            {{ __('Add IQRA Canada to your home screen for quick access!') }}
-        </div>
-        <div class="flex items-center gap-3">
-            <button id="install-pwa-button" class="bg-navy-blue text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition duration-300">
-                {{ __('Install App') }}
-            </button>
-            <button id="close-pwa-banner" class="text-navy-blue hover:text-gray-700 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-    </div>
-
     <!-- ✅ Main Page Content -->
     <main>
         @yield('content')

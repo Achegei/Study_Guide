@@ -14,6 +14,8 @@ use Google\Client;
 use Google\Service\Sheets;
 use Carbon\Carbon; // Import Carbon for date manipulation
 use Illuminate\Support\Str; // Import Str for slugging
+// Removed: use Illuminate\Support\Facades\Mail; // No longer needed
+// Removed: use App\Mail\TemporaryPasswordMail; // No longer needed
 
 class PaymentRegisterController extends Controller
 {
@@ -75,7 +77,8 @@ class PaymentRegisterController extends Controller
             'province_of_choice.required' => 'Please select your Province/Territory of Choice.',
         ]);
 
-        $commonPassword = 'password';
+        // --- Generate a unique temporary password instead of a common one ---
+        $temporaryPassword = Str::random(12); // Generate a random 12-character string
         $defaultRoleId = 2; // Default role for new users (e.g., 'regular user')
 
         $screenshotPath = null;
@@ -87,22 +90,19 @@ class PaymentRegisterController extends Controller
         $user = User::create([
             'name' => $request->full_name,
             'email' => $request->email,
-            'password' => Hash::make($commonPassword),
+            'password' => Hash::make($temporaryPassword), // Hash the temporary password
             'role_id' => $defaultRoleId,
-            'must_change_password' => true,
+            'must_change_password' => true, // Ensure this remains true to force password change
             'user_type' => $request->registration_type,
             'access_expires_at' => Carbon::now()->addYear(),
             'province_of_choice' => $request->province_of_choice, // Save province to user
         ]);
 
-        // ✅ START ACCESS ASSIGNMENT LOGIC BASED ON REGISTRATION TYPE
+        // ✅ START ACCESS ASSIGNMENT LOGIC BASED ON REGISTRATION TYPE (unchanged)
         $chosenProvince = $request->province_of_choice;
         $registrationType = $request->registration_type;
 
-        // Fetch common citizenship sections needed for multiple scenarios
-        // IMPORTANT: Verify the exact 'title' value for your National/Country section in the database.
-        // E.g., if its title is 'National Citizenship' in your DB, use that.
-        $nationalCitizenshipSection = CourseSection::where('title', 'Canada')->first(); // Adjust 'National' to your actual title if different
+        $nationalCitizenshipSection = CourseSection::where('title', 'Canada')->first();
         $territoriesCitizenshipSections = CourseSection::whereIn('title', ['Northwest Territories', 'Nunavut', 'Yukon'])->get();
         $chosenCitizenshipSection = CourseSection::where('title', $chosenProvince)->first();
 
@@ -110,21 +110,18 @@ class PaymentRegisterController extends Controller
         if ($registrationType === 'citizenship' || $registrationType === 'both') {
             $citizenshipSectionsToAttach = collect();
 
-            // Always add the user's chosen province's citizenship section
             if ($chosenCitizenshipSection) {
                 $citizenshipSectionsToAttach->push($chosenCitizenshipSection->id);
             } else {
                 Log::warning("Citizenship section not found for chosen province: {$chosenProvince} for user {$user->email}.");
             }
 
-            // Always add the National/Country citizenship section
             if ($nationalCitizenshipSection) {
                 $citizenshipSectionsToAttach->push($nationalCitizenshipSection->id);
             } else {
                 Log::warning("National/Country citizenship section not found for user {$user->email}. Please check its title in the database.");
             }
 
-            // Always add all 3 territories citizenship sections
             if ($territoriesCitizenshipSections->isNotEmpty()) {
                 foreach ($territoriesCitizenshipSections as $territorySection) {
                     $citizenshipSectionsToAttach->push($territorySection->id);
@@ -133,7 +130,6 @@ class PaymentRegisterController extends Controller
                 Log::warning("Territories citizenship sections not found for user {$user->email}.");
             }
 
-            // Attach all collected unique citizenship section IDs to the user
             if ($citizenshipSectionsToAttach->isNotEmpty()) {
                 $user->citizenshipSections()->attach($citizenshipSectionsToAttach->unique()->all());
                 Log::info("User {$user->email} granted citizenship access to sections: " . $citizenshipSectionsToAttach->unique()->implode(', '));
@@ -144,7 +140,6 @@ class PaymentRegisterController extends Controller
 
         // SCENARIO 2: Driving Test Access Only OR Both Bundled
         if ($registrationType === 'driving' || $registrationType === 'both') {
-            // User gets access only to their chosen province's driving course
             $chosenDrivingSection = DrivingSection::where('title', $chosenProvince)->first();
 
             if ($chosenDrivingSection) {
@@ -168,7 +163,7 @@ class PaymentRegisterController extends Controller
             $spreadsheetId = '1a1xXQ52pwrN-vetVV3tA6H6hVWcANmru9b_szxJZYBg';
             $range = 'Form Responses 1!A:Z';
 
-            // Prepare the values to be appended as a new row, including the expiration date
+            // Prepare the values to be appended as a new row, including the expiration date and the TEMPORARY PASSWORD
             $values = [
                 [
                     now()->toDateTimeString(),
@@ -182,7 +177,8 @@ class PaymentRegisterController extends Controller
                     $request->payment_confirmation ? 'Confirmed' : 'Not Confirmed',
                     $request->registration_type,
                     $user->access_expires_at ? $user->access_expires_at->toDateTimeString() : 'N/A',
-                    $user->province_of_choice, // Added province of choice to Google Sheet
+                    $user->province_of_choice,
+                    $temporaryPassword, // <--- TEMPORARY PASSWORD STILL ADDED TO GOOGLE SHEET
                 ]
             ];
 
@@ -206,10 +202,13 @@ class PaymentRegisterController extends Controller
         }
         // ✅ GOOGLE SHEETS API INTEGRATION END
 
+        // Removed: Email sending logic, as it's handled by your Google workflow.
+        // Removed: try { Mail::to($user->email)->send(new TemporaryPasswordMail($user, $temporaryPassword)); Log::info("Temporary password email sent to {$user->email}."); } catch (\Exception $e) { Log::error("Failed to send temporary password email to {$user->email}: " . $e->getMessage()); }
+
         // 4. Log the user in
         Auth::login($user);
 
-        // 5. Redirect the user to the password change form as per your existing flow.
-        return redirect()->route('password.change.form')->with('success', 'Your temporary password will be sent to your email shortly. Please use it to log in and create a new password to replace the temporary one.');
+        // 5. Redirect the user to the password change form with an updated message.
+        return redirect()->route('password.change.form')->with('success', 'Your account has been created! A temporary password has been provided to our administrators and will be sent to your email shortly through our secure system. Please use it to log in and create a new password.');
     }
 }

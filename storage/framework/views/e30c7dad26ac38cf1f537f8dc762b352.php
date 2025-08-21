@@ -71,8 +71,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="IQRA Test Prep">
-    <link rel="apple-touch-icon" href="<?php echo e(asset('/images/icons/icon-192x192.png')); ?>">
-    <link rel="apple-touch-startup-image" href="<?php echo e(asset('/images/icons/icon-512x512.png')); ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo e(asset('/images/icons/apple-icon-180x180.png')); ?>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo e(asset('/images/icons/apple-icon-152x152.png')); ?>">
+    <link rel="apple-touch-icon" sizes="167x167" href="<?php echo e(asset('/images/icons/apple-icon-167x167.png')); ?>">
+
+    <!-- ✅ Optional: Fallback -->
+    <link rel="apple-touch-icon" href="<?php echo e(asset('/images/icons/apple-icon.png')); ?>">
 
     <!-- ✅ PWA: Theme color for browser UI (address bar/toolbar) -->
     <meta name="theme-color" content="#FCD34D">
@@ -158,27 +162,36 @@
         </div>
         <!-- ✅ Mobile Dropdown -->
         <div x-show="open" x-transition class="md:hidden px-4 pb-4">
-                    !-- PWA Install Banner (New Addition) -->
-                <div id="pwa-install-banner" class="hidden bg-white text-navy-blue text-center p-3 md:p-4 shadow-md flex items-center justify-between flex-wrap gap-2">
+            <!-- PWA Install Banner (New Addition - Place this inside the mobile dropdown div) -->
+            <div id="pwa-install-banner" class="hidden bg-white text-navy-blue text-center p-3 md:p-4 shadow-md flex items-center justify-between flex-wrap gap-2">
 
-                    <div class="flex-grow text-sm md:text-base font-semibold">
-                        <?php echo e(__('Add IQRA Canada to your home screen for quick access!')); ?>
+                <!-- Instructions for Android/Desktop (visible by default) -->
+                <div id="pwa-android-instructions" class="flex-grow text-sm md:text-base font-semibold">
+                    <?php echo e(__('Add IQRA Canada to your home screen for quick access!')); ?>
 
-                    </div>
-
-                    <div class="flex items-center gap-3">
-                        <button id="install-pwa-button" class="bg-navy-blue text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition duration-300">
-                            <?php echo e(__('Install App')); ?>
-
-                        </button>
-
-                        <button id="close-pwa-banner" class="text-navy-blue hover:text-gray-700 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
                 </div>
+
+                <!-- Instructions for iOS (hidden by default, shown by JS) -->
+                <div id="pwa-ios-instructions" class="hidden flex-grow text-sm md:text-base font-semibold">
+                    <?php echo e(__('To install, tap the Share icon')); ?> <i class="fa-solid fa-arrow-up-from-bracket"></i> <?php echo e(__('below, then select "Add to Home Screen."')); ?>
+
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <!-- Button for Android/Desktop (hidden by default for iOS by JS) -->
+                    <button id="install-pwa-button" class="bg-navy-blue text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition duration-300">
+                        <?php echo e(__('Install App')); ?>
+
+                    </button>
+
+                    <!-- Close button for both -->
+                    <button id="close-pwa-banner" class="text-navy-blue hover:text-gray-700 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
     <!-- ✅ End PWA Banner -->
             <ul class="space-y-2">
                 <li><a href="/" class="block py-1"><?php echo e(__('Home')); ?></a></li>
@@ -228,26 +241,6 @@
             </ul>
         </div>
     </nav>
-
-    <!-- PWA Install Banner (New Addition) -->
-    <div id="pwa-install-banner" class="hidden bg-white text-navy-blue text-center p-3 md:p-4 shadow-md flex items-center justify-between flex-wrap gap-2">
-        <div class="flex-grow text-sm md:text-base font-semibold">
-            <?php echo e(__('Add IQRA Canada to your home screen for quick access!')); ?>
-
-        </div>
-        <div class="flex items-center gap-3">
-            <button id="install-pwa-button" class="bg-navy-blue text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition duration-300">
-                <?php echo e(__('Install App')); ?>
-
-            </button>
-            <button id="close-pwa-banner" class="text-navy-blue hover:text-gray-700 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-    </div>
-
     <!-- ✅ Main Page Content -->
     <main>
         <?php echo $__env->yieldContent('content'); ?>
@@ -271,7 +264,7 @@
     <!-- ✅ Footer Bottom -->
     <footer class="bg-gray-900 text-gray-400 text-xs py-6">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            &copy;<?php echo e(now()->year); ?> <span class="text-white"><?php echo e(__('Canadian Citizenship Prep')); ?></span>. <?php echo e(__('All Rights Reserved.')); ?>
+            &copy;<?php echo e(now()->year); ?> <span class="text-white"><?php echo e(__('Iqra Canada Test Prep')); ?></span>. <?php echo e(__('All Rights Reserved.')); ?>
 
         </div>
     </footer>
@@ -315,17 +308,12 @@ if (isset($__slots)) unset($__slots);
     <!-- ✅ PWA: Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                    // Registration was successful
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function(err) {
-                    // registration failed :(
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log("Service Worker Registered"))
+            .catch(err => console.error("SW registration failed", err));
         }
-    </script>
+        </script>
+
 </body>
 </html>
 <?php /**PATH /Users/mohamudhassanmayow/Desktop/Study_Guide/resources/views/layouts/guest.blade.php ENDPATH**/ ?>
