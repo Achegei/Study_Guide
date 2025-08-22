@@ -41,16 +41,17 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
                     <div class="text-4xl text-blue-600 mb-4">✍️</div>
-                    <h3 class="text-xl font-bold text-blue-800 mb-2">5,000+ Practice Questions</h3>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">5,000+ Canadian Citizenship Test practice Questions and answers</h3>
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">4000+ Canadian Driving Test practice Questions and answers</h3>
                     <p class="text-sm text-gray-600">
                         Master the official guide with a massive bank of questions designed to prepare you for anything.
                     </p>
                 </div>
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">
                     <div class="text-4xl text-green-600 mb-4">📚</div>
-                    <h3 class="text-xl font-bold text-green-800 mb-2">Updated Summaries & Guides</h3>
+                    <h3 class="text-xl font-bold text-green-800 mb-2">Updated Discover Guide's Summaries</h3>
                     <p class="text-sm text-gray-600">
-                        Get concise, easy-to-read summaries based on the latest **Discover Canada** guide.
+                      updated Discover Canada book summaries and Guides specific to your province
                     </p>
                 </div>
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center">

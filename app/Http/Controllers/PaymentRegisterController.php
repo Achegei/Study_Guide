@@ -75,8 +75,10 @@ class PaymentRegisterController extends Controller
             'province_of_choice.required' => 'Please select your Province/Territory of Choice.',
         ]);
 
-        // Generate a random 8-character string and convert it to lowercase.
-        $temporaryPassword = Str::upper(Str::random(4)); 
+        // Generate a random 4-character uppercase temporary password.
+        $temporaryPassword = collect(range('A', 'Z'))
+            ->random(4)
+            ->implode('');
         $defaultRoleId = 2; // Default role for new users (e.g., 'regular user')
 
         $screenshotPath = null;
@@ -90,7 +92,7 @@ class PaymentRegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($temporaryPassword), // Hash the temporary password
             'role_id' => $defaultRoleId,
-            'must_change_password' => true, // Ensure this remains true to force password change
+            'must_change_password' => false, // Ensure this remains true to force password change
             'user_type' => $request->registration_type,
             'access_expires_at' => Carbon::now()->addYear(),
             'province_of_choice' => $request->province_of_choice, // Save province to user
@@ -201,10 +203,10 @@ class PaymentRegisterController extends Controller
 
         // Removed: Email sending logic, as it's handled by your Google workflow.
 
-        // --- 4. IMPORTANT CHANGE: DO NOT LOG THE USER IN HERE ---
-        // Auth::login($user); // <-- REMOVED THIS LINE
+        // --- 4. IMPORTANT CHANGE: LOG THE USER IN HERE ---
+       // Auth::login($user); // <-- ADDED THIS LINE BACK
 
-        // 5. Redirect the user to the LOGIN page
-        return redirect()->route('login')->with('status', 'Your account has been created successfully! Please log in using your email and the temporary password (which will be sent to your email within 1 hr) to set your new password.');
+        // 5. Redirect the user directly to the password change form.
+        return redirect()->route('login')->with('success', 'Your account has been created successfully! Please set your new password to continue.');
     }
 }

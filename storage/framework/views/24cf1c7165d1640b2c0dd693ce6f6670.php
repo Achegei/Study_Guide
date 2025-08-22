@@ -69,7 +69,7 @@
                     <img src="<?php echo e(asset('images/logo.png')); ?>" alt="Company Logo" class="mx-auto h-24 w-auto object-contain mb-4">
                     <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Canadian Citizenship Test Prep</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 text-left mx-auto max-w-xs">
-                        <li>5000+ Questions & Answers</li>
+                        <li>5000+ Canadian Citizenship Test practice Questions and answers</li>
                         <li>400+ Questions & Answers Per Province, territory and Common test</li>
                         <li>Province-specific summaries</li>
                         <li>Trusted by 350,000+ Test takers</li>
@@ -83,8 +83,8 @@
                      <img src="<?php echo e(asset('images/car.png')); ?>" alt="<?php echo e(__('Car icon')); ?>" class="w-20 h-20 object-contain mx-auto mb-4">
                     <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-2">Canadian Driving Test Prep</h3>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 text-left mx-auto max-w-xs">
-                        <li>4000+ Questions & Answers</li>
-                        <li>Provincial learner’s test practice (400 Questions per region)</li>
+                        <li>4000+ Canadian Driving Test practice Questions and answers</li>
+                        <li>Provincial learner’s test practice (400 Questions per province)</li>
                         <li>Road sign charts & explanations</li>
                         <li>Trusted by 350,000+ Test takers</li>
                         <li>Simulated exam mode</li>
@@ -157,6 +157,16 @@
             </h3>
             <p class="text-gray-600">
                 We accept payments by **Canadian Interac e-Transfer** or **cheque only**.
+                   
+            </p>
+            <p class="text-gray-600">
+                  1- Send your Interac e-Transfer to: payment@iqracanadatestprep.ca
+            </p>
+            <p class="text-gray-600">
+                2.	Set the Security Answer to IQRA (All Capital)
+            </p>
+            <p class="text-gray-600">
+                3. Your login will arrive within 1 hour
             </p>
             <div class="mt-4">
                 <p class="text-gray-600">
@@ -192,8 +202,8 @@
                     </ul>
                 </li>
                 <li>
-                    <strong>Send to Email:</strong>
-                    <code class="bg-gray-100 text-gray-800 px-2 py-1 rounded">payment@qracanadatestprep.ca</code>
+                    <strong>Send your Interac e-Transfer to:</strong>
+                    <code class="bg-gray-100 text-gray-800 px-2 py-1 rounded">payment@iqracanadatestprep.ca</code>
                 </li>
             </ul>
         </div>
