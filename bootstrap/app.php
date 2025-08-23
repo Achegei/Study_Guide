@@ -20,9 +20,6 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\RedirectIfPasswordNotChanged::class,
         ]);
 
-        // Remove this line, as it was appending SetLocale globally and might conflict
-        // $middleware->append(\App\Http\Middleware\SetLocale::class);
-
         // Add your custom middleware aliases here
         $middleware->alias([
             'check.role' => \App\Http\Middleware\CheckUserRole::class,

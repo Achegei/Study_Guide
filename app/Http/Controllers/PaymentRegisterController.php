@@ -92,7 +92,7 @@ class PaymentRegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($temporaryPassword), // Hash the temporary password
             'role_id' => $defaultRoleId,
-            'must_change_password' => false, // Ensure this remains true to force password change
+            'must_change_password' => true, // Ensure this remains true to force password change
             'user_type' => $request->registration_type,
             'access_expires_at' => Carbon::now()->addYear(),
             'province_of_choice' => $request->province_of_choice, // Save province to user
@@ -204,9 +204,9 @@ class PaymentRegisterController extends Controller
         // Removed: Email sending logic, as it's handled by your Google workflow.
 
         // --- 4. IMPORTANT CHANGE: LOG THE USER IN HERE ---
-       // Auth::login($user); // <-- ADDED THIS LINE BACK
+       Auth::login($user); // <-- ADDED THIS LINE BACK
 
         // 5. Redirect the user directly to the password change form.
-        return redirect()->route('login')->with('success', 'Your account has been created successfully! Please set your new password to continue.');
+        return redirect()->route('password.change.form')->with('success', 'Your account has been created successfully! Please set your new password to continue.');
     }
 }

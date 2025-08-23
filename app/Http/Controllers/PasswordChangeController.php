@@ -89,7 +89,7 @@ class PasswordChangeController extends Controller
     public function showChangePasswordForm()
     {
         if (Auth::check() && Auth::user()->must_change_password) {
-            return view('auth.passwords.change');
+            return view('auth.change-password');
         }
 
         if (Auth::check()) {

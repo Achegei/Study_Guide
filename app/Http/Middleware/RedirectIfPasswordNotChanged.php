@@ -16,12 +16,14 @@ class RedirectIfPasswordNotChanged
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // If the user is authenticated and their password needs to be changed
-        // and they are NOT already on the password change form itself,
-        // redirect them to the password change form.
-        if (Auth::check() && Auth::user()->must_change_password && !$request->routeIs('password.change.form')) {
+        // Define the routes that should be allowed when a password change is required.
+        $allowedRoutes = ['password.change.form', 'password.update.custom'];
+
+        // If the user is authenticated and their password needs to be changed,
+        // and the current route is NOT one of the allowed routes, redirect them.
+        if (Auth::check() && Auth::user()->must_change_password && !$request->routeIs(...$allowedRoutes)) {
             // Also ensure they are not trying to logout, as that should always be allowed
-            if (!$request->routeIs('logout')) { // Assuming you have a 'logout' route
+            if (!$request->routeIs('logout')) {
                 return redirect()->route('password.change.form')->with('warning', 'Please change your temporary password to continue.');
             }
         }

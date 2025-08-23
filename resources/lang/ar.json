@@ -1,0 +1,316 @@
+{
+    "(and :count more error)": "(و :count خطأ آخر)",
+    "(and :count more errors)": "(و :count أخطاء أخرى)",
+    "A decryption key is required.": "مفتاح فك التشفير مطلوب.",
+    "A fresh verification link has been sent to your email address.": "تم إرسال رابط تحقق جديد إلى عنوان بريدك الإلكتروني.",
+    "A new verification link has been sent to the email address you provided in your profile settings.": "تم إرسال رابط تحقق جديد إلى عنوان البريد الإلكتروني الذي قدمته في إعدادات ملفك الشخصي.",
+    "A new verification link has been sent to your email address.": "تم إرسال رابط تحقق جديد إلى عنوان بريدك الإلكتروني.",
+    "Accept Invitation": "قبول الدعوة",
+    "Add": "إضافة",
+    "Add a new team member to your team, allowing them to collaborate with you.": "أضف عضوًا جديدًا إلى فريقك، مما يتيح له التعاون معك.",
+    "Add additional security to your account using two factor authentication.": "أضف أمانًا إضافيًا إلى حسابك باستخدام المصادقة الثنائية.",
+    "Add Team Member": "إضافة عضو فريق",
+    "Added.": "تمت الإضافة.",
+    "Administrator": "مسؤول",
+    "Administrator users can perform any action.": "يمكن للمستخدمين المسؤولين تنفيذ أي إجراء.",
+    "All of the people that are part of this team.": "جميع الأشخاص الذين هم جزء من هذا الفريق.",
+    "All rights reserved.": "جميع الحقوق محفوظة.",
+    "Already registered?": "هل أنت مسجل بالفعل؟",
+    "API Token": "رمز API",
+    "API Token Permissions": "أذونات رمز API",
+    "API Tokens": "رموز API",
+    "API tokens allow third-party services to authenticate with our application on your behalf.": "تسمح رموز API لخدمات الجهات الخارجية بالمصادقة مع تطبيقنا نيابة عنك.",
+    "Are you sure you want to delete this team? Once a team is deleted, all of its resources and data will be permanently deleted.": "هل أنت متأكد أنك تريد حذف هذا الفريق؟ بمجرد حذف الفريق، سيتم حذف جميع موارده وبياناته بشكل دائم.",
+    "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "هل أنت متأكد أنك تريد حذف حسابك؟ بمجرد حذف حسابك، سيتم حذف جميع موارده وبياناته بشكل دائم. الرجاء إدخال كلمة مرورك لتأكيد رغبتك في حذف حسابك بشكل دائم.",
+    "Are you sure you would like to delete this API token?": "هل أنت متأكد أنك ترغب في حذف رمز API هذا؟",
+    "Are you sure you would like to leave this team?": "هل أنت متأكد أنك ترغب في مغادرة هذا الفريق؟",
+    "Are you sure you would like to remove this person from the team?": "هل أنت متأكد أنك ترغب في إزالة هذا الشخص من الفريق؟",
+    "Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.": "قبل المتابعة، هل يمكنك التحقق من عنوان بريدك الإلكتروني بالنقر على الرابط الذي أرسلناه إليك للتو؟ إذا لم تستلم البريد الإلكتروني، يسعدنا أن نرسل لك آخر.",
+    "Before proceeding, please check your email for a verification link.": "قبل المتابعة، يرجى التحقق من بريدك الإلكتروني للحصول على رابط التحقق.",
+    "Browser Sessions": "جلسات المتصفح",
+    "Cancel": "إلغاء",
+    "Click here to re-send the verification email.": "انقر هنا لإعادة إرسال البريد الإلكتروني للتحقق.",
+    "click here to request another": "انقر هنا لطلب آخر",
+    "Close": "إغلاق",
+    "Code": "رمز",
+    "Confirm": "تأكيد",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "Create": "إنشاء",
+    "Create a new team to collaborate with others on projects.": "أنشئ فريقًا جديدًا للتعاون مع الآخرين في المشاريع.",
+    "Create Account": "إنشاء حساب",
+    "Create API Token": "إنشاء رمز API",
+    "Create New Team": "إنشاء فريق جديد",
+    "Create Team": "إنشاء فريق",
+    "Created.": "تم الإنشاء.",
+    "Current Password": "كلمة المرور الحالية",
+    "Dashboard": "لوحة القيادة",
+    "Delete": "حذف",
+    "Delete Account": "حذف الحساب",
+    "Delete API Token": "حذف رمز API",
+    "Delete Team": "حذف الفريق",
+    "Disable": "تعطيل",
+    "Done.": "تم.",
+    "Edit Profile": "تعديل الملف الشخصي",
+    "Editor": "محرر",
+    "Editor users have the ability to read, create, and update.": "يتمتع المستخدمون المحررون بالقدرة على القراءة والإنشاء والتحديث.",
+    "Email": "بريد إلكتروني",
+    "Email Address": "عنوان البريد الإلكتروني",
+    "Email Password Reset Link": "إرسال رابط إعادة تعيين كلمة المرور عبر البريد الإلكتروني",
+    "Enable": "تمكين",
+    "Encrypted environment file already exists.": "ملف البيئة المشفر موجود بالفعل.",
+    "Encrypted environment file not found.": "ملف البيئة المشفر غير موجود.",
+    "Ensure your account is using a long, random password to stay secure.": "تأكد من أن حسابك يستخدم كلمة مرور طويلة وعشوائية للحفاظ على أمانه.",
+    "Environment file already exists.": "ملف البيئة موجود بالفعل.",
+    "Environment file not found.": "ملف البيئة غير موجود.",
+    "errors": "أخطاء",
+    "Finish enabling two factor authentication.": "إنهاء تمكين المصادقة الثنائية.",
+    "For your security, please confirm your password to continue.": "لأمانك، يرجى تأكيد كلمة مرورك للمتابعة.",
+    "Forbidden": "محظور",
+    "Forgot Your Password?": "هل نسيت كلمة المرور؟",
+    "Forgot your password?": "هل نسيت كلمة المرور؟",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "هل نسيت كلمة المرور؟ لا مشكلة. فقط أخبرنا بعنوان بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور الذي سيسمح لك باختيار كلمة مرور جديدة.",
+    "Go to page :page": "اذهب إلى الصفحة :page",
+    "Great! You have accepted the invitation to join the :team team.": "رائع! لقد قبلت دعوة الانضمام إلى فريق :team.",
+    "Hello!": "مرحبًا!",
+    "I agree to the :terms_of_service and :privacy_policy": "أوافق على :terms_of_service و :privacy_policy",
+    "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.": "إذا لزم الأمر، يمكنك تسجيل الخروج من جميع جلسات المتصفح الأخرى عبر جميع أجهزتك. بعض جلساتك الأخيرة مدرجة أدناه؛ ومع ذلك، قد لا تكون هذه القائمة شاملة. إذا شعرت أن حسابك قد تم اختراقه، فيجب عليك أيضًا تحديث كلمة مرورك.",
+    "If you already have an account, you may accept this invitation by clicking the button below:": "إذا كان لديك حساب بالفعل، يمكنك قبول هذه الدعوة بالنقر على الزر أدناه:",
+    "If you did not create an account, no further action is required.": "إذا لم تقم بإنشاء حساب، فلا يلزم اتخاذ أي إجراء آخر.",
+    "If you did not expect to receive an invitation to this team, you may discard this email.": "إذا لم تتوقع تلقي دعوة إلى هذا الفريق، يمكنك تجاهل هذا البريد الإلكتروني.",
+    "If you did not receive the email": "إذا لم تستلم البريد الإلكتروني",
+    "If you did not request a password reset, no further action is required.": "إذا لم تطلب إعادة تعيين كلمة المرور، فلا يلزم اتخاذ أي إجراء آخر.",
+    "If you do not have an account, you may create one by clicking the button below. After creating an account, you may click the invitation acceptance button in this email to accept the team invitation:": "إذا لم يكن لديك حساب، يمكنك إنشاء واحد بالنقر على الزر أدناه. بعد إنشاء حساب، يمكنك النقر على زر قبول الدعوة في هذا البريد الإلكتروني لقبول دعوة الفريق:",
+    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": "إذا كنت تواجه مشكلة في النقر على الزر \":actionText\"، فانسخ والصق الرابط أدناه\nفي متصفح الويب الخاص بك:",
+    "Invalid filename.": "اسم ملف غير صالح.",
+    "Invalid JSON was returned from the route.": "تم إرجاع JSON غير صالح من المسار.",
+    "Last active": "آخر نشاط",
+    "Last used": "آخر استخدام",
+    "Leave": "مغادرة",
+    "Leave Team": "مغادرة الفريق",
+    "length": "الطول",
+    "Location": "الموقع",
+    "Log in": "تسجيل الدخول",
+    "Log Out": "تسجيل الخروج",
+    "Log Out Other Browser Sessions": "تسجيل الخروج من جلسات المتصفح الأخرى",
+    "Login": "تسجيل الدخول",
+    "Logout": "تسجيل الخروج",
+    "Manage Account": "إدارة الحساب",
+    "Manage and log out your active sessions on other browsers and devices.": "إدارة وتسجيل الخروج من جلساتك النشطة على المتصفحات والأجهزة الأخرى.",
+    "Manage API Tokens": "إدارة رموز API",
+    "Manage Role": "إدارة الدور",
+    "Manage Team": "إدارة الفريق",
+    "Name": "الاسم",
+    "New Password": "كلمة مرور جديدة",
+    "Not Found": "غير موجود",
+    "of": "من",
+    "Once a team is deleted, all of its resources and data will be permanently deleted. Before deleting this team, please download any data or information regarding this team that you wish to retain.": "بمجرد حذف الفريق، سيتم حذف جميع موارده وبياناته بشكل دائم. قبل حذف هذا الفريق، يرجى تنزيل أي بيانات أو معلومات تتعلق بهذا الفريق ترغب في الاحتفاظ بها.",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "بمجرد حذف حسابك، سيتم حذف جميع موارده وبياناته بشكل دائم. قبل حذف حسابك، يرجى تنزيل أي بيانات أو معلومات ترغب في الاحتفاظ بها.",
+    "Page Expired": "انتهت صلاحية الصفحة",
+    "Pagination Navigation": "تنقل الصفحات",
+    "Password": "كلمة المرور",
+    "Payment Required": "الدفع مطلوب",
+    "Pending Team Invitations": "دعوات الفريق المعلقة",
+    "Permanently delete this team.": "حذف هذا الفريق بشكل دائم.",
+    "Permanently delete your account.": "حذف حسابك بشكل دائم.",
+    "Permissions": "أذونات",
+    "Photo": "صورة",
+    "Please click the button below to verify your email address.": "الرجاء النقر على الزر أدناه للتحقق من عنوان بريدك الإلكتروني.",
+    "Please confirm access to your account by entering one of your emergency recovery codes.": "يرجى تأكيد الوصول إلى حسابك بإدخال أحد رموز الاسترداد الطارئة الخاصة بك.",
+    "Please confirm access to your account by entering the authentication code provided by your authenticator application.": "يرجى تأكيد الوصول إلى حسابك بإدخال رمز المصادقة المقدم من تطبيق المصادقة الخاص بك.",
+    "Please confirm your password before continuing.": "الرجاء تأكيد كلمة مرورك قبل المتابعة.",
+    "Please copy your new API token. For your security, it won't be shown again.": "الرجاء نسخ رمز API الجديد الخاص بك. لأمانك، لن يتم عرضه مرة أخرى.",
+    "Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.": "الرجاء إدخال كلمة مرورك لتأكيد رغبتك في تسجيل الخروج من جلسات المتصفح الأخرى عبر جميع أجهزتك.",
+    "Please provide the email address of the person you would like to add to this team.": "الرجاء توفير عنوان البريد الإلكتروني للشخص الذي ترغب في إضافته إلى هذا الفريق.",
+    "Privacy Policy": "سياسة الخصوصية",
+    "Profile": "الملف الشخصي",
+    "Profile Information": "معلومات الملف الشخصي",
+    "Recovery Code": "رمز الاسترداد",
+    "Regards,": "مع تحياتي،",
+    "Regenerate Recovery Codes": "إعادة إنشاء رموز الاسترداد",
+    "Register": "تسجيل",
+    "Remember Me": "تذكرني",
+    "Remember me": "تذكرني",
+    "Remove": "إزالة",
+    "Remove Photo": "إزالة الصورة",
+    "Remove Team Member": "إزالة عضو الفريق",
+    "Resend Verification Email": "إعادة إرسال بريد التحقق",
+    "Reset Password": "إعادة تعيين كلمة المرور",
+    "Reset Password Notification": "إشعار إعادة تعيين كلمة المرور",
+    "results": "النتائج",
+    "Role": "الدور",
+    "Save": "حفظ",
+    "Saved.": "تم الحفظ.",
+    "Select A New Photo": "تحديد صورة جديدة",
+    "Send Password Reset Link": "إرسال رابط إعادة تعيين كلمة المرور",
+    "Server Error": "خطأ في الخادم",
+    "Service Unavailable": "الخدمة غير متوفرة",
+    "Setup Key": "مفتاح الإعداد",
+    "Show Recovery Codes": "إظهار رموز الاسترداد",
+    "Showing": "عرض",
+    "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "قم بتخزين رموز الاسترداد هذه في مدير كلمات مرور آمن. يمكن استخدامها لاستعادة الوصول إلى حسابك في حالة فقدان جهاز المصادقة الثنائية الخاص بك.",
+    "Switch Teams": "تبديل الفرق",
+    "Team Details": "تفاصيل الفريق",
+    "Team Invitation": "دعوة الفريق",
+    "Team Members": "أعضاء الفريق",
+    "Team Name": "اسم الفريق",
+    "Team Owner": "مالك الفريق",
+    "Team Settings": "إعدادات الفريق",
+    "Terms of Service": "شروط الخدمة",
+    "The :attribute must be a valid role.": "يجب أن يكون :attribute دورًا صالحًا.",
+    "The :attribute must be at least :length characters and contain at least one number.": "يجب أن يتكون :attribute من :length أحرف على الأقل ويحتوي على رقم واحد على الأقل.",
+    "The :attribute must be at least :length characters and contain at least one special character and one number.": "يجب أن يتكون :attribute من :length أحرف على الأقل ويحتوي على حرف خاص واحد على الأقل ورقم واحد.",
+    "The :attribute must be at least :length characters and contain at least one special character.": "يجب أن يتكون :attribute من :length أحرف على الأقل ويحتوي على حرف خاص واحد على الأقل.",
+    "The :attribute must be at least :length characters and contain at least one uppercase character and one number.": "يجب أن يتكون :attribute من :length أحرف على الأقل ويحتوي على حرف كبير واحد على الأقل ورقم واحد.",
+    "The :attribute must be at least :length characters and contain at least one uppercase character and one special character.": "يجب أن يتكون :attribute من :length أحرف على الأقل ويحتوي على حرف كبير واحد على الأقل وحرف خاص واحد.",
+    "The :attribute must be at least :length characters and contain at least one uppercase character, one number, and one special character.": "يجب أن يتكون :attribute من :length أحرف على الأقل ويحتوي على حرف كبير واحد على الأقل ورقم واحد وحرف خاص واحد.",
+    "The :attribute must be at least :length characters and contain at least one uppercase character.": "يجب أن يتكون :attribute من :length أحرف على الأقل ويحتوي على حرف كبير واحد على الأقل.",
+    "The :attribute must be at least :length characters.": "يجب أن يتكون :attribute من :length أحرف على الأقل.",
+    "The given data was invalid.": "البيانات المقدمة غير صالحة.",
+    "The password is incorrect.": "كلمة المرور غير صحيحة.",
+    "The provided password does not match your current password.": "كلمة المرور المقدمة لا تتطابق مع كلمة مرورك الحالية.",
+    "The provided password was incorrect.": "كلمة المرور المقدمة غير صحيحة.",
+    "The provided two factor authentication code was invalid.": "رمز المصادقة الثنائية المقدم غير صالح.",
+    "The provided two factor recovery code was invalid.": "رمز استرداد المصادقة الثنائية المقدم غير صالح.",
+    "The response is not a streamed response.": "الاستجابة ليست استجابة متدفقة.",
+    "The response is not a view.": "الاستجابة ليست عرضًا.",
+    "The team's name and owner information.": "اسم الفريق ومعلومات المالك.",
+    "These people have been invited to your team and have been sent an invitation email. They may join the team by accepting the email invitation.": "تمت دعوة هؤلاء الأشخاص للانضمام إلى فريقك وتم إرسال دعوة بالبريد الإلكتروني لهم. يمكنهم الانضمام إلى الفريق بقبول دعوة البريد الإلكتروني.",
+    "This action is unauthorized.": "هذا الإجراء غير مصرح به.",
+    "This device": "هذا الجهاز",
+    "This is a secure area of the application. Please confirm your password before continuing.": "هذه منطقة آمنة من التطبيق. يرجى تأكيد كلمة مرورك قبل المتابعة.",
+    "This password does not match our records.": "كلمة المرور هذه لا تتطابق مع سجلاتنا.",
+    "This password reset link will expire in :count minutes.": "سينتهي صلاحية رابط إعادة تعيين كلمة المرور هذا خلال :count دقيقة.",
+    "This user already belongs to the team.": "هذا المستخدم ينتمي بالفعل إلى الفريق.",
+    "This user has already been invited to the team.": "تمت دعوة هذا المستخدم بالفعل إلى الفريق.",
+    "to": "إلى",
+    "To finish enabling two factor authentication, scan the following QR code using your phone's authenticator application or enter the setup key and provide the generated OTP code.": "لإنهاء تمكين المصادقة الثنائية، امسح رمز الاستجابة السريعة التالي باستخدام تطبيق المصادقة على هاتفك أو أدخل مفتاح الإعداد وقدم رمز OTP الذي تم إنشاؤه.",
+    "Toggle navigation": "تبديل التنقل",
+    "Token Name": "اسم الرمز",
+    "Too Many Requests": "العديد من الطلبات",
+    "Two Factor Authentication": "المصادقة الثنائية",
+    "Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application or enter the setup key.": "تم تمكين المصادقة الثنائية الآن. امسح رمز الاستجابة السريعة التالي باستخدام تطبيق المصادقة على هاتفك أو أدخل مفتاح الإعداد.",
+    "Unauthorized": "غير مصرح به",
+    "Unknown": "غير معروف",
+    "Update Password": "تحديث كلمة المرور",
+    "Update your account's profile information and email address.": "تحديث معلومات ملفك الشخصي وعنوان بريدك الإلكتروني.",
+    "Use a recovery code": "استخدام رمز استرداد",
+    "Use an authentication code": "استخدام رمز مصادقة",
+    "Verify Email Address": "التحقق من عنوان البريد الإلكتروني",
+    "Verify Your Email Address": "تحقق من عنوان بريدك الإلكتروني.",
+    "We were unable to find a registered user with this email address.": "لم نتمكن من العثور على مستخدم مسجل بهذا العنوان البريدي الإلكتروني.",
+    "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.": "عند تمكين المصادقة الثنائية، سيُطلب منك إدخال رمز آمن وعشوائي أثناء المصادقة. يمكنك استرداد هذا الرمز من تطبيق Google Authenticator على هاتفك.",
+    "Whoops!": "عذرًا!",
+    "Whoops! Something went wrong.": "عذرًا! حدث خطأ ما.",
+    "You are logged in!": "لقد قمت بتسجيل الدخول!",
+    "You are receiving this email because we received a password reset request for your account.": "تتلقى هذا البريد الإلكتروني لأننا تلقينا طلب إعادة تعيين كلمة المرور لحسابك.",
+    "You have been invited to join the :team team!": "لقد تلقيت دعوة للانضمام إلى فريق :team!",
+    "You have enabled two factor authentication.": "لقد قمت بتمكين المصادقة الثنائية.",
+    "You have not enabled two factor authentication.": "لم تقم بتمكين المصادقة الثنائية.",
+    "You may accept this invitation by clicking the button below:": "يمكنك قبول هذه الدعوة بالنقر على الزر أدناه:",
+    "You may delete any of your existing tokens if they are no longer needed.": "يمكنك حذف أي من رموزك الموجودة إذا لم تعد هناك حاجة إليها.",
+    "You may not delete your personal team.": "لا يمكنك حذف فريقك الشخصي.",
+    "You may not leave a team that you created.": "لا يمكنك مغادرة فريق قمت بإنشائه.",
+    "Your email address is unverified.": "عنوان بريدك الإلكتروني غير محقق.",
+    "Comprehensive Driving Guide: Alberta 🚗": "دليل القيادة الشامل: ألبرتا 🚗",
+    "Understanding road signs is crucial for safe driving in Alberta. These signs provide vital information about regulations, warnings, and guidance. Here's a look at some key road signs you'll encounter and their meanings.": "فهم إشارات الطريق أمر بالغ الأهمية للقيادة الآمنة في ألبرتا. توفر هذه الإشارات معلومات حيوية حول اللوائح والتحذيرات والتوجيهات. فيما يلي نظرة على بعض إشارات الطريق الرئيسية التي ستصادفها ومعانيها.",
+    "Regulatory Signs": "إشارات تنظيمية",
+    "These signs inform you of traffic laws and regulations. You must obey them.": "هذه الإشارات تخبرك بقوانين ولوائح المرور. يجب عليك الالتزام بها.",
+    "Stop Sign": "إشارة قف",
+    "An octagon-shaped red sign instructing drivers to come to a complete stop before the stop line, crosswalk, or intersection, and yield to cross traffic or pedestrians.": "إشارة حمراء ثمانية الشكل توعز للسائقين بالتوقف التام قبل خط التوقف أو معبر المشاة أو التقاطع، وإفساح المجال لحركة المرور العرضية أو المشاة.",
+    "Yield Sign": "إشارة إفساح المجال",
+    "A downward-pointing red and white triangle indicating that you must slow down and be prepared to stop if necessary, giving the right-of-way to other traffic or pedestrians.": "مثلث أحمر وأبيض يشير للأسفل يدل على أنه يجب عليك تخفيف السرعة والاستعداد للتوقف إذا لزم الأمر، مانحًا حق المرور لحركة المرور الأخرى أو المشاة.",
+    "Do Not Enter Sign": "إشارة ممنوع الدخول",
+    "A red circle with a white horizontal bar, indicating that vehicles are prohibited from entering a particular roadway or area.": "دائرة حمراء بها شريط أفقي أبيض، تشير إلى أن المركبات ممنوعة من دخول طريق أو منطقة معينة.",
+    "No U-Turn Sign": "إشارة ممنوع الدوران للخلف",
+    "A black arrow making a U-turn with a red circle and slash, meaning U-turns are not permitted.": "سهم أسود يقوم بدوران U مع دائرة حمراء وخط مائل، مما يعني أن دورانات U غير مسموح بها.",
+    "No Left Turn Sign": "إشارة ممنوع الانعطاف يساراً",
+    "A black arrow pointing left with a red circle and slash, indicating that left turns are not allowed.": "سهم أسود يشير إلى اليسار مع دائرة حمراء وخط مائل، مما يشير إلى أن الانعطافات اليسرى غير مسموح بها.",
+    "One Way Sign": "إشارة اتجاه واحد",
+    "A rectangular white sign with a black arrow, indicating that traffic flows only in the direction of the arrow.": "إشارة بيضاء مستطيلة الشكل بها سهم أسود، تشير إلى أن حركة المرور تسير في اتجاه السهم فقط.",
+    "Speed Limit Sign": "إشارة تحديد السرعة",
+    "A rectangular white sign with black text, indicating the maximum legal speed for the road section.": "إشارة بيضاء مستطيلة بها نص أسود، تشير إلى الحد الأقصى للسرعة القانونية لهذا الجزء من الطريق.",
+    "Warning Signs": "إشارات تحذيرية",
+    "These signs warn you of potential hazards ahead, requiring you to exercise caution.": "تحذرك هذه الإشارات من المخاطر المحتملة القادمة، وتتطلب منك توخي الحذر.",
+    "Pedestrian Crossing Sign": "إشارة عبور المشاة",
+    "A diamond-shaped yellow sign with a black symbol of a pedestrian, warning of a designated pedestrian crossing ahead.": "إشارة صفراء على شكل ماسة مع رمز أسود للمشاة، تحذر من معبر مشاة مخصص قادم.",
+    "School Zone Ahead Sign": "إشارة منطقة مدرسية أمامك",
+    "A pentagon-shaped sign (often fluorescent yellow-green) indicating a school area or school crossing ahead, typically with reduced speed limits when active.": "إشارة خماسية الشكل (غالبًا ما تكون بلون أصفر-أخضر فلوري) تشير إلى منطقة مدرسية أو معبر مدرسي قادم، وعادة ما تكون حدود السرعة مخفضة عندما تكون نشطة.",
+    "Railway Crossing Sign": "إشارة معبر سكة حديد",
+    "A circular yellow sign with a black 'X' and 'RR' indicating a railway crossing ahead. Be prepared to stop for trains.": "إشارة صفراء دائرية الشكل تحمل علامة 'X' سوداء و 'RR' تشير إلى معبر سكة حديد قادم. كن مستعدًا للتوقف للقطارات.",
+    "Curve Ahead Sign": "إشارة منحنى أمامي",
+    "A diamond-shaped yellow sign with a black arrow curving, warning of a curve in the road ahead. Adjust your speed accordingly.": "إشارة صفراء على شكل ماسة بها سهم أسود منحني، تحذر من وجود منحنى في الطريق أمامك. اضبط سرعتك وفقًا لذلك.",
+    "Slippery When Wet Sign": "إشارة زلق عند البلل",
+    "A diamond-shaped yellow sign with a car skidding, warning that the road surface may become slippery in wet conditions.": "إشارة صفراء على شكل ماسة بها سيارة تتزلج، تحذر من أن سطح الطريق قد يصبح زلقًا في الظروف الرطبة.",
+    "Deer Crossing Sign": "إشارة عبور الغزلان",
+    "A diamond-shaped yellow sign with a deer symbol, indicating areas where deer frequently cross the road. Drive with caution, especially at dawn and dusk.": "إشارة صفراء على شكل ماسة بها رمز غزال، تشير إلى مناطق تعبر فيها الغزلان الطريق بشكل متكرر. قد بحذر، خاصة عند الفجر والغسق.",
+    "Construction Ahead Sign": "إشارة أعمال بناء أمامك",
+    "An orange diamond-shaped sign warning of construction or maintenance work ahead. Expect reduced speeds, lane closures, or workers.": "إشارة برتقالية على شكل ماسة تحذر من أعمال بناء أو صيانة قادمة. توقع تخفيض السرعة، إغلاق المسارات، أو وجود عمال.",
+    "Guide Signs": "إشارات توجيهية",
+    "These signs provide information about routes, directions, destinations, and points of interest.": "توفر هذه الإشارات معلومات حول المسارات، الاتجاهات، الوجهات، ونقاط الاهتمام.",
+    "Destination Sign": "إشارة وجهة",
+    "Typically a rectangular green sign with white lettering, indicating directions and distances to cities or towns.": "عادةً ما تكون إشارة خضراء مستطيلة الشكل ذات حروف بيضاء، تشير إلى الاتجاهات والمسافات إلى المدن أو البلدات.",
+    "Hospital Sign": "إشارة مستشفى",
+    "A blue square sign with a white 'H' (and often a cross), indicating the presence or direction to a hospital or medical facility.": "إشارة زرقاء مربعة الشكل بها حرف 'H' أبيض (و غالبًا ما يكون صليبًا)، تشير إلى وجود مستشفى أو منشأة طبية أو الاتجاه إليها.",
+    "Gas Station Sign": "إشارة محطة وقود",
+    "A blue square sign with a white gas pump symbol, indicating the presence or direction to a fuel station.": "إشارة زرقاء مربعة الشكل بها رمز مضخة وقود بيضاء، تشير إلى وجود محطة وقود أو الاتجاه إليها.",
+    "Rest Area Sign": "إشارة منطقة استراحة",
+    "A blue square sign with a picnic table symbol, indicating a rest area or picnic site ahead.": "إشارة زرقاء مربعة الشكل بها رمز طاولة نزهة، تشير إلى منطقة استراحة أو موقع نزهة قادم.",
+    "Parking Sign": "إشارة وقوف السيارات",
+    "A square blue sign with a white 'P' (and sometimes additional rules), indicating areas where parking is permitted.": "إشارة مربعة زرقاء بها حرف 'P' أبيض (وأحيانًا قواعد إضافية)، تشير إلى المناطق المسموح فيها بالوقوف.",
+    "Divided Highway Ahead Sign": "إشارة طريق سريع مقسم أمامك",
+    "A yellow diamond-shaped sign with two arrows separated by a median, warning that the highway ahead will become divided.": "إشارة صفراء على شكل ماسة بها سهمان يفصل بينهما جزيرة وسطى، تحذر من أن الطريق السريع أمامك سيصبح مقسمًا.",
+    "Road Signs": "إشارات الطريق",
+    "Two Way Traffic": "حركة مرور باتجاهين",
+    "This sign indicates that the road ahead is a two-way street, where traffic travels in opposite directions on the same roadway. Exercise caution for oncoming vehicles.": "تشير هذه الإشارة إلى أن الطريق أمامك هو طريق ذو اتجاهين، حيث تسير حركة المرور في اتجاهين متعاكسين على نفس الطريق. توخ الحذر من المركبات القادمة.",
+    "Driver Ahead, Keep Right": "السائق أمامك، التزم اليمين",
+    "This sign instructs drivers to keep to the right side of the road, especially when encountering oncoming traffic or when multiple lanes are available, to facilitate smooth traffic flow.": "توجه هذه الإشارة السائقين بالالتزام بالجانب الأيمن من الطريق، خاصة عند مواجهة حركة المرور القادمة أو عند توفر مسارات متعددة، لتسهيل تدفق حركة المرور بسلاسة.",
+    "Road Narrows on Both Sides": "الطريق يضيق من كلا الجانبين",
+    "This sign warns that the width of the road ahead will decrease from both the left and right sides. Be prepared to merge or adjust your position, and be aware of potential bottlenecks.": "تحذر هذه الإشارة من أن عرض الطريق أمامك سينخفض من الجانبين الأيسر والأيمن. كن مستعدًا للاندماج أو تعديل وضعك، وكن على دراية بالاختناقات المحتملة.",
+    "No Stopping in Indicated Area": "ممنوع التوقف في المنطقة المشار إليها",
+    "This sign means you are not allowed to stop your vehicle in the designated area for any reason, even briefly to pick up or drop off passengers. This typically applies to zones needing constant traffic flow.": "تعني هذه الإشارة أنه لا يُسمح لك بإيقاف سيارتك في المنطقة المحددة لأي سبب، حتى لو لفترة وجيزة لالتقاط أو إنزال الركاب. ينطبق هذا عادةً على المناطق التي تحتاج إلى تدفق مستمر لحركة المرور.",
+    "School Bus Stop Ahead": "محطة حافلة مدرسية أمامك",
+    "This sign warns drivers that there is a designated school bus stop ahead. Be prepared to slow down and stop if the school bus activates its flashing red lights to pick up or drop off children.": "تحذر هذه الإشارة السائقين من وجود موقف حافلة مدرسية مخصص أمامك. كن مستعدًا لتخفيف السرعة والتوقف إذا قامت الحافلة المدرسية بتشغيل أضواءها الحمراء الوامضة لالتقاط الأطفال أو إنزالهم.",
+    "Uneven Pavement": "رصيف غير مستوٍ",
+    "This sign warns drivers of a section of road with uneven or rough pavement. Reduce your speed and maintain a firm grip on the steering wheel to safely navigate the surface.": "تحذر هذه الإشارة السائقين من جزء من الطريق به رصيف غير مستوٍ أو خشن. اخفض سرعتك وحافظ على قبضة قوية على عجلة القيادة لتجاوز السطح بأمان.",
+    "Dead End": "طريق مسدود",
+    "This sign indicates that the road ahead has no outlet or through access, meaning it terminates in a cul-de-sac or a blocked passage. You will need to turn around.": "تشير هذه الإشارة إلى أن الطريق أمامك ليس له مخرج أو وصول مباشر، مما يعني أنه ينتهي في طريق مسدود أو ممر مغلق. ستحتاج إلى الالتفاف.",
+    "Bump or Uneven Pavement on the Road Ahead": "نتوء أو رصيف غير مستوٍ على الطريق أمامك",
+    "This sign warns of a raised area or an uneven surface on the road, such as a speed bump or severe irregularities. Slow down to avoid damage to your vehicle or loss of control.": "تحذر هذه الإشارة من وجود منطقة مرتفعة أو سطح غير مستوٍ على الطريق، مثل مطب صناعي أو مخالفات شديدة. خفف السرعة لتجنب تلف سيارتك أو فقدان السيطرة.",
+    "Playground Zone": "منطقة لعب",
+    "This sign indicates a playground zone, where children may be playing nearby. Speed limits are typically reduced (e.g., to 30 km/h) during specific hours, and extra caution is required.": "تشير هذه الإشارة إلى منطقة لعب، حيث قد يلعب الأطفال بالقرب. عادة ما يتم تخفيض حدود السرعة (على سبيل المثال، إلى 30 كم/ساعة) خلال ساعات محددة، ويجب توخي حذر إضافي.",
+    "Winding Road Ahead": "طريق متعرج أمامك",
+    "This sign warns drivers of a series of curves or turns ahead. Reduce your speed and be prepared to steer through the turns to maintain control of your vehicle.": "تحذر هذه الإشارة السائقين من سلسلة من المنعطفات أو المنعطفات القادمة. اخفض سرعتك وكن مستعدًا للتوجيه عبر المنعطفات للحفاظ على سيطرتك على سيارتك.",
+    "Yield the Right of Way": "إفساح المجال",
+    "This regulatory sign requires you to slow down and, if necessary, stop to give the right-of-way to vehicles and pedestrians already in the intersection or on the roadway you are entering.": "تتطلب هذه الإشارة التنظيمية منك تخفيف السرعة، وإذا لزم الأمر، التوقف لإعطاء حق المرور للمركبات والمشاة الموجودين بالفعل في التقاطع أو على الطريق الذي تدخل إليه.",
+    "Roundabout": "دوار",
+    "This sign indicates a circular intersection (roundabout) ahead. You must yield to traffic already in the roundabout and enter when there is a safe gap.": "تشير هذه الإشارة إلى وجود تقاطع دائري (دوار) أمامك. يجب عليك إفساح المجال لحركة المرور الموجودة بالفعل في الدوار والدخول عندما يكون هناك مسافة آمنة.",
+    "Share the Road": "شارك الطريق",
+    "This sign reminds drivers and cyclists that they must share the road safely. It often indicates areas where cyclists are common, encouraging drivers to be mindful of bicycles.": "تذكر هذه الإشارة السائقين وراكبي الدراجات بضرورة مشاركة الطريق بأمان. وغالبًا ما تشير إلى المناطق التي يكثر فيها راكبو الدراجات، وتشجع السائقين على الانتباه للدراجات الهوائية.",
+    "School Crosswalk: Watch for Pedestrians": "معبر مدرسي: انتبه للمشاة",
+    "This sign marks a school crosswalk, alerting drivers to watch for students crossing the road. Be prepared to stop and yield to pedestrians in the crosswalk.": "تشير هذه الإشارة إلى معبر مدرسي، تنبه السائقين لمراقبة الطلاب الذين يعبرون الطريق. كن مستعدًا للتوقف وإفساح المجال للمشاة في المعبر.",
+    "Dangerous Goods": "بضائع خطرة",
+    "This sign indicates that vehicles carrying dangerous goods must take specific routes or adhere to certain regulations. It's often accompanied by symbols denoting the type of hazardous material.": "تشير هذه الإشارة إلى أن المركبات التي تحمل بضائع خطرة يجب أن تسلك مسارات محددة أو تلتزم بلوائح معينة. غالبًا ما تكون مصحوبة برموز تدل على نوع المادة الخطرة.",
+    "Right Lane Ends": "نهاية المسار الأيمن",
+    "This sign warns that the right lane ahead will terminate or merge into the adjacent lane. Drivers in the ending lane must safely merge left, yielding to traffic in the through lane.": "تحذر هذه الإشارة من أن المسار الأيمن الأمامي سينتهي أو يندمج في المسار المجاور. يجب على السائقين في المسار المنتهي الاندماج بأمان إلى اليسار، مع إفساح المجال لحركة المرور في المسار المتصل.",
+    "Slow Moving Vehicle": "مركبة بطيئة الحركة",
+    "A reflective orange triangle with a red border is mounted on the rear of vehicles that typically travel at speeds of 40 km/h or less. It warns other drivers to slow down.": "يتم تركيب مثلث برتقالي عاكس ذو حدود حمراء على الجزء الخلفي من المركبات التي تسير عادة بسرعة 40 كم/ساعة أو أقل. يحذر السائقين الآخرين من تخفيف السرعة.",
+    "Turn Right Only": "انعطف يمينًا فقط",
+    "This sign indicates that traffic in the lane or at the intersection can only make a right turn. Straight-through or left turns are not permitted.": "تشير هذه الإشارة إلى أن حركة المرور في المسار أو عند التقاطع يمكنها فقط الانعطاف يمينًا. الانعطافات المستقيمة أو اليسرى غير مسموح بها.",
+    "Home": "الرئيسية",
+    "Canadian Citizenship Test Prep": "التحضير لاختبار الجنسية الكندية",
+    "Canadian Driving Test Prep": "التحضير لاختبار القيادة الكندي",
+    "Buy Now": "اشترِ الآن",
+    "About Us": "من نحن",
+    "Contact": "اتصل بنا",
+    "FAQ's": "الأسئلة الشائعة",
+    "Privacy": "الخصوصية",
+    "Terms": "الشروط",
+    "All rights reserved": "© 2024 جميع الحقوق محفوظة.",
+    "Our Community": "مجتمعنا",
+    "Cookie Policy": "سياسة ملفات تعريف الارتباط",
+    "Legal Disclaimer": "إخلاء المسؤولية القانونية",
+    "Copyright": "حقوق النشر",
+    "All Rights Reserved": "جميع الحقوق محفوظة.",
+    "Don't have an account yet?": "لا تملك حسابًا بعد؟",
+    "Register & Pay Here": "سجل وادفع هنا"
+}

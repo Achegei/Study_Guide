@@ -167,13 +167,14 @@ Route::get('/sitemap.xml', function () {
 // AUTHENTICATED ROUTES
 // These routes require the user to be logged in.
 // =========================================================================
+   Route::middleware(['auth', 'password.change.required'])->group(function () {
+    Route::get('/change-password', [PasswordChangeController::class, 'showChangePasswordForm'])->name('password.change.form');
+    Route::put('/password-update', [PasswordChangeController::class, 'update'])->name('password.update.custom');
+});
 
 Route::middleware(['auth'])->group(function () {
-
     // Forced Password Change (if user must change password after initial login)
-    Route::get('/change-password', function () {
-        return view('auth.change-password');
-    })->name('password.change.form');
+ 
     Route::put('/password-update', [PasswordChangeController::class, 'update'])->name('password.update.custom');
 
     // Comment Routes (requiring authentication to interact)
