@@ -40,6 +40,7 @@ class PaymentRegisterController extends Controller
             'Nova Scotia',
             'Ontario',
             'Prince Edward Island',
+            'National',
             'Quebec',
             'Saskatchewan',
             'Northwest Territories',
@@ -62,7 +63,7 @@ class PaymentRegisterController extends Controller
         $request->validate([
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone_number' => ['nullable', 'string', 'max:20'],
+            'phone_number' => ['required', 'string', 'max:20'],
             'course_selected' => ['required', 'string', 'in:Canadian Citizenship Test Preparation,Driving Test Preparation,Both Citizenship and Driving Tests'],
             'amount_sent' => ['required', 'numeric', 'min:0.01'],
             'interac_reference' => ['required', 'string', 'max:255'],
@@ -102,7 +103,7 @@ class PaymentRegisterController extends Controller
         $chosenProvince = $request->province_of_choice;
         $registrationType = $request->registration_type;
 
-        $nationalCitizenshipSection = CourseSection::where('title', 'Canada')->first();
+        $nationalCitizenshipSection = CourseSection::where('title', 'National')->first();
         $territoriesCitizenshipSections = CourseSection::whereIn('title', ['Northwest Territories', 'Nunavut', 'Yukon'])->get();
         $chosenCitizenshipSection = CourseSection::where('title', $chosenProvince)->first();
 
