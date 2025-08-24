@@ -74,11 +74,11 @@
 
             <div class="grid sm:grid-cols-2 gap-6">
                 <!-- Phone Number (WhatsApp, optional) -->
-                <div>
+                <!--<div>
                     <label for="phone_number" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (WhatsApp)</label>
                     <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}"
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
-                </div>
+                </div>-->
 
                 <!-- ✅ NEW: Province of Choice -->
                 <div>
