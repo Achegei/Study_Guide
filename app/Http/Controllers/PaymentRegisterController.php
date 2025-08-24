@@ -63,7 +63,7 @@ class PaymentRegisterController extends Controller
         $request->validate([
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone_number' => ['required', 'string', 'max:20'],
+            //'phone_number' => ['required', 'string', 'max:20'],
             'course_selected' => ['required', 'string', 'in:Canadian Citizenship Test Preparation,Driving Test Preparation,Both Citizenship and Driving Tests'],
             'amount_sent' => ['required', 'numeric', 'min:0.01'],
             'interac_reference' => ['required', 'string', 'max:255'],
