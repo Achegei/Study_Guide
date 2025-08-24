@@ -169,7 +169,7 @@ class PaymentRegisterController extends Controller
                     now()->toDateTimeString(),
                     $request->full_name,
                     $request->email,
-                    $request->phone_number,
+                    //$request->phone_number,
                     $request->course_selected,
                     $request->amount_sent,
                     $request->interac_reference,
