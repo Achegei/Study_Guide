@@ -24,11 +24,11 @@ class PaymentRegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $courseOptions = [
-            'Canadian Citizenship Test Preparation' => 'Canadian Citizenship Test Prep',
-            'Driving Test Preparation' => 'Driving Test Prep',
-            'Both Citizenship and Driving Tests' => 'Citizenship Test Prep and Driving Test Prep',
-        ];
+        //$courseOptions = [
+            //'Canadian Citizenship Test Preparation' => 'Canadian Citizenship Test Prep',
+            //'Driving Test Preparation' => 'Driving Test Prep',
+            //'Both Citizenship and Driving Tests' => 'Citizenship Test Prep and Driving Test Prep',
+        //];
 
         // Array of Canadian provinces and territories for the dropdown
         $provinces = [
@@ -40,15 +40,11 @@ class PaymentRegisterController extends Controller
             'Nova Scotia',
             'Ontario',
             'Prince Edward Island',
-            'National',
             'Quebec',
             'Saskatchewan',
-            'Northwest Territories',
-            'Nunavut',
-            'Yukon',
         ];
 
-        return view('auth.register-payment', compact('courseOptions', 'provinces'));
+        return view('auth.register-payment', compact('provinces'));
     }
 
     /**
@@ -64,7 +60,7 @@ class PaymentRegisterController extends Controller
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             //'phone_number' => ['required', 'string', 'max:20'],
-            'course_selected' => ['required', 'string', 'in:Canadian Citizenship Test Preparation,Driving Test Preparation,Both Citizenship and Driving Tests'],
+            //'course_selected' => ['required', 'string', 'in:Canadian Citizenship Test Preparation,Driving Test Preparation,Both Citizenship and Driving Tests'],
             'amount_sent' => ['required', 'numeric', 'min:0.01'],
             'interac_reference' => ['required', 'string', 'max:255'],
             'payment_screenshot' => ['nullable', 'image', 'max:2048'],
@@ -170,10 +166,10 @@ class PaymentRegisterController extends Controller
                     $request->full_name,
                     $request->email,
                     //$request->phone_number,
-                    $request->course_selected,
+                    //$request->course_selected,
                     $request->amount_sent,
                     $request->interac_reference,
-                    $screenshotPath ? asset('storage/' . $screenshotPath) : 'N/A',
+                    //$screenshotPath ? asset('storage/' . $screenshotPath) : 'N/A',
                     $request->payment_confirmation ? 'Confirmed' : 'Not Confirmed',
                     $request->registration_type,
                     $user->access_expires_at ? $user->access_expires_at->toDateTimeString() : 'N/A',

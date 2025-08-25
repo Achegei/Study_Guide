@@ -47,7 +47,7 @@
                         <p class="mt-2 text-4xl font-extrabold text-blue-600">$25 CAD</p>
                          <p class="mt-2 text-2xl font-extrabold text-blue-400">(One Year, One-Time Payment)</p>
                         <ul class="mt-4 text-sm text-gray-600 list-disc list-inside text-left">
-                            <li>5000+ Questions and answers( Each province, Territories and National/Common has 400+ Questions and answers).</li>
+                            <li>5000+ Questions and answers( Each province has 400+ Questions and answers).</li>
                             <li>Road Sign Charts</li>
                             <li>Exam Simulator</li>
                             <li>All Login Credentials will be  received within 1hr after submitting Interac payment reference</li>

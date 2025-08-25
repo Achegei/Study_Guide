@@ -49,7 +49,7 @@
 
             <div class="grid sm:grid-cols-2 gap-6">
                 <div>
-                    <label for="full_name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <label for="full_name" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
                     <input type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" required autofocus
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
                 </div>
@@ -77,22 +77,6 @@
                         <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                     @enderror
                 </div>
-
-                <div>
-                    <label for="course_selected" class="block text-sm font-medium text-gray-700 mb-1">Course Selected</label>
-                    <select name="course_selected" id="course_selected" required
-                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors bg-white">
-                        <option value="">Select a Course</option>
-                        @foreach($courseOptions as $value => $label)
-                            <option value="{{ $value }}" {{ old('course_selected') == $value ? 'selected' : '' }}>
-                                {{ $label }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-6">
                 <div>
                     <label for="registration_type" class="block text-sm font-medium text-gray-700 mb-1">Access Type</label>
                     <select name="registration_type" id="registration_type" required
@@ -106,29 +90,22 @@
                         <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                     @enderror
                 </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+                
 
                 <div>
                     <label for="amount_sent" class="block text-sm font-medium text-gray-700 mb-1">Amount Sent (CAD)</label>
                     <input type="number" name="amount_sent" id="amount_sent" step="0.01" value="{{ old('amount_sent') }}" required
                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
                 </div>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-6">
                 <div>
-                    <label for="interac_reference" class="block text-sm font-medium text-gray-700 mb-1">Interac e-Transfer Reference Number</label>
+                    <label for="interac_reference" class="block text-sm font-medium text-gray-700 mb-1">Secuity Question of e-transfer:Answer:IQRA</label>
                     <input type="text" name="interac_reference" id="interac_reference" value="{{ old('interac_reference') }}" required
-                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors">
-                </div>
-
-                <div>
-                    <label for="payment_screenshot" class="block text-sm font-medium text-gray-700 mb-1">Upload Screenshot of Payment (Optional)</label>
-                    <input type="file" name="payment_screenshot" id="payment_screenshot" accept="image/*"
-                           class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-full cursor-pointer bg-gray-50 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors">
-                    <p class="mt-2 text-xs text-gray-500">Max 2MB. PNG, JPG, JPEG.</p>
+                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors" placeholder="Answer is: IQRA"> 
                 </div>
             </div>
-
             <div class="flex items-start">
                 <input type="checkbox" name="payment_confirmation" id="payment_confirmation" required
                        class="mt-1 mr-2 rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-500 h-4 w-4">
