@@ -10,35 +10,26 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EnsureAdminPanelAccess
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next): Response
-    {
-        // Log the current user for debugging
-        if (Auth::check()) {
-            Log::info('User is authenticated', [
-                'user_id' => Auth::id(),
-                'user_email' => Auth::user()->email ?? null,
-                'role_id' => Auth::user()->role_id ?? null,
-            ]);
-        } else {
-            Log::warning('User is NOT authenticated', [
-                'session_id' => $request->session()->getId(),
-            ]);
-        }
+{
+    $user = Auth::user();
 
-        // Check if the user is authenticated and an admin
-        if (!Auth::check() || !Auth::user()->isAdmin()) {
-            Log::error('Unauthorized access attempt to admin panel', [
-                'user' => Auth::user(),
-                'url' => $request->fullUrl(),
-            ]);
-            abort(403, 'Unauthorized access to the admin panel.');
-        }
+    // Log the current user info
+    Log::info('EnsureAdminPanelAccess check', [
+        'authenticated' => Auth::check(),
+        'user' => $user ? $user->toArray() : null,
+    ]);
 
-        return $next($request);
+    if (!Auth::check() || !$user->isAdmin()) {
+        Log::warning('Unauthorized access attempt', [
+            'user' => $user ? $user->toArray() : null,
+            'url' => $request->fullUrl(),
+            'ip' => $request->ip(),
+        ]);
+
+        abort(403, 'Unauthorized access to the admin panel.');
     }
+
+    return $next($request);
+}
 }
