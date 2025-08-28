@@ -2,36 +2,49 @@
 
 namespace App\Policies;
 
+use App\Models\Blog;
 use App\Models\User;
-use App\Models\CourseSection;
 use Illuminate\Auth\Access\Response;
 
-class CourseSectionPolicy
+class BlogPolicy
 {
     /**
      * Determine whether the user can view any models.
-     * This method could be used to control if a user can even see the list of citizenship courses.
      */
     public function viewAny(User $user): bool
     {
-        // For now, allow any logged-in user to see the list of citizenship courses.
-        // Access to individual sections will be controlled by 'view'.
-        return $user !== null; // User must be logged in to see any course list
+        return $user->role === 1;
     }
 
     /**
-     * Determine whether the user can view the CourseSection.
+     * Determine whether the user can view the model.
      */
-    public function view(User $user, CourseSection $courseSection): bool
+    public function view(User $user, Blog $blog): bool
     {
-        // Admins can view any course section
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        // Check if the user has access to this specific citizenship course section
-        return $user->citizenshipSections->contains($courseSection->id);
+        return $user->role === 1;
     }
 
-    // You might also define other methods like create, update, delete if applicable
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user): bool
+    {
+        return $user->role === 1;
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(User $user, Blog $blog): bool
+    {
+        return $user->role === 1;
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(User $user, Blog $blog): bool
+    {
+        return $user->role === 1;
+    }
 }

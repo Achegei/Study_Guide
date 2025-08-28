@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\User' => 'App\Policies\UserPolicy', // Example entry you might already have
         CourseSection::class => CourseSectionPolicy::class, // ✅ Register CourseSectionPolicy
         DrivingSection::class => DrivingSectionPolicy::class, // ✅ Register DrivingSectionPolicy
+        Blog::class =>BlogPolicy::class,
     ];
 
     /**
