@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail; // This line was commented out in your original, keep it that way if not using email verification through MustVerifyEmail interface
-//use Laravel\Jetstream\HasTeams; // This line was commented out in your original, keep it that way if not using Jetstream Teams
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,11 +9,14 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+// ✅ Filament: Import the necessary contract and Panel class
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
+
+// ✅ Filament: Implement the FilamentUser contract
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
-
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
@@ -32,9 +33,9 @@ class User extends Authenticatable
         'password',
         'role_id',
         'must_change_password',
-        'user_type', // Added for user type access control
-        'access_expires_at', // Added for account expiration
-        'province_of_choice', // ✅ Added for storing the user's selected province
+        'user_type',
+        'access_expires_at',
+        'province_of_choice',
     ];
 
     /**
@@ -69,7 +70,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'must_change_password' => 'boolean',
-            'access_expires_at' => 'datetime', // Crucial: This line tells Laravel to cast it to a Carbon object
+            'access_expires_at' => 'datetime',
         ];
     }
 
@@ -97,15 +98,24 @@ class User extends Authenticatable
         return $this->role_id === 1;
     }
 
-    // ✅ Define many-to-many relationship for citizenship course sections access
+    // Define many-to-many relationship for citizenship course sections access
     public function citizenshipSections()
     {
         return $this->belongsToMany(CourseSection::class, 'course_section_user', 'user_id', 'course_section_id')->withTimestamps();
     }
 
-    // ✅ Define many-to-many relationship for driving course sections access
+    // Define many-to-many relationship for driving course sections access
     public function drivingSections()
     {
         return $this->belongsToMany(DrivingSection::class, 'driving_section_user', 'user_id', 'driving_section_id')->withTimestamps();
+    }
+
+    // ✅ Filament: Add this method to allow users to access the panel
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // For testing, just return true.
+        // In the future, you can add more specific logic. For example:
+        // return $this->isAdmin();
+        return true;
     }
 }
