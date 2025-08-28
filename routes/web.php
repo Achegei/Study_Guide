@@ -212,9 +212,6 @@ Route::prefix('canadian-citizenship')->middleware(['auth', 'check.test.access'])
     Route::get('/driving-courses/{section}/driving-resources', [DrivingResourceController::class, 'show'])->name('driver-courses.driving-resources');
 });
 
-Route::get('/debug-auth', function () {
-    return auth()->user();
-});
 
 
 
