@@ -47,7 +47,7 @@ return [
     | Specify the authentication guard Filament should use. Defaults to 'web'.
     |
     */
-    'auth_guard' => 'admin',
+    'auth_guard' => 'web',
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
