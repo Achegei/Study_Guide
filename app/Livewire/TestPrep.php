@@ -66,7 +66,7 @@ class TestPrep extends Component
     private function callGeminiAPI($prompt)
     {
         // 🚨 IMPORTANT: This line now gets the API key from your .env file
-        $apiKey = env('GEMINI_API_KEY');
+        $apiKey = config('services.gemini.key');
 
         // Provide a more helpful error if the key is missing
         if (empty($apiKey)) {

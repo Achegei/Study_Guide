@@ -1,6 +1,4 @@
-@extends('layouts.guest')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -14,7 +12,7 @@
                style="background: linear-gradient(to right, #f6f9faff, #edebebff);">
         <div class="absolute inset-0 z-0 bg-black/40">
             <img
-                src="{{ asset('images/driving-hero.png') }}"
+                src="<?php echo e(asset('images/driving-hero.png')); ?>"
                 alt="A steering wheel with road signs in the background"
                 class="w-full h-full object-cover opacity-50"
             >
@@ -31,12 +29,14 @@
             <div class="mt-8">
                 <div class="mt-8 flex flex-wrap justify-center gap-8">
                     <!-- These buttons already use text-gray-800, which is dark -->
-                    <a href="{{route('buy-now')}}" class="inline-block bg-red-700 text-white hover:bg-red-800 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                        {{ __('Access Full Course') }}
+                    <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-red-700 text-white hover:bg-red-800 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                        <?php echo e(__('Access Full Course')); ?>
+
                     </a>
 
-                    <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-blue-700 text-white hover:bg-blue-800 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                        {{ __('Start With Free Test') }}
+                    <a href="<?php echo e(route('free-driver-quiz.show')); ?>" class="inline-block bg-blue-700 text-white hover:bg-blue-800 px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                        <?php echo e(__('Start With Free Test')); ?>
+
                     </a>
 
                 </div>
@@ -88,21 +88,21 @@
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <p class="italic text-gray-700 mb-4">"I passed my G1 test in Ontario on my first attempt, all thanks to this app! The practice questions were spot on."</p>
                     <div class="flex items-center">
-                        <img src="{{ asset('images/driver1.jpg') }}" alt="Alex P." class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <img src="<?php echo e(asset('images/driver1.jpg')); ?>" alt="Alex P." class="w-12 h-12 rounded-full mr-4 object-cover">
                         <span class="font-semibold text-gray-800">Alex P.</span>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <p class="italic text-gray-700 mb-4">"I moved to Alberta and needed to study for the knowledge test. This platform was perfect, especially the road sign quiz!"</p>
                     <div class="flex items-center">
-                        <img src="{{ asset('images/driver2.jpg') }}" alt="Sarah L." class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <img src="<?php echo e(asset('images/driver2.jpg')); ?>" alt="Sarah L." class="w-12 h-12 rounded-full mr-4 object-cover">
                         <span class="font-semibold text-gray-800">Sarah L.</span>
                     </div>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg">
                     <p class="italic text-gray-700 mb-4">"The exam simulator felt just like the real thing. I finished my test with confidence and passed without any problems."</p>
                     <div class="flex items-center">
-                        <img src="{{ asset('images/driver3.jpg') }}" alt="Mark D." class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <img src="<?php echo e(asset('images/driver3.jpg')); ?>" alt="Mark D." class="w-12 h-12 rounded-full mr-4 object-cover">
                         <span class="font-semibold text-gray-800">Mark D.</span>
                     </div>
                 </div>
@@ -117,15 +117,18 @@
                 Start your preparation today and take the first step towards getting your Canadian driver's license.
             </p>
            <div class="mt-8 flex flex-wrap justify-center gap-8">
-                <a href="{{route('buy-now')}}" class="inline-block bg-red-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                    {{ __('Access Full Course') }}
+                <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-red-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <?php echo e(__('Access Full Course')); ?>
+
                 </a>
-                <a href="{{route('free-driver-quiz.show')}}" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
-                    {{ __('Start With Free Test') }}
+                <a href="<?php echo e(route('free-driver-quiz.show')); ?>" class="inline-block bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <?php echo e(__('Start With Free Test')); ?>
+
                 </a>
             </div>
 
         </div>
     </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.guest', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/mohamudhassanmayow/Desktop/Study_Guide/resources/views/frontend/canadian-citizenship/free-test.blade.php ENDPATH**/ ?>
