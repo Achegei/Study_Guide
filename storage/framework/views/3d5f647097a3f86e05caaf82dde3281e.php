@@ -1,29 +1,36 @@
-{{-- resources/views/frontend/free-driver-quiz.blade.php --}}
-<x-app-layout>
 
-    {{-- Main content area of the layout --}}
+<?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
+<?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+
+    
     <main class="flex-1 p-6 lg:ml-0">
         <div class="max-w-2xl mx-auto">
             <h1 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">
-                {{ __('Free Driving Quiz') }}
+                <?php echo e(__('Free Driving Quiz')); ?>
+
             </h1>
 
             <!--
                 This is the new section to promote the paid question bank.
                 It's a visually distinct card placed prominently at the top of the content.
             -->
-            @if ($freeQuizzes->isEmpty())
+            <?php if($freeQuizzes->isEmpty()): ?>
                 <div class="bg-white shadow-md rounded-lg p-6 text-center">
                     <p class="text-gray-700 text-lg">No free quizzes found at this time.</p>
                 </div>
-            @else
+            <?php else: ?>
                 <div class="space-y-10">
-                    @foreach ($freeQuizzes as $quiz)
-                        {{--
-                            Before rendering the form, we find the correct answer text.
-                            This is needed because the JavaScript expects a simple string.
-                        --}}
-                        @php
+                    <?php $__currentLoopData = $freeQuizzes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $quiz): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        
+                        <?php
                             $correctAnswerText = '';
                             foreach ($quiz->options as $option) {
                                 if ($option->is_correct) {
@@ -31,40 +38,38 @@
                                     break;
                                 }
                             }
-                        @endphp
+                        ?>
 
-                        {{-- This is a single quiz question card, styled to match your example --}}
-                        <div id="question-{{ $quiz->id }}" class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-200 relative">
+                        
+                        <div id="question-<?php echo e($quiz->id); ?>" class="bg-white rounded-3xl shadow-2xl p-8 border border-gray-200 relative">
                             <div class="bg-gradient-to-r from-indigo-500 to-indigo-700 text-white rounded-t-2xl p-4 -mx-8 -mt-8 mb-6">
                                 <h3 class="text-xl md:text-2xl font-bold">
-                                    Question {{ $loop->iteration }}:
+                                    Question <?php echo e($loop->iteration); ?>:
                                 </h3>
                             </div>
-                            {{-- Conditionally render the image if the question contains an image tag --}}
+                            
                             <p class="text-gray-800 text-lg mb-6 leading-relaxed">
-                                @if (Str::contains($quiz->question, '<img src='))
-                                    {!! $quiz->question !!} {{-- Render HTML safely if it contains an image --}}
-                                @else
-                                    {{ $quiz->question }}
-                                @endif
+                                <?php if(Str::contains($quiz->question, '<img src=')): ?>
+                                    <?php echo $quiz->question; ?> 
+                                <?php else: ?>
+                                    <?php echo e($quiz->question); ?>
+
+                                <?php endif; ?>
                             </p>
 
-                            {{--
-                                The form now has a `data-correct-answer` attribute set
-                                to the text of the correct option we found above.
-                            --}}
-                            <form class="quiz-form" data-question-id="{{ $quiz->id }}" data-correct-answer="{{ $correctAnswerText }}">
-                                <input type="hidden" name="question_id" value="{{ $quiz->id }}">
+                            
+                            <form class="quiz-form" data-question-id="<?php echo e($quiz->id); ?>" data-correct-answer="<?php echo e($correctAnswerText); ?>">
+                                <input type="hidden" name="question_id" value="<?php echo e($quiz->id); ?>">
                                 <div class="space-y-4">
-                                    @foreach ($quiz->options as $option)
-                                        {{-- The radio button's value is now the option text itself --}}
+                                    <?php $__currentLoopData = $quiz->options; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        
                                         <label class="flex items-center p-4 border border-gray-300 rounded-xl cursor-pointer
                                                       transition-all duration-300 ease-in-out bg-white shadow-sm hover:shadow-md
                                                       has-[:checked]:bg-indigo-50 has-[:checked]:border-indigo-500 has-[:checked]:ring-2 has-[:checked]:ring-indigo-500">
-                                            <input type="radio" name="selected_answer" value="{{ $option->option_text }}" class="form-radio h-5 w-5 text-indigo-600 focus:ring-indigo-500">
-                                            <span class="ml-4 text-gray-800 text-base md:text-lg font-medium">{{ $option->option_text }}</span>
+                                            <input type="radio" name="selected_answer" value="<?php echo e($option->option_text); ?>" class="form-radio h-5 w-5 text-indigo-600 focus:ring-indigo-500">
+                                            <span class="ml-4 text-gray-800 text-base md:text-lg font-medium"><?php echo e($option->option_text); ?></span>
                                         </label>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
 
                                 <div class="status-message mt-4 text-red-600 font-medium text-sm hidden"></div>
@@ -81,7 +86,7 @@
                                 </div>
                             </form>
 
-                            {{-- Feedback Area --}}
+                            
                             <div class="feedback-area mt-6 p-6 rounded-2xl border-2 transition-all duration-300 ease-in-out hidden flex items-start space-x-4">
                                 <div class="feedback-icon size-8 flex-shrink-0 flex items-center justify-center text-white rounded-full">
                                     <svg class="w-5 h-5 hidden correct-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -97,9 +102,9 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-            @endif
+            <?php endif; ?>
             <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-3xl shadow-lg border border-blue-900 mb-8">
                 <h2 class="text-2xl font-bold mb-4">
                     Ready for your full driving test? 🚀
@@ -108,7 +113,7 @@
                     Unlock hundreds of additional practice questions and comprehensive resources to fully prepare for your Canadian driving test.
                     Get lifetime access for a one-time payment.
                 </p>
-                <a href="{{route('buy-now')}}" class="inline-block bg-white text-blue-700 px-8 py-4 rounded-full font-bold shadow-md
+                <a href="<?php echo e(route('buy-now')); ?>" class="inline-block bg-white text-blue-700 px-8 py-4 rounded-full font-bold shadow-md
                                   hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
                     Access Full Driving Course
                 </a>
@@ -116,7 +121,7 @@
         </div>
     </main>
 
-    @push('scripts')
+    <?php $__env->startPush('scripts'); ?>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.quiz-form').forEach(form => {
@@ -225,5 +230,15 @@
             });
         });
     </script>
-    @endpush
-</x-app-layout>
+    <?php $__env->stopPush(); ?>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
+<?php $attributes = $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
+<?php unset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
+<?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
+<?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
+<?php endif; ?>
+<?php /**PATH /Users/mohamudhassanmayow/Desktop/Study_Guide/resources/views/frontend/free-driver-quiz.blade.php ENDPATH**/ ?>

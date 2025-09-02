@@ -15,19 +15,6 @@
                 This is the new section to promote the paid question bank.
                 It's a visually distinct card placed prominently at the top of the content.
             -->
-            <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-3xl shadow-lg border border-blue-900 mb-8">
-                <h2 class="text-2xl font-bold mb-4">
-                    Ready for more?
-                </h2>
-                <p class="text-lg mb-6">
-                    Unlock over 400+ additional practice questions to fully prepare for your citizenship test.
-                    Get lifetime access for a one-time payment.
-                </p>
-                <a href="{{route('buy-now')}}" class="inline-block bg-white text-blue-700 px-8 py-4 rounded-full font-bold shadow-md
-                                  hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
-                    Access Full Course
-                </a>
-            </div>
 
             @if ($freeQuizzes->isEmpty())
                 <div class="bg-white shadow-md rounded-lg p-6 text-center">
@@ -111,6 +98,19 @@
                     @endforeach
                 </div>
             @endif
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-3xl shadow-lg border border-blue-900 mb-8">
+                <h2 class="text-2xl font-bold mb-4">
+                    Ready for more?
+                </h2>
+                <p class="text-lg mb-6">
+                    Unlock over 400+ additional practice questions to fully prepare for your citizenship test.
+                    Get lifetime access for a one-time payment.
+                </p>
+                <a href="{{route('buy-now')}}" class="inline-block bg-white text-blue-700 px-8 py-4 rounded-full font-bold shadow-md
+                                  hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+                    Access Full Course
+                </a>
+            </div>
         </div>
     </main>
 

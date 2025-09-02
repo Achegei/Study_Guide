@@ -84,6 +84,206 @@ class FreeDriverQuizSeeder extends Seeder
                 'correct_answer' => 'Shift to a lower gear and use the parking brake',
                 'type' => 'driving_general',
             ],
+            [
+                'question' => 'What is the minimum age to apply for an Alberta Class 7 learner’s licence?',
+                'options' => [
+                    '14 years',
+                    '15 years',
+                    '16 years',
+                    '17 years',
+                ],
+                'correct_answer' => '14 years',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'A learner driver in Alberta must hold their licence for at least 2 years before they can take the road test for a Class 5 GDL.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'False', // (The minimum holding period is 1 year
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'During the L Stage, what is the maximum speed limit you can drive, even if the posted limit is higher?',
+                'options' => [
+                    '50 km/h',
+                    '70 km/h',
+                    '80 km/h',
+                    'The posted speed limit',
+                ],
+                'correct_answer' => '80 km/h',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'Learner drivers in BC are allowed to use hands-free devices while driving.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'False', // (All electronic device use is prohibited for L Stage drivers
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'In Manitoba, a driver in the learner stage must always have a supervising driver beside them.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'True', // (All electronic device use is prohibited for L Stage drivers
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'The maximum blood alcohol concentration allowed for learner drivers in Manitoba is:',
+                'options' => [
+                    '0.05%',
+                    '0.02%',
+                    '0.00%',
+                    '0.08%',
+                ],
+                'correct_answer' => '0.00%',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'In most urban areas of New Brunswick, the maximum speed limit is:',
+                'options' => [
+                    '40 km/h',
+                    '50 km/h',
+                    '60 km/h',
+                    '70 km/h',
+                ],
+                'correct_answer' => '50 km/h',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'In New Brunswick, you may legally turn right on a red light unless a sign prohibits it.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'True', 
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'What is the minimum age to apply for a Class 5 Level I learner’s licence in Newfoundland and Labrador?',
+                'options' => [
+                    '15',
+                    '16',
+                    '17',
+                    '18',
+                ],
+                'correct_answer' => '16',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'Learner drivers may cross into oncoming lanes to overtake if there is a dashed yellow line.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'True', 
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'In Nova Scotia, a supervising driver must have at least 2 years of driving experience.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'True', 
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'When approaching a school bus with flashing red lights, you must:',
+                'options' => [
+                    'Slow down but keep going',
+                    'Stop at least 6 metres away',
+                    'Pass quickly before children cross',
+                    'Honk to warn children',
+                ],
+                'correct_answer' => 'Stop at least 6 metres away',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'It is legal to use a handheld phone while driving in Ontario as long as you are stopped at a red light.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'False', //You must be parked and off the roadway to use a handheld device legally
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'At a four-way stop, who should go first?',
+                'options' => [
+                    'The largest vehicle',
+                    'The vehicle that arrives first',
+                    'The vehicle on the left',
+                    'The fastest vehicle',
+                ],
+                'correct_answer' => 'The vehicle that arrives first',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'In PEI, a learner must always drive with a fully licensed driver seated beside them.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'True',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'The maximum speed limit in school zones during school hours is:',
+                'options' => [
+                    '30 km/h',
+                    '40 km/h',
+                    '50 km/h',
+                    '60 km/h',
+                ],
+                'correct_answer' => '30 km/h',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'Cyclists in Quebec must follow the same traffic signals and signs as motor vehicles.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'True',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'A flashing green light at an intersection in Quebec means:',
+                'options' => [
+                    'Stop before proceeding',
+                    'You may turn left, right, or go straight if safe',
+                    'Only buses may go',
+                    'Pedestrians have the right-of-way',
+                ],
+                'correct_answer' => 'You may turn left, right, or go straight if safe',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'In Saskatchewan, what is the minimum age to apply for a Class 7 learner’s licence?',
+                'options' => [
+                    '15',
+                    '16',
+                    '17',
+                    '18',
+                ],
+                'correct_answer' => '16',
+                'type' => 'driving_general',
+            ],
+            [
+                'question' => 'Seat belts are optional for rear passengers in Saskatchewan.',
+                'options' => [
+                    'True',
+                    'False',
+                ],
+                'correct_answer' => 'False',
+                'type' => 'driving_general',
+            ],
         ];
 
         // Define the 5 road sign questions.
